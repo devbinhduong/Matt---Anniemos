@@ -3,7 +3,7 @@
         "name": "theme_info",
         "theme_name": "Concept",
         "theme_version": "1.1.2",
-        "theme_author": "Halothemes",
+        "theme_author": "Bspoq",
         "theme_documentation_url": "https:\/\/halosoft.gitbook.io\/concept-documentation\/",
         "theme_support_url": "https:\/\/halosoft.ticksy.com\/"
     },
@@ -194,6 +194,12 @@
                     "id": "text_link",
                     "default": "#2A6876",
                     "label": "t:settings_schema.colors.settings.colors_link.label"
+                },
+                {
+                    "type": "color",
+                    "id": "text_link_hover",
+                    "default": "#464e5c",
+                    "label": "t:settings_schema.colors.settings.colors_link_hover.label"
                 },
                 {
                     "type": "color",

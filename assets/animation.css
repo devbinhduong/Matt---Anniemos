@@ -757,7 +757,8 @@ details[open] .modal-overlay:after {
     /* Link */
     .u-link:hover,
     .h-link:hover{
-        color: rgba(var(--color-link), var(--alpha-link));
+        /* color: rgba(var(--color-link), var(--alpha-link)); */
+        color: rgb(var(--color-link-hover));
     }
 
     .h-link:hover{

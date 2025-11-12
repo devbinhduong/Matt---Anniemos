@@ -207,6 +207,7 @@
     .color-{{ scheme.id }} {
       --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
       --color-link: {{ scheme.settings.text_link.red }},{{ scheme.settings.text_link.green }},{{ scheme.settings.text_link.blue }};
+      --color-link-hover: {{ scheme.settings.text_link_hover.red }},{{ scheme.settings.text_link_hover.green }},{{ scheme.settings.text_link_hover.blue }};
       --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
       --gradient-background: {% if scheme.settings.background_gradient != empty %}{{ scheme.settings.background_gradient }}{% else %}{{ scheme.settings.background }}{% endif %};
       {% if scheme.settings.background_gradient != empty %}--header-gradient-background: {{ scheme.settings.background_gradient }}{% endif %};

@@ -1,0 +1,12 @@
+.announcement-bar__inner {
+  --cus-size: 0.18rem;
+  line-height: 1.33;
+}
+
+.header-socials .list-social__link:not(:hover) {
+  color: rgb(var(--color-link));
+}
+
+.header-socials .list-social__link:hover {
+  color: rgb(var(--color-link-hover));
+}

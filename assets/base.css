@@ -616,6 +616,10 @@ a:not([href]) {
   letter-spacing: var(--link-letter-spacing);
 }
 
+.link:hover {
+  color: rgb(var(--color-link-hover));
+}
+
 .link--text,
 .link--color-text {
   color: rgb(var(--color-foreground));

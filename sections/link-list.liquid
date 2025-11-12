@@ -66,6 +66,20 @@
                     {%- endif -%}
                   </div>
                 {%- endif -%}
+              {%- when 'socials_group' -%}
+                <div class="link-list__item link--{{ block.type }} d-block pos-relative w-100 {{ aligment }} spacing spacing-all cus--color-background{% if section.settings.section_width == 'full-width' %} cus-p-l cus-p-r{% endif %} o-h-lg">
+                  <div class="d-flex a-i-center g-gap w-s-nowrap" style="--g-gap: {{ block.settings.socials_gap }}px;">
+                    {%- render 'social-icons', class: 'header-socials d-flex' -%}
+
+                    {%- if block.settings.socials_phone -%}
+                      <div class="link-list__text rte subrte {{ section.settings.text_size | prepend: 'text-size-' }}">
+                        <a href="tel:{{ block.settings.socials_phone }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }}">
+                          <span class="link-style">{{ block.settings.socials_phone }}</span>
+                        </a>
+                      </div>
+                    {%- endif -%}
+                  </div>
+                </div>
               {%- when 'link_list' -%}
                 {%- if block.settings.link_list != blank -%}
                   <div class="link-list__item link--{{ block.type }} d-block pos-relative w-100 {{ aligment }} spacing spacing-all cus--color-background{% if section.settings.section_width == 'full-width' %} cus-p-l cus-p-r{% endif %}"
@@ -591,6 +605,28 @@
     }]
   },
   {
+    "type": "socials_group",
+    "name": "Socials",
+    "settings": [
+      {
+        "type": "range",
+        "id": "socials_gap",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Gap",
+        "info": "Gap between social icons and phone number",
+        "default": 36
+      },
+      {
+        "type": "text",
+        "id": "socials_phone",
+        "label": "Socials phone"
+      }
+    ]
+  },
+  {
     "type": "link_list",
     "name": "t:sections.link-list.blocks.link_list.name",
     "settings": [
@@ -668,10 +704,7 @@
     "name": "t:sections.link-list.presets.name",
     "blocks": [
     {
-      "type": "text"
-    },
-    {
-      "type": "text"
+      "type": "socials_group"
     },
     {
       "type": "link_list"

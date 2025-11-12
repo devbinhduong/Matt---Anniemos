@@ -1,1 +1,145 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"17114992-59f7-4a83-bf27-1f00c171e823":{"type":"newsletter","settings":{"block_width":"default","type_style_newsletter":"special","image_width":100,"heading":"NEWSLETTER","heading_font":"f-bold","heading_typography":"font-heading","heading_size":"small","heading_size_step":6,"subtext":"<p>Describe what your customers will receive when subscribing to your newsletter.<\/p>","text_size":"medium","text_margin_top":0,"text_margin_bottom":16,"text_alignment":"left","button_label":"","hide_arrow":false,"caption":"","caption_size":"medium","check_text":"","show_social":true,"social_media_colors_text":"#2d2d2d","social_media_colors_background":"rgba(0,0,0,0)","social_media_gradient_background":"linear-gradient(215deg, rgba(248, 208, 218, 0.7) 34.38%, rgba(195, 236, 252, 0.7) 73.44%)","margin_top":0,"margin_bottom":0}},"footer-0":{"type":"link_list","settings":{"heading":"Quick links","heading_font":"f-bold","menu":"footer-menu","custom_separator_color":false,"separator_color":"rgba(0,0,0,0)","padding_bottom_xs":15,"padding_top_xs":15}},"link_list_7FDimd":{"type":"link_list","settings":{"heading":"Quick links","heading_font":"f-bold","menu":"footer-menu","custom_separator_color":false,"separator_color":"rgba(0,0,0,0)","padding_bottom_xs":15,"padding_top_xs":15}}},"block_order":["17114992-59f7-4a83-bf27-1f00c171e823","footer-0","link_list_7FDimd"],"settings":{"type_style":"special","section_width":"page-width","customize_width":1800,"margin_top":0,"heading_typography":"font-body","heading_size":"default","text_typography":"font-body","text_size":"default","text_font_transform":"none","link_row_gap":0,"show_line_separator":false,"footer_top_padding_top":0,"footer_top_padding_bottom":25,"footer_top_padding_top_mobile":20,"footer_top_padding_bottom_mobile":0,"footer_top_color_scheme":"","footer_bot_show_line_separator":false,"footer_bottom_padding_top":26,"footer_bottom_padding_bottom":26,"footer_bottom_padding_top_mobile":60,"footer_bottom_padding_bottom_mobile":20,"footer_bottom_color_scheme":"","bottom_text_size":"medium","enable_country_selector":false,"enable_language_selector":false,"payment_enable":false,"show_policy":true,"show_social":false,"social_media_colors_text":"#2d2d2d","social_media_colors_background":"","social_media_gradient_background":"","text_copyright":"<p>© 2024 <a href=\"https:\/\/concept-theme.myshopify.com\/?_ab=0&_fd=0&_sc=1\" target=\"_blank\" title=\"https:\/\/concept-theme.myshopify.com\/?_ab=0&_fd=0&_sc=1\">Concept<\/a>. All rights reserved.<\/p>"}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer-2": {
+          "type": "text",
+          "settings": {
+            "heading": "",
+            "heading_font": "f-bold",
+            "subtext": "<p>Mon – Fri: 10:00am – 7:30pm</p><p>Sat: 10:00am – 6:00pm</p><p>Sun: 11:00am – 6:00pm</p><p></p><p>Call us: <a href=\"tel:0123456789\">(012)-345-6789</a></p><p>Email: <a href=\"mailto:support@concept.com\">support@concept.com</a></p>",
+            "subtext_size": "medium",
+            "image_width": 180,
+            "show_social": true,
+            "social_media_colors_text": "#2d2d2d",
+            "social_media_colors_background": "",
+            "social_media_gradient_background": "",
+            "margin_bottom": 26,
+            "margin_bottom_xs": 30
+          }
+        },
+        "footer-0": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop by",
+            "heading_font": "f-bold",
+            "menu": "footer",
+            "custom_separator_color": false,
+            "separator_color": "rgba(0,0,0,0)",
+            "padding_bottom_xs": 15,
+            "padding_top_xs": 15
+          }
+        },
+        "footer-1": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Customer Service",
+            "heading_font": "f-bold",
+            "menu": "",
+            "custom_separator_color": false,
+            "separator_color": "rgba(0,0,0,0)",
+            "padding_bottom_xs": 15,
+            "padding_top_xs": 15
+          }
+        },
+        "3d5e046f-f018-45d1-b98d-d4874a780020": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Furthur Info",
+            "heading_font": "f-bold",
+            "menu": "",
+            "custom_separator_color": false,
+            "separator_color": "rgba(0,0,0,0)",
+            "padding_bottom_xs": 15,
+            "padding_top_xs": 15
+          }
+        },
+        "17114992-59f7-4a83-bf27-1f00c171e823": {
+          "type": "newsletter",
+          "settings": {
+            "block_width": "default",
+            "type_style_newsletter": "default",
+            "image_width": 100,
+            "heading": "Subscribe to our emails",
+            "heading_font": "f-bold",
+            "heading_typography": "font-heading",
+            "heading_size": "h3",
+            "heading_size_step": 0,
+            "subtext": "<p>Be the first to know about new collections and exclusive offers.</p>",
+            "text_size": "medium",
+            "text_margin_top": 0,
+            "text_margin_bottom": 16,
+            "text_alignment": "left",
+            "button_label": "",
+            "hide_arrow": false,
+            "caption": "<p>Learn more about how we protect your personal data by viewing our <a href=\"/\" target=\"_blank\" title=\"/\">Privacy Notice</a>.</p>",
+            "caption_size": "medium",
+            "check_text": "",
+            "show_social": false,
+            "social_media_colors_text": "#2d2d2d",
+            "social_media_colors_background": "",
+            "social_media_gradient_background": "",
+            "margin_top": 0,
+            "margin_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "footer-2",
+        "footer-0",
+        "footer-1",
+        "3d5e046f-f018-45d1-b98d-d4874a780020",
+        "17114992-59f7-4a83-bf27-1f00c171e823"
+      ],
+      "settings": {
+        "type_style": "classic",
+        "section_width": "page-width",
+        "customize_width": 1800,
+        "margin_top": 30,
+        "heading_typography": "font-heading",
+        "heading_size": "h3",
+        "text_typography": "font-body",
+        "text_size": "default",
+        "text_font_transform": "none",
+        "link_row_gap": 0,
+        "show_line_separator": false,
+        "footer_top_padding_top": 80,
+        "footer_top_padding_bottom": 65,
+        "footer_top_padding_top_mobile": 40,
+        "footer_top_padding_bottom_mobile": 40,
+        "footer_top_color_scheme": "background-2",
+        "footer_bot_show_line_separator": false,
+        "footer_bottom_padding_top": 26,
+        "footer_bottom_padding_bottom": 26,
+        "footer_bottom_padding_top_mobile": 30,
+        "footer_bottom_padding_bottom_mobile": 30,
+        "footer_bottom_color_scheme": "",
+        "bottom_text_size": "medium",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "payment_enable": true,
+        "show_policy": false,
+        "show_social": false,
+        "social_media_colors_text": "#2d2d2d",
+        "social_media_colors_background": "",
+        "social_media_gradient_background": "",
+        "text_copyright": "<p>©2024 Name store</p>"
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

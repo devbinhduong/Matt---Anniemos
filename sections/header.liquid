@@ -1093,7 +1093,7 @@
     {%- endif -%}
     {%- if section.settings.menu != blank -%}
       <nav class="header__inline-menu d-none d-block-lg{% unless section.settings.logo_position == 'middle-center' %} {{ section.settings.menu_alignment_desktop }}{% endunless %} {{ section.settings.font_transform }}">
-        <ul class="list-menu list-menu--inline d-inline-flex f-wrap list-unstyled left g-gap" role="list" style="--g-gap: {{ section.settings.spacing_gap }}px; --m-t: calc(var(--padding-bottom) * 1);">
+        <ul class="list-menu list-menu--inline d-inline-flex j-c-center f-wrap list-unstyled left g-gap" role="list" style="--g-gap: {{ section.settings.spacing_gap }}px; --m-t: calc(var(--padding-bottom) * 1);">
           {%- for link in section.settings.menu.links -%}
             {%- liquid
               assign megamenu_1 = section.blocks | where: "type", "mega_menu_1"
@@ -1541,6 +1541,46 @@
               </a>
           </div>
         {%- endif -%}
+        {%- if section.settings.enable_wishlist or section.settings.enable_wishlist_mobile -%}
+          <side-drawer-opener 
+            class="header__icon header__icon--wishlist d-flex j-c-center a-i-center p-0 pos-relative u-none color-foreground f-a-none
+              {% if section.settings.enable_wishlist_mobile and section.settings.mobile_logo_position == 'center' %} d-none-mw-md{% endif %}
+              {% unless section.settings.enable_wishlist %} d-none-lg{% endunless %}
+              {% unless section.settings.enable_wishlist_mobile %} d-none-mw-md{% endunless %}
+            " 
+            data-side-drawer="#Drawer-Wishlist"
+          >
+            <button class="t-button b-none c-pointer p-0 color-foreground bg-transparent focus-inset no-js-hidden {{ section.settings.font_transform }}{% if section.settings.icon_type_style == 'default-text' %} u-none link {{ section.settings.link_type | prepend: "link--style-" }} {{ section.settings.text_size | prepend: 'text-size-' }} d-flex c-gap{% endif %}" 
+              type="button" 
+              aria-haspopup="dialog" 
+              aria-label="{{ 'templates.wishlist.wishlist_items' | t: count: cart.item_count }}"
+              {%- if section.settings.icon_type_style == 'default-text' %}
+                style="--c-gap: 0.3rem"
+              {% endif -%}
+            >
+              {{ icon_wishlist }}
+              {%- if section.settings.icon_type_style != 'default-text' -%}
+                <div class="wishlist-count-bubble l-h-1 pos-absolute b-circle d-flex j-c-center a-i-center">
+                  <span class="number" aria-hidden="true">0</span>
+                  <span class="visually-hidden" data-text="{{ 'templates.wishlist.items' | t }}">0 {{ 'templates.wishlist.items' | t }}</span>
+                </div>
+              {%- else -%}
+                <div class="wishlist-text-count wishlist-count-bubble d-flex function-menu-item">  
+                  (<div class="wishlist-icon-bubble">
+                    <span class="number" aria-hidden="true">0</span>
+                    <span class="visually-hidden" data-text="{{ 'templates.wishlist.items' | t }}">0 {{ 'templates.wishlist.items' | t }}</span>
+                  </div>)
+                </div>
+              {%- endif -%}
+            </button>
+            <noscript>
+              <a href="{{ routes.cart_url }}" class="link u-none color-foreground focus-inset {{ section.settings.font_transform }}">
+                {{ icon_wishlist }}
+                <span class="visually-hidden">{{ 'templates.wishlist.wishlist' | t }}</span>
+              </a>
+            </noscript>
+          </side-drawer-opener>
+        {%- endif -%}
         {%- if section.settings.enable_search or section.settings.enable_search_mobile -%}
           <side-drawer-opener 
             class="header__icon header__icon--search d-flex j-c-center a-i-center p-0 u-none color-foreground f-a-none
@@ -1590,46 +1630,6 @@
               </noscript>
             </side-drawer-opener>
           {%- endif -%}
-        {%- endif -%}
-        {%- if section.settings.enable_wishlist or section.settings.enable_wishlist_mobile -%}
-          <side-drawer-opener 
-            class="header__icon header__icon--wishlist d-flex j-c-center a-i-center p-0 pos-relative u-none color-foreground f-a-none
-              {% if section.settings.enable_wishlist_mobile and section.settings.mobile_logo_position == 'center' %} d-none-mw-md{% endif %}
-              {% unless section.settings.enable_wishlist %} d-none-lg{% endunless %}
-              {% unless section.settings.enable_wishlist_mobile %} d-none-mw-md{% endunless %}
-            " 
-            data-side-drawer="#Drawer-Wishlist"
-          >
-            <button class="t-button b-none c-pointer p-0 color-foreground bg-transparent focus-inset no-js-hidden {{ section.settings.font_transform }}{% if section.settings.icon_type_style == 'default-text' %} u-none link {{ section.settings.link_type | prepend: "link--style-" }} {{ section.settings.text_size | prepend: 'text-size-' }} d-flex c-gap{% endif %}" 
-              type="button" 
-              aria-haspopup="dialog" 
-              aria-label="{{ 'templates.wishlist.wishlist_items' | t: count: cart.item_count }}"
-              {%- if section.settings.icon_type_style == 'default-text' %}
-                style="--c-gap: 0.3rem"
-              {% endif -%}
-            >
-              {{ icon_wishlist }}
-              {%- if section.settings.icon_type_style != 'default-text' -%}
-                <div class="wishlist-count-bubble l-h-1 pos-absolute b-circle d-flex j-c-center a-i-center">
-                  <span class="number" aria-hidden="true">0</span>
-                  <span class="visually-hidden" data-text="{{ 'templates.wishlist.items' | t }}">0 {{ 'templates.wishlist.items' | t }}</span>
-                </div>
-              {%- else -%}
-                <div class="wishlist-text-count wishlist-count-bubble d-flex function-menu-item">  
-                  (<div class="wishlist-icon-bubble">
-                    <span class="number" aria-hidden="true">0</span>
-                    <span class="visually-hidden" data-text="{{ 'templates.wishlist.items' | t }}">0 {{ 'templates.wishlist.items' | t }}</span>
-                  </div>)
-                </div>
-              {%- endif -%}
-            </button>
-            <noscript>
-              <a href="{{ routes.cart_url }}" class="link u-none color-foreground focus-inset {{ section.settings.font_transform }}">
-                {{ icon_wishlist }}
-                <span class="visually-hidden">{{ 'templates.wishlist.wishlist' | t }}</span>
-              </a>
-            </noscript>
-          </side-drawer-opener>
         {%- endif -%}
         {%- if section.settings.enable_cart or section.settings.enable_cart_mobile -%}
           {%- if settings.cart_type == 'drawer' -%}
