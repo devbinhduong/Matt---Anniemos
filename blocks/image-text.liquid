@@ -1,0 +1,177 @@
+{% style %}
+    .image-text-container-{{ block.id }} {
+        {% if block.settings.background %}
+            --background-color: {{ block.settings.background_color | default: 'rgb(255 255 255 / 1.0)' }};
+            --corner-radius: {{ block.settings.corner_radius }}px;
+        {% endif %}
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding: {{ block.settings.vertical_padding }}px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--background-color, transparent);
+        border-radius: var(--corner-radius, 0rem);
+    }
+
+    .image-text-{{ block.id }} {
+        font-size: {{ block.settings.font_size }}px;
+        line-height: 1;
+        text-align: center;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        background-position: center;
+        background-size: cover;
+        padding: 0 20px;
+        margin: 0;
+        max-width: 100%;
+        text-transform: {{ block.settings.text_transform }};
+        letter-spacing: {{ block.settings.letter_spacing }}px;
+    }
+
+    @media screen and (max-width: 749px) {
+        .image-text-{{ block.id }} {
+            font-size: {{ block.settings.font_size_mobile }}px;
+        }
+    }
+{% endstyle %}
+
+<div class="image-text-container-{{ block.id }}" {{ block.shopify_attributes }}>
+    {% if block.settings.image %}
+        <h2 class="image-text-{{ block.id }}" style="background-image: url('{{ block.settings.image | image_url: width: 2000 }}');">
+            {{ block.settings.text }}
+        </h2>
+    {% else %}
+        <div class="image-text-placeholder-{{ block.id }}">
+            <h2 class="image-text-{{ block.id }}" style="background-image: url('{{ 'image' | placeholder_svg_tag | escape }}');">
+                {{ block.settings.text }}
+            </h2>
+        </div>
+    {% endif %}
+</div>
+
+{% schema %}
+{
+    "name": "t:flex_section.names.image_text",
+    "tag": null,
+    "settings": [
+        {
+            "type": "text",
+            "id": "text",
+            "label": "t:flex_section.settings.text"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "t:flex_section.settings.background_image"
+        },
+        {
+            "type": "header",
+            "content": "t:flex_section.content.typography"
+        },
+        {
+            "type": "range",
+            "id": "font_size",
+            "min": 40,
+            "max": 200,
+            "step": 5,
+            "unit": "px",
+            "label": "t:sections.all.typography_font.label__1",
+            "default": 120
+        },
+        {
+            "type": "range",
+            "id": "font_size_mobile",
+            "min": 30,
+            "max": 100,
+            "step": 5,
+            "unit": "px",
+            "label": "t:settings_schema.typography.settings.font_size.label__4",
+            "default": 60
+        },
+        {
+            "type": "select",
+            "id": "text_transform",
+            "label": "t:sections.all.typography_font.label__3",
+            "options": [
+                {
+                    "value": "none",
+                    "label": "t:flex_section.options.none"
+                },
+                {
+                    "value": "uppercase",
+                    "label": "t:flex_section.options.uppercase"
+                },
+                {
+                    "value": "lowercase",
+                    "label": "t:settings_schema.global.settings.font_transform.options__1"
+                },
+                {
+                    "value": "capitalize",
+                    "label": "t:settings_schema.global.settings.font_transform.options__2"
+                }
+            ],
+            "default": "uppercase"
+        },
+        {
+            "type": "range",
+            "id": "letter_spacing",
+            "min": -5,
+            "max": 20,
+            "step": 1,
+            "unit": "px",
+            "label": "t:flex_section.settings.letter_spacing",
+            "default": 0
+        },
+        {
+            "type": "header",
+            "content": "t:flex_section.content.appearance"
+        },
+        {
+            "type": "range",
+            "id": "vertical_padding",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "unit": "px",
+            "label": "Vertical padding",
+            "default": 40
+        },
+        {
+            "type": "checkbox",
+            "id": "background",
+            "label": "t:flex_section.settings.background",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "background_color",
+            "label": "t:flex_section.settings.background_color",
+            "alpha": true,
+            "default": "#ffffff",
+            "visible_if": "{{ block.settings.background }}"
+        },
+        {
+            "type": "range",
+            "id": "corner_radius",
+            "label": "t:flex_section.settings.corner_radius",
+            "default": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "visible_if": "{{ block.settings.background }}"
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:flex_section.names.image_text",
+            "category": "t:flex_section.categories.basic",
+            "settings": {
+                "text": "New arrivals"
+            }
+        }
+    ]
+}
+{% endschema %}

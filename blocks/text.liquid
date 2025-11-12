@@ -1,0 +1,198 @@
+
+
+{% render 'text', block: block %}
+
+{% schema %}
+{
+  "name": "t:flex_section.names.text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:flex_section.settings.text",
+      "default": "t:flex_section.html_defaults.share_information_about_your"
+    },
+    {
+      "type": "header",
+      "content": "t:flex_section.content.layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:flex_section.settings.width",
+      "options": [
+        {
+          "value": "fit-content",
+          "label": "t:flex_section.options.fit"
+        },
+        {
+          "value": "100%",
+          "label": "t:flex_section.options.fill"
+        }
+      ],
+      "default": "fit-content"
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "t:flex_section.settings.max_width",
+      "options": [
+        {
+          "value": "narrow",
+          "label": "t:flex_section.options.narrow"
+        },
+        {
+          "value": "normal",
+          "label": "t:flex_section.options.normal"
+        },
+        {
+          "value": "none",
+          "label": "t:flex_section.options.none"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:flex_section.settings.alignment",
+      "default": "left",
+      "visible_if": "{{ block.settings.width == '100%' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:flex_section.content.typography"
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:flex_section.settings.preset",
+      "options": [
+        {
+          "value": "rte",
+          "label": "t:flex_section.options.default"
+        },
+        {
+          "value": "paragraph",
+          "label": "t:flex_section.options.paragraph"
+        },
+        {
+          "value": "h1",
+          "label": "t:flex_section.options.h1"
+        },
+        {
+          "value": "h2",
+          "label": "t:flex_section.options.h2"
+        },
+        {
+          "value": "h3",
+          "label": "t:flex_section.options.h3"
+        },
+        {
+          "value": "h4",
+          "label": "t:flex_section.options.h4"
+        },
+        {
+          "value": "h5",
+          "label": "t:flex_section.options.h5"
+        },
+        {
+          "value": "h6",
+          "label": "t:flex_section.options.h6"
+        }
+      ],
+      "default": "rte",
+      "info": "t:flex_section.info.edit_presets_in_theme_settings"
+    },
+    {
+      "type": "header",
+      "content": "t:flex_section.content.appearance"
+    },
+    {
+      "type": "checkbox",
+      "id": "background",
+      "label": "t:flex_section.settings.background",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "t:flex_section.settings.background_color",
+      "alpha": true,
+      "default": "#00000026",
+      "visible_if": "{{ block.settings.background }}"
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "t:flex_section.settings.corner_radius",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "visible_if": "{{ block.settings.background }}"
+    },
+    {
+      "type": "header",
+      "content": "t:flex_section.content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:flex_section.settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:flex_section.settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:flex_section.settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:flex_section.settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:flex_section.names.text",
+      "category": "t:flex_section.categories.basic",
+      "settings": {
+        "text": "<p>We make things that work better and last longer. Our products solve real problems with clean design and honest materials.</p>"
+      }
+    },
+    {
+      "name": "t:flex_section.names.heading",
+      "category": "t:flex_section.categories.basic",
+      "settings": {
+        "text": "<h2>New arrivals</h2>"
+      }
+    }
+  ]
+}
+{% endschema %}

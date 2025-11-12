@@ -1,0 +1,76 @@
+
+{% assign link = link | default: block.settings.link %}
+
+<a
+    {% if link == blank %}
+        role="link" aria-disabled="true"
+    {% else %}
+        href="{{ link }}"
+    {% endif %}
+    class="
+        button button--{{ block.id }}
+        {{ settings.button_type | prepend: 'button--main-' }}
+        {{ settings.button_icon | prepend: 'button--icon-' }}
+        {{ settings.button_style | prepend: 'button--style-' }}
+        {% if block.settings.button_transparent == 'transparent' %} button--transparent{% endif %}
+    "
+    {%- if block.settings.open_in_new_tab -%}
+        target="_blank"
+        rel="noopener noreferrer"
+    {%- endif -%}
+    {{ block.shopify_attributes }}
+>
+    <span class="text">{{ block.settings.label | escape }}</span>
+    {% render 'button-main-style' %}
+</a>
+
+{% schema %}
+{
+    "name": "t:flex_section.names.button",
+    "tag": null,
+    "settings": [
+        {
+            "type": "text",
+            "id": "label",
+            "label": "t:flex_section.settings.label",
+            "default": "t:flex_section.text_defaults.button_label"
+        },
+        {
+            "type": "url",
+            "id": "link",
+            "label": "t:flex_section.settings.link"
+        },
+        {
+            "type": "checkbox",
+            "id": "open_in_new_tab",
+            "label": "t:flex_section.settings.open_new_tab",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "button_transparent",
+            "options": [
+                {
+                    "value": "default",
+                    "label": "t:sections.all.button_style.label__2"
+                },
+                {
+                    "value": "transparent",
+                    "label": "t:sections.all.button_style.label__3"
+                }
+            ],
+            "default": "transparent",
+            "label": "t:sections.all.button_style.label__1"
+        },
+    ],
+    "presets": [
+        {
+            "name": "t:flex_section.names.button",
+            "category": "t:flex_section.categories.basic",
+            "settings": {
+                "link": "shopify://collections/all"
+            }
+        }
+    ]
+}
+{% endschema %}
