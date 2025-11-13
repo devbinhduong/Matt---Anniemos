@@ -66,7 +66,7 @@
                           style="--animation-order: {{ forloop.index }};"
                         {% endif %}
                       >
-                        <div class="item h-100 pos-relative{% if block.settings.set_border %} border{% endif %}{% if section.settings.content_inside_image %} content-inside-image{% endif %}"
+                        <div class="item h-100 pos-relative{% if block.settings.set_border %} border{% endif %}{% if section.settings.content_inside_image %} content-inside-image{% endif %}{% if section.settings.content_inside_image and section.settings.show_on_hover %} show-on-hover{% endif %}"
                           style="{% if block.settings.set_border %}--border-alpha: 1;{% endif %}"  
                         >
                           <{% if block.settings.button_link != blank %}a{% else %}div{% endif %} class="item__media d-block color-foreground link-cover" {% if block.settings.button_link != blank %}href="{{ block.settings.button_link }}" aria-label="link"{% endif %}>

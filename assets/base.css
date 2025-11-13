@@ -9065,7 +9065,7 @@ animate-element:not([loaded]) split-cursor {
 .collection-list--classic .carousel__controls {
   position: absolute;
   top: var(--button-control-top);
-  right: 0;
+  right: var(--right, 0);
   width:  var(--carousel_controls_width);
   height: var(--carousel_controls_height);
 }
@@ -9349,7 +9349,7 @@ animate-element:not([loaded]) split-cursor {
   height: auto;
 }
 
-.section__multicolumn .content-inside-image .item__content {
+.section__multicolumn .content-inside-image.show-on-hover .item__content {
   transition: var(--duration-slow) var(--cubic);
   opacity: 0;
   pointer-events: none;
@@ -22247,3 +22247,5 @@ placeholder-image > img {
 .layout-panel-flex--column > .group-block--height-custom {
   flex-basis: var(--size-style-height);
 }
+
+/* Mint start custom */

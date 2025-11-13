@@ -10,3 +10,22 @@
 .header-socials .list-social__link:hover {
   color: rgb(var(--color-link-hover));
 }
+#qab_container {
+  display: none !important;
+}
+
+@media (min-width: 1800px) {
+  .collection-list-content {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
+
+  .swiperWrapper {
+    padding-left: var(--carousel-gap);
+    padding-right: var(--carousel-gap);
+  }
+
+  .swiperWrapper .carousel__controls {
+    right: calc(var(--carousel-gap) * -1);
+  }
+}
