@@ -56,8 +56,10 @@
         "socials_group_AkNcD9": {
           "type": "socials_group",
           "settings": {
-            "socials_gap": 36,
-            "socials_phone": "01224 673 000"
+            "socials_gap": 20,
+            "socials_phone": "01224 673 000",
+            "padding_left": 12,
+            "padding_right": 0
           }
         },
         "sections--16801854095599__b38aad37-e5d6-4a4a-9109-e406344cc53a-167808627045fd9a59-2": {
@@ -66,7 +68,10 @@
             "link_list": "header-sub-menu",
             "font_transform": "none",
             "background": "",
-            "secondary_background": ""
+            "secondary_background": "",
+            "link_list_gap": 32,
+            "padding_left": 0,
+            "padding_right": 20
           }
         }
       },
@@ -84,8 +89,8 @@
         "colors_text": "#424242",
         "colors_background": "",
         "gradient_background": "linear-gradient(-90deg, rgba(246, 238, 227, 1), rgba(223, 244, 247, 1) 100%)",
-        "padding_top": 9,
-        "padding_bottom": 9
+        "padding_top": 2,
+        "padding_bottom": 2
       }
     },
     "header": {
@@ -144,14 +149,14 @@
         "show_line_separator": true,
         "type_sticky_header": "scroll-up",
         "color_scheme": "background-2",
-        "text_size": "medium",
+        "text_size": "large",
         "font_transform": "capitalize",
         "enable_transparent": true,
         "logo_transparent": "shopify://shop_images/anniemos-logo.png",
         "color_opacity_1": 100,
         "text_transparent": "#ffffff",
         "color_opacity_2": 70,
-        "logo_width": 180,
+        "logo_width": 210,
         "logo_position": "middle-left",
         "logo_alignment_desktop": "start",
         "menu": "header-main-menu",
@@ -177,8 +182,10 @@
         "enable_country_selector_mobile": true,
         "enable_language_selector_mobile": true,
         "mobile_logo_position": "center",
-        "padding_top": 16,
-        "padding_bottom": 16
+        "padding_top": 13,
+        "padding_bottom": 11,
+        "padding_left": 75,
+        "padding_right": 94
       }
     }
   },

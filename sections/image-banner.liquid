@@ -30,7 +30,7 @@
   <div class="{{ section.settings.section_width }} m-auto{% if section.settings.section_width == 'full-width' %} p-banner{% endif %}"
     {%- if section.settings.section_width == 'customized-width' %} style="--page-width:{{ section.settings.customize_width }}px;"{%- endif -%}
   >
-    <div id="Banner-{{ section.id }}" class="banner rounded-ovh d-flex f-wrap pos-relative i-padding i-padding-md i-padding-lg i-padding-xs banner__media-hover{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+    <div id="Banner-{{ section.id }}" class="banner rounded-ovh d-flex f-wrap pos-relative i-padding i-padding-md i-padding-lg i-padding-xs custom-banner-contain banner__media-hover{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
       style="
         --i-padding: {% if section.settings.image != blank %}{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}{% else %}56{% endif %}%;
         --padding-image-xs: {{ section.settings.mobile_row_height }}%;
@@ -100,10 +100,12 @@
               {%- case block.type -%}
                 {%- when 'heading' -%}
                   {%- if block.settings.heading != blank -%}
-                    <h2 class="banner__heading {{ block.settings.heading_size | prepend: 'heading-size-' }} element-spacing m-0 data__media-hover" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
+                    <h2 class="banner__heading element-spacing m-0 data__media-hover{% if block.settings.use_custom_heading %} heading-section{% else %} {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} {% if block.settings.use_custom_heading_font %} custom-font{% endif %}" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
                       style="--padding-top: {{ block.settings.padding_top }}px;
                         --padding-bottom: {{ block.settings.padding_bottom }}px;
-                        --a-delay: {{ '0.2' | times: forloop.index }}s;"
+                        --a-delay: {{ '0.2' | times: forloop.index }}s;
+                        --heading-section-size: {{ block.settings.custom_heading_size }}px; --heading-section-color: {{ block.settings.custom_heading_color }};
+                        "
                     >{{ block.settings.heading | escape }}</h2>
                   {%- endif -%}
                 {%- when 'text' -%}
@@ -740,6 +742,13 @@
       "default": "Image banner",
       "label": "t:sections.all.heading.label"
     },
+    {  
+      "type": "checkbox",
+      "id": "use_custom_heading",
+      "default": false,
+      "label": "Use custom heading",
+      "visible_if": "{{ block.settings.heading != blank }}"
+    },
     {
       "type": "select",
       "id": "heading_size",
@@ -781,7 +790,33 @@
         "label": "t:sections.all.font_size.options__8"
       }],
       "default": "default",
-      "label": "t:sections.all.font_size.label__2"
+      "label": "t:sections.all.font_size.label__2",
+      "visible_if": "{{ block.settings.use_custom_heading == false }}"
+    },
+    {
+      "type": "range",
+      "id": "custom_heading_size",
+      "min": 12,
+      "max": 110,
+      "step": 1,
+      "unit": "px",
+      "default": 82,
+      "label": "Custom heading size",
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
+    },
+    {
+      "type": "color",
+      "id": "custom_heading_color",
+      "default": "#898d9a",
+      "label": "Custom heading color",
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_heading_font",
+      "default": false,
+      "label": "Use custom heading font",
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
     },
     {
       "type": "header",

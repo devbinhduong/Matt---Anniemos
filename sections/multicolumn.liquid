@@ -31,7 +31,7 @@
       {%- unless section.settings.heading == blank -%}
         <div class="p-w__header">
           <div class="p-w__header--wrapper{% if section.settings.link_label != blank %} d-flex f-wrap j-c-between a-i-center a-i-end-lg{% else %} {{ section.settings.text_alignment }}{% endif %}" {% if section.settings.link_label != blank %} style="--g-gap: 1.5rem;" {% endif %}>
-            <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading heading-size-default m-w{% if section.settings.link_label == blank and section.settings.text_alignment == 'center' %} mx-auto{% else %} m-0{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" style="--m-w: 81rem;">
+            <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-w{% if section.settings.link_label == blank and section.settings.text_alignment == 'center' %} mx-auto{% else %} m-0{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.use_custom_heading %} heading-section{% else %} heading-size-default{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %}" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }};">
               {{ section.settings.heading | escape }}
             </h2>
             {%- if section.settings.link_label != blank -%}
@@ -233,6 +233,37 @@
     "id": "heading",
     "default": "Multicolumn",
     "label": "t:sections.all.heading.label"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading",
+    "default": false,
+    "label": "Use custom heading",
+    "visible_if": "{{ section.settings.heading != blank }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_size",
+    "min": 12,
+    "max": 110,
+    "step": 1,
+    "unit": "px",
+    "default": 82,
+    "label": "Custom heading size",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "color",
+    "id": "custom_heading_color",
+    "default": "#898d9a",
+    "label": "Custom heading color",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading_font",
+    "default": false,
+    "label": "Use custom heading font"
   },
   {
     "type": "text",

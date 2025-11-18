@@ -45,15 +45,15 @@
               style="{% if block.settings.text_alignment != 'center' %}{% if block.settings.show_view_all == 'link' %}--g-gap: 3.2rem{% else %}--g-gap: 1.5rem{% endif %};{% endif %}"
             {% endif %}
           >
-            <h2 id="SectionHeading-{{ block.id }}" class="p-w__heading {{ block.settings.heading_size | prepend: 'heading-size-' }} m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.use_custom_color_heading %} bg-transparent-i gradient{% endif %}"
+            <h2 id="SectionHeading-{{ block.id }}" class="p-w__heading m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.use_custom_color_heading %} bg-transparent-i gradient{% endif %}{% if block.settings.use_custom_heading %} heading-section{% else %} {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} {% if block.settings.use_custom_heading_font %} custom-font{% endif %}"
               {% if section.settings.text_animation == 'split' %}
                 data-splitting-element="chars"
                 data-splitting-animate="up"
               {% else %}
                 data-animate="{{ section.settings.text_animation }}"
               {% endif %}
-              {% if block.settings.use_custom_color_heading %}
-                style="--color-foreground: {{ block.settings.colors_heading.red }}, {{ block.settings.colors_heading.green }}, {{ block.settings.colors_heading.blue }};"
+              {% if block.settings.use_custom_heading %}
+                style="--heading-section-size: {{ block.settings.custom_heading_size }}px; --heading-section-color: {{ block.settings.custom_heading_color }};"
               {% endif %}
             >
               {{ block.settings.heading | escape | default: collection.title }}
@@ -696,6 +696,12 @@
       "label": "t:sections.all.heading.label"
     },
     {
+      "type": "checkbox",
+      "id": "use_custom_heading",
+      "default": false,
+      "label": "Use custom heading"
+    },
+    {
       "type": "select",
       "id": "heading_size",
       "options": [
@@ -736,20 +742,33 @@
         "label": "t:sections.all.font_size.options__8"
       }],
       "default": "default",
+      "visible_if": "{{ block.settings.use_custom_heading == false }}",
       "label": "t:sections.all.font_size.label__2"
     },
     {
-      "type": "checkbox",
-      "id": "use_custom_color_heading",
-      "default": false,
-      "label": "t:sections.all.colors.use_custom_color"
+      "type": "range",
+      "id": "custom_heading_size",
+      "min": 12,
+      "max": 110,
+      "step": 1,
+      "unit": "px",
+      "default": 82,
+      "label": "Custom heading size",
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
     },
     {
       "type": "color",
-      "id": "colors_heading",
-      "default": "#424242",
-      "label": "t:sections.all.heading.label",
-      "visible_if": "{{ block.settings.use_custom_color_heading }}"
+      "id": "custom_heading_color",
+      "default": "#898d9a",
+      "label": "Custom heading color",
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_custom_heading_font",
+      "default": false,
+      "label": "Use custom heading font",
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
     },
     {
       "type": "text",

@@ -19,16 +19,20 @@
         --cus-o: 1;"
     >
       <div class="{{ section.settings.section_width }} m-auto"{% if section.settings.section_width == 'customized-width' %} style="--page-width:{{ section.settings.customize_width }}px;"{% endif %}>
-        <div class="footer__blocks-wrapper grid d-flex f-wrap footer-item--{{ section.blocks.size }}">
+        <div class="footer__blocks-wrapper grid d-flex f-wrap footer-item--{{ section.blocks.size }}" style="--grid-h-md-u: 14px;">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'text' -%}
-                <div class="footer-block footer-grid__item footer-block--{{ block.type }} d-block w-100{% if block.settings.show_social %} has-social-show{% endif %}{% if section.settings.type_style == 'classy' %} spacing{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} m-spacing m-spacing-xs"
+                <div class="footer-block footer-grid__item footer-block--{{ block.type }} d-block w-100{% if block.settings.show_social %} has-social-show{% endif %}{% if section.settings.type_style == 'classy' %} spacing{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} m-spacing m-spacing-xs padding-style"
                   {{ block.shopify_attributes }}
                   style="
                     {% if settings.animations_reveal_on_scroll %}--animation-order: {{ forloop.index }};{% endif %}
                     --m-spacing-b:{{ block.settings.margin_bottom }}px;
-                    --m-spacing-b-xs: {{ block.settings.margin_bottom_xs }}px
+                    --m-spacing-b-xs: {{ block.settings.margin_bottom_xs }}px;
+                    --p-l: {{ block.settings.padding_left }}px;
+                    --p-r: {{ block.settings.padding_right }}px;
+                    --p-t: {{ block.settings.padding_top }}px;
+                    --p-b: {{ block.settings.padding_bottom }}px;
                   "
                 >
                   {%- if block.settings.heading != blank -%}
@@ -38,7 +42,7 @@
                   {%- endif -%}
                   <div class="footer-block__details-content">
                     {%- if block.settings.image != blank -%}
-                      <div class="footer-block__details-item m-spacing" style="--m-w: {{ block.settings.image_width }}px; {% if section.settings.type_style == 'modern' %}--m-spacing-b: 4rem;{% else %}--m-spacing-b: 2.2rem;{% endif %}">
+                      <div class="footer-block__details-item m-spacing" style="--m-w: {{ block.settings.image_width }}px; {% if section.settings.type_style == 'modern' %}--m-spacing-b: 4rem;{% else %}--m-spacing-b: 3.5rem;{% endif %}">
                         {%- assign image_alt = block.settings.image.alt | default: shop.name | escape -%}
                         {%- assign image_height = block.settings.image_width | divided_by: block.settings.image.aspect_ratio -%}
                         {% capture sizes %}(max-width: {{ block.settings.image_width | times: 2 }}px) 50vw, {{ block.settings.image_width }}px{% endcapture %}
@@ -73,10 +77,16 @@
                 </div>
               {%- when 'link_list' -%}
                 {%- if block.settings.menu != blank -%}
-                  <footer-collapse class="footer-block footer-grid__item footer-block--{{ block.type }} d-block w-100{% if section.settings.type_style == 'classy' %} spacing{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  <footer-collapse class="footer-block footer-grid__item footer-block--{{ block.type }} d-block w-100{% if section.settings.type_style == 'classy' %} spacing{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} padding-style"
                     {{ block.shopify_attributes }}
                     {% if settings.animations_reveal_on_scroll %}
-                      style="--animation-order: {{ forloop.index }};"
+                      style="
+                        --animation-order: {{ forloop.index }};
+                        --p-l: {{ block.settings.padding_left }}px;
+                        --p-r: {{ block.settings.padding_right }}px;
+                        --p-t: {{ block.settings.padding_top }}px;
+                        --p-b: {{ block.settings.padding_bottom }}px;
+                      "
                     {% endif %}
                   >
                     <details class="footer-block__details" open>
@@ -94,7 +104,7 @@
                           {{- block.settings.heading | default: block.settings.menu.title | escape -}}
                         </div>
                       </summary>
-                      <ul class="footer-block__details-content list-unstyled" role="list" style="--r-gap: {{ section.settings.link_row_gap }}px;">
+                      <ul class="footer-block__details-content list-unstyled m-t" role="list" style="--r-gap: {{ section.settings.link_row_gap }}px; --m-t: 1rem;">
                         {%- for link in block.settings.menu.links -%}
                           <li class="footer-block__item {{ section.settings.text_typography | prepend: 'typography-' }} {{ section.settings.text_size | prepend: 'text-size text-size-' }} {{ section.settings.text_font_transform }}">
                             <a href="{{ link.url }}" class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset">
@@ -107,16 +117,34 @@
                   </footer-collapse>
                 {%- endif -%}
               {%- when 'newsletter' -%}
-                <div class="footer-block m-spacing{% if forloop.first %} border-right{% endif %} footer-grid__item footer-block--{{ block.type }}{% if block.settings.image != blank %} footer-block--{{ block.type }}-w-logo{% endif %}{% if block.settings.block_width == 'full-width' %} w-full m-auto{% endif %} d-block w-100 type-newsletter--{{ block.settings.type_style_newsletter }}{% if section.settings.type_style == 'classy' %} spacing spacing-xs pos-relative{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                <div class="footer-block m-spacing{% if forloop.first %} border-right{% endif %} footer-grid__item footer-block--{{ block.type }}{% if block.settings.image != blank %} footer-block--{{ block.type }}-w-logo{% endif %}{% if block.settings.block_width == 'full-width' %} w-full m-auto{% endif %} d-block w-100 type-newsletter--{{ block.settings.type_style_newsletter }}{% if section.settings.type_style == 'classy' %} spacing spacing-xs pos-relative{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} padding-style"
                   {{ block.shopify_attributes }}
                   style="
                     {% if settings.animations_reveal_on_scroll %}--animation-order: {{ forloop.index }};{% endif %}
                     --m-spacing-t: {{ block.settings.margin_top }}px;
                     --m-spacing-b: {{ block.settings.margin_bottom }}px;
+                    --p-l: {{ block.settings.padding_left }}px;
+                    --p-r: {{ block.settings.padding_right }}px;
+                    --p-t: {{ block.settings.padding_top }}px;
+                    --p-b: {{ block.settings.padding_bottom }}px;
                   "
                 >
+                 <div class="d-flex r-gap j-c-between" style="--r-gap: 2rem;">
+                  <div>
+                    {%- if block.settings.heading != blank -%}
+                      <div class="footer-block__heading m-0 {{ block.settings.text_alignment }} {{ block.settings.heading_font }} {{ block.settings.heading_typography | prepend: 'typography-' }}{% if block.settings.heading_size == 'h3' %} h3{% else %} p-w__heading {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %}"
+                        {%- if block.settings.heading_size != 'h3' -%} style="--cus-size: {{ block.settings.heading_size_step | divided_by: 10.0 }}rem;"{%- endif -%}
+                      >
+                        {{- block.settings.heading | escape -}}
+                      </div>
+                    {%- endif -%}
+                    {%- if block.settings.subtext != blank -%}
+                      <div class="footer-block__subtext {{ block.settings.text_alignment }} m-spacing {{ block.settings.text_size | prepend: 'text-size-' }}" style="--m-spacing-t: {{ block.settings.text_margin_top }}px;--m-spacing-b: {{ block.settings.text_margin_bottom }}px;">{{ block.settings.subtext }}</div>
+                    {%- endif -%}
+                  </div>
+
                   {%- if block.settings.image != blank -%}
-                    <div class="footer-block--{{ block.type }}-logo {{ block.settings.text_alignment }} m-b" style="--m-w: {{ block.settings.image_width }}px;--m-b: 3.4rem;">
+                    <div class="footer-block--{{ block.type }}-logo {{ block.settings.text_alignment }} mi-w" style="--mi-w: {{ block.settings.image_width }}px; --m-w: {{ block.settings.image_width }}px;">
                       {%- assign image_alt = block.settings.image.alt | default: shop.name | escape -%}
                       {%- assign image_height = block.settings.image_width | divided_by: block.settings.image.aspect_ratio -%}
                       {% capture sizes %}(max-width: {{ block.settings.image_width | times: 2 }}px) 50vw, {{ block.settings.image_width }}px{% endcapture %}
@@ -132,17 +160,8 @@
                       }}
                     </div>
                   {%- endif -%}
-                  {%- if block.settings.heading != blank -%}
-                    <div class="footer-block__heading m-0 {{ block.settings.text_alignment }} {{ block.settings.heading_font }} {{ block.settings.heading_typography | prepend: 'typography-' }}{% if block.settings.heading_size == 'h3' %} h3{% else %} p-w__heading {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %}"
-                      {%- if block.settings.heading_size != 'h3' -%} style="--cus-size: {{ block.settings.heading_size_step | divided_by: 10.0 }}rem;"{%- endif -%}
-                    >
-                      {{- block.settings.heading | escape -}}
-                    </div>
-                  {%- endif -%}
-                  <{% if block.settings.check_text != blank %}form-has-check{% else %}div{% endif %} class="footer-block__details-content rte{% if block.settings.check_text != blank %} d-block{% endif %}">
-                    {%- if block.settings.subtext != blank -%}
-                      <div class="footer-block__subtext {{ block.settings.text_alignment }} m-spacing {{ block.settings.text_size | prepend: 'text-size-' }}" style="--m-spacing-t: {{ block.settings.text_margin_top }}px;--m-spacing-b: {{ block.settings.text_margin_bottom }}px;">{{ block.settings.subtext }}</div>
-                    {%- endif -%}
+                 </div>
+                  <{% if block.settings.check_text != blank %}form-has-check{% else %}div{% endif %} class="footer-block__details-content rte m-t{% if block.settings.check_text != blank %} d-block{% endif %}" style="--m-t: 1.3rem;">
                     {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
                       <input type="hidden" name="contact[tags]" value="newsletter">
                       <div class="newsletter-form__field-wrapper">
@@ -209,7 +228,7 @@
                       {%- endif -%}
                     {%- endform -%}
                     {%- if block.settings.caption != blank -%}
-                      <div class="footer-block__caption subrte m-t {{ block.settings.caption_size | prepend: 'text-size text-size-' }}" style="--m-t: 1.6rem;">
+                      <div class="footer-block__caption subrte m-t {{ block.settings.caption_size | prepend: 'text-size text-size-' }}" style="--m-t: 3.7rem;">
                         {{ block.settings.caption }}
                       </div>
                     {%- endif -%}
@@ -230,8 +249,8 @@
                 </div>
               {%- when 'social' -%}
                 <{% if block.settings.show_appstore == true %}div{% else %}footer-collapse{% endif %} 
-                  class="footer-block m-spacing footer-block--{{ block.type }} w-100
-                  {% if block.settings.show_appstore == true %} footer-grid__item appstore-is-show d-flex j-c-between f-wrap{% else %} footer-grid__item d-block{% endif %}
+                  class="footer-block m-spacing footer-block--{{ block.type }} w-100 footer-grid__item padding-style
+                  {% if block.settings.show_appstore == true %} appstore-is-show d-flex j-c-between f-wrap{% else %} d-block{% endif %}
                   {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}
                   "
                   {{ block.shopify_attributes }}
@@ -240,6 +259,10 @@
                     --m-spacing-t: {{ block.settings.margin_top }}px;
                     --m-spacing-b: {{ block.settings.margin_bottom }}px;
                     --social-media-color-text: {{ block.settings.social_media_colors_text.red }}, {{ block.settings.social_media_colors_text.green }}, {{ block.settings.social_media_colors_text.blue }};
+                    --p-l: {{ block.settings.padding_left }}px;
+                    --p-r: {{ block.settings.padding_right }}px;
+                    --p-t: {{ block.settings.padding_top }}px;
+                    --p-b: {{ block.settings.padding_bottom }}px;
                   "
                 >
                   <{% if block.settings.show_appstore == true %}div{% else %}details{% endif %} class="footer-block__details{% if block.settings.show_appstore == true %} d-flex a-i-center c-gap{% endif %}" 
@@ -541,6 +564,50 @@
     },
     {
       "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
       "content": "t:sections.all.spacing.block_spacing_heading"
     },
     {
@@ -647,12 +714,12 @@
     {
       "type": "range",
       "id": "image_width",
-      "min": 50,
-      "max": 200,
-      "step": 5,
+      "min": 150,
+      "max": 250,
+      "step": 1,
       "unit": "px",
       "label": "t:sections.all.image_width.label",
-      "default": 100
+      "default": 213
     },
     {
       "type": "header",
@@ -680,6 +747,50 @@
       "type": "color_background",
       "id": "social_media_gradient_background",
       "label": "t:settings_schema.colors.settings.social_media_gradient_background.label"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
     },
     {
       "type": "header",
@@ -1025,6 +1136,46 @@
       "label": "t:settings_schema.colors.settings.social_media_gradient_background.label"
     },
     {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
+    },
+    {
       "type": "header",
       "content": "t:sections.all.spacing.block_spacing_heading"
     },
@@ -1249,6 +1400,50 @@
       "type": "url",
       "id": "appstore_link_2",
       "label": "URL 2"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 0
     },
     {
       "type": "header",

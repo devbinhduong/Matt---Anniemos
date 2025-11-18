@@ -68,7 +68,7 @@
                 {%- endif -%}
               {%- when 'socials_group' -%}
                 <div class="link-list__item link--{{ block.type }} d-block pos-relative w-100 {{ aligment }} spacing spacing-all cus--color-background{% if section.settings.section_width == 'full-width' %} cus-p-l cus-p-r{% endif %} o-h-lg">
-                  <div class="d-flex a-i-center g-gap w-s-nowrap" style="--g-gap: {{ block.settings.socials_gap }}px;">
+                  <div class="d-flex a-i-center g-gap w-s-nowrap padding-style" style="--g-gap: {{ block.settings.socials_gap }}px; --p-l: {{ block.settings.padding_left }}px; --p-r: {{ block.settings.padding_right }}px;">
                     {%- render 'social-icons', class: 'header-socials d-flex' -%}
 
                     {%- if block.settings.socials_phone -%}
@@ -88,7 +88,7 @@
                       --color-secondary-background: {{ block.settings.secondary_background.red }},{{ block.settings.secondary_background.green }},{{ block.settings.secondary_background.blue }};
                     "
                   >
-                    <ul class="link-list__list d-flex list-unstyled j-c-{{ aligment | replace: 'left', 'start' | replace: 'right', 'end' }} c-gap subrte" style="--c-gap: 2.5rem;" role="list">
+                    <ul class="link-list__list d-flex list-unstyled j-c-{{ aligment | replace: 'left', 'start' | replace: 'right', 'end' }} c-gap subrte padding-style" style="--c-gap: {{ block.settings.link_list_gap }}px; --p-l: {{ block.settings.padding_left }}px; --p-r: {{ block.settings.padding_right }}px;" role="list">
                       {%- for link in block.settings.link_list.links -%}
                         <li>
                           <a href="{{ link.url }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }} {{ block.settings.font_transform }}">
@@ -623,6 +623,26 @@
         "type": "text",
         "id": "socials_phone",
         "label": "Socials phone"
+      },
+      {
+        "type": "range",
+        "id": "padding_left",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding left",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_right",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding right",
+        "default": 0
       }
     ]
   },
@@ -668,7 +688,38 @@
       "type": "color",
       "id": "secondary_background",
       "label": "t:settings_schema.colors.settings.outline_button_colors_background.label"
-    }]
+    },
+    {
+      "type": "range",
+      "id": "link_list_gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Link list gap",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
+    }
+  ]
   },
   {
     "type": "language_currency",

@@ -120,7 +120,7 @@
             style="{% if section.settings.type_style == 'classic' %}--m-spacing-b: -{{ header_margin_bottom }};--m-spacing-b-xs: {{ heading_margin_bottom | times: 0.75 }}rem; --p-r: {{ carousel_controls_width }}rem;--p-r-xxl: {{ header_padding-right }};{% else %}--m-spacing-b: {{ section.settings.heading_margin_bottom }}px;{% endif %}"
           >
             <div class="p-w__header--wrapper {{ section.settings.header_alignment }}">
-              <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading {{ section.settings.heading_size | prepend: 'heading-size-' }} m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.use_custom_heading %} heading-section{% else %} {{ section.settings.heading_size | prepend: 'heading-size-' }}{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %}" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }};">
                 {{ section.settings.heading | escape }}
               </h2>
             </div>
@@ -135,6 +135,7 @@
                 data-space-between-desktop="{{ section.settings.carousel_gap | times: 2 }}" 
                 data-item-xs="{% if section.settings.columns_mobile == '1' %}1.055{% endif %}"
               {% else %}
+                data-space-between-large="{{ section.settings.carousel_gap_large }}"
                 data-space-between="{{ section.settings.carousel_gap }}" 
                 data-item-xs="{{ column_xs }}"
               {% endif %}
@@ -350,6 +351,13 @@
     "label": "t:sections.all.heading.label"
   },
   {
+    "type": "checkbox",
+    "id": "use_custom_heading",
+    "default": false,
+    "label": "Use custom heading",
+    "visible_if": "{{ section.settings.heading != blank }}"
+  },
+  {
     "type": "select",
     "id": "heading_size",
     "options": [
@@ -390,7 +398,33 @@
       "label": "t:sections.all.font_size.options__8"
     }],
     "default": "medium",
-    "label": "t:sections.all.font_size.label__2"
+    "label": "t:sections.all.font_size.label__2",
+    "visible_if": "{{ section.settings.use_custom_heading == false }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_size",
+    "min": 12,
+    "max": 110,
+    "step": 1,
+    "unit": "px",
+    "default": 82,
+    "label": "Custom heading size",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "color",
+    "id": "custom_heading_color",
+    "default": "#898d9a",
+    "label": "Custom heading color",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading_font",
+    "default": false,
+    "label": "Use custom heading font",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
   },
   {
     "type": "range",
@@ -620,6 +654,18 @@
     "id": "enable_carousel",
     "default": false,
     "label": "t:sections.all.layout.enable_carousel"
+  },
+  {
+    "type": "range",
+    "id": "carousel_gap_large",
+    "min": 50,
+    "max": 150,
+    "step": 5,
+    "unit": "px",
+    "label": "Carousel gap large desktop",
+    "info": "This gap on desktop will be used when the screen width is greater than 2000px",
+    "default": 125,
+    "visible_if": "{{ section.settings.enable_carousel }}"
   },
   {
     "type": "range",

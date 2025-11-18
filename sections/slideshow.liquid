@@ -50,12 +50,13 @@
                         <div class="banner__box--wrapper w-100 data__media-hover">
                           {%- if block.settings.heading != blank -%}
                             <h2 
-                              class="banner__heading {{ block.settings.heading_size | prepend: 'heading-size-' }} {{ block.settings.heading_font | prepend: 'typography-' }} m-spacing" 
+                              class="banner__heading {{ block.settings.heading_size | prepend: 'heading-size-' }} m-spacing {% if block.settings.heading_font == 'custom-font' %} custom-font{% else %} {{ block.settings.heading_font | prepend: 'typography-' }}{% endif %}" 
                               data-animate="fade-down" 
                               style="
                                 --a-delay: 0.6s;
                                 --m-spacing-t: 0;
                                 --m-spacing-b: {{ block.settings.heading_margin_bottom }}px;
+                                --cus-size: 6rem;
                               "
                             >
                               {{ block.settings.heading | escape }}
@@ -63,12 +64,13 @@
                           {%- endif -%}
                           {%- if block.settings.subheading != blank -%}
                             <div 
-                              class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing" 
+                              class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing f-normal" 
                               data-animate="fade-down" 
                               style="
                                 --a-delay: 0.8s;
                                 --m-spacing-t: 0;
                                 --m-spacing-b: {{ block.settings.subheading_margin_bottom }}px;
+                                --cus-size: 1.3rem;
                               "
                             >
                               {{ block.settings.subheading | escape }}
@@ -224,7 +226,7 @@
                         {%- endif -%}
                         {%- if block.settings.heading != blank -%}
                           <h2
-                            class="banner__heading {{ block.settings.heading_size | prepend: 'heading-size-' }} {{ block.settings.heading_font | prepend: 'typography-' }} m-spacing"
+                            class="banner__heading {{ block.settings.heading_size | prepend: 'heading-size-' }} {% if block.settings.heading_font == 'custom-font' %} custom-font{% else %} {{ block.settings.heading_font | prepend: 'typography-' }}{% endif %} m-spacing"
                             data-animate="fade-down"
                             style="
                               --a-delay: 0.6s;
@@ -1012,7 +1014,12 @@
           {
             "value": "font-body",
             "label": "t:settings_schema.global.settings.typography_style.options__2"
-          }],
+          },
+          {
+            "value": "custom-font",
+            "label": "Custom Font"
+          }
+        ],
           "default": "font-heading",
           "label": "t:settings_schema.global.settings.typography_style.label"
         },
@@ -1575,6 +1582,10 @@
             {
               "value": "font-body",
               "label": "t:settings_schema.global.settings.typography_style.options__2"
+            },
+            {
+              "value": "custom-font",
+              "label": "Custom Font"
             }
           ],
           "default": "font-heading",

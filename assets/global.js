@@ -2348,7 +2348,7 @@ class SliderComponent extends HTMLElement {
         setTypePanigation = this.setTypePanigation(),
         setInfiniteScroll = this.classList.contains('infinite-scroll'),
         setspaceBetween = this.dataset.spaceBetween,
-        setspaceBetweenLarge = 125;
+        setspaceBetweenLarge = this.dataset.spaceBetweenLarge ? this.dataset.spaceBetweenLarge : setspaceBetween;
 
     if (this.classList.contains('vertical')){
       var swiperOptions = {
@@ -2506,7 +2506,7 @@ class SliderComponent extends HTMLElement {
             },
             2000: {
               slidesPerView: this.dataset.itemXxl,
-              spaceBetween: setspaceBetweenLarge ? setspaceBetweenLarge : setspaceBetween
+              spaceBetween: setspaceBetweenLarge
             }
           },
           on: {

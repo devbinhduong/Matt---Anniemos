@@ -32,7 +32,7 @@
             {%- if section.settings.heading != blank or section.settings.text != blank -%}
               <div class="p-w__header--item">
                 {%- if section.settings.heading != blank -%}
-                  <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading heading-size-default m-0">{{ section.settings.heading | escape }}</h2>
+                  <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading {% if section.settings.use_custom_heading %} heading-section{% else %} heading-size-default{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %} m-0" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }};">{{ section.settings.heading | escape }}</h2>
                 {%- endif-%}
                 {%- if section.settings.text != blank -%}
                   <div class="p-w__text rte m-t" style="--m-t: 1rem;">{{ section.settings.text }}</div>
@@ -238,6 +238,38 @@
     "id": "heading",
     "default": "Images",
     "label": "t:sections.all.heading.label"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading",
+    "default": false,
+    "label": "Use custom heading",
+    "visible_if": "{{ section.settings.heading != blank }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_size",
+    "min": 12,
+    "max": 110,
+    "step": 1,
+    "unit": "px",
+    "default": 82,
+    "label": "Custom heading size",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "color",
+    "id": "custom_heading_color",
+    "default": "#898d9a",
+    "label": "Custom heading color",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading_font",
+    "default": false,
+    "label": "Use custom heading font",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
   },
   {
     "type": "richtext",

@@ -93,10 +93,13 @@
       </h1>
     </div>
   {%- endif -%}
-  <header class="header main--icons-style-{{ section.settings.icon_type_style }}{% if section.settings.type_style != 'special' %} header--{{ section.settings.logo_position }}{% else %}  header--middle-left{% endif %}{% if section.settings.logo_position == 'middle-left' or section.settings.logo_position == 'middle-right' %}{% if section.settings.logo_width >= 110 %} header--nav__center{% endif %}{% endif %} {{ header__icons_desktop }} {{ header__icons_mobile }}{% if section.settings.use_custom_button %} has-button--customized{% endif %} d-grid header--mobile-{{ section.settings.mobile_logo_position }} {{ section.settings.section_width }} m-auto{% if section.settings.menu != blank %} header--has-menu{% endif %} spacing"
+  <header class="header main--icons-style-{{ section.settings.icon_type_style }}{% if section.settings.type_style != 'special' %} header--{{ section.settings.logo_position }}{% else %}  header--middle-left{% endif %}{% if section.settings.logo_position == 'middle-left' or section.settings.logo_position == 'middle-right' %}{% if section.settings.logo_width >= 110 %} header--nav__center{% endif %}{% endif %} {{ header__icons_desktop }} {{ header__icons_mobile }}{% if section.settings.use_custom_button %} has-button--customized{% endif %} d-grid header--mobile-{{ section.settings.mobile_logo_position }} {{ section.settings.section_width }} m-auto{% if section.settings.menu != blank %} header--has-menu{% endif %} spacing padding-style"
     style="{% if section.settings.section_width == 'customized-width' %}--page-width: {{ section.settings.customize_width }}px;{% endif %}
-      --padding-top: {{ section.settings.padding_top }}px;
-      --padding-bottom: {{ section.settings.padding_bottom }}px;" 
+      --p-t: {{ section.settings.padding_top }}px;
+      --p-b: {{ section.settings.padding_bottom }}px;
+      --p-l: {{ section.settings.padding_left }}px;
+      --p-r: {{ section.settings.padding_right }}px;
+      " 
   >
     {%- if section.settings.menu != blank -%}
       <header-drawer data-breakpoint="md" class="header-drawer icons-style-{{ section.settings.icon_type_style }} d-none-lg{% if section.settings.enable_wishlist_mobile and section.settings.mobile_logo_position == 'center' %} a-i-center{% endif %}">
@@ -1092,7 +1095,7 @@
       </div>
     {%- endif -%}
     {%- if section.settings.menu != blank -%}
-      <nav class="header__inline-menu d-none d-block-lg{% unless section.settings.logo_position == 'middle-center' %} {{ section.settings.menu_alignment_desktop }}{% endunless %} {{ section.settings.font_transform }}">
+      <nav class="header__inline-menu d-none d-block-lg{% unless section.settings.logo_position == 'middle-center' %} {{ section.settings.menu_alignment_desktop }}{% endunless %} {{ section.settings.font_transform }} padding-style" style="--p-l: 4.4rem;--p-r: 0; --p-t: 0; --p-b: 0;">
         <ul class="list-menu list-menu--inline d-inline-flex j-c-center f-wrap list-unstyled left g-gap" role="list" style="--g-gap: {{ section.settings.spacing_gap }}px; --m-t: calc(var(--padding-bottom) * 1);">
           {%- for link in section.settings.menu.links -%}
             {%- liquid
@@ -2322,6 +2325,26 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding left",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Padding right",
+      "default": 0
     }
   ],
   "blocks": [

@@ -17839,13 +17839,13 @@ body.multitasking__show .newsletter-popup-opener {
 
   /* header icon classic */
     .icons-style-classic .header__icon .icon {
-      width: 2.4rem;
-      height: 2.4rem;
+      width: 3rem;
+      height: 3rem;
     }
 
     .icons-style-classic .header__icon.header__icon--account .icon {
-      width: 2.9rem;
-      height: 2.9rem;
+      width: 3.4rem;
+      height: 3.4rem;
     } 
 
     .header--mobile-left .icons-style-classic .header__icon {
@@ -18539,7 +18539,7 @@ body.multitasking__show .newsletter-popup-opener {
     }
 
     .header__icon + .header__icon {
-      margin-left: 0.5rem;
+      margin-left: 1.8rem;
     }
 
     .icons-style-default-text .header__icon + .header__icon {
@@ -20410,7 +20410,7 @@ body.multitasking__show .newsletter-popup-opener {
     }
 
     .footer-block--newsletter {
-      width: 40rem;
+      width: 41.5rem;
       max-width: 100% !important;
     }
 
@@ -21628,8 +21628,8 @@ body.multitasking__show .newsletter-popup-opener {
     }
 
     .footer-block--newsletter {
-      width: 40rem;
-      max-width: 40rem;
+      width: 41.5rem;
+      max-width: 41.5rem;
     }
 
   /* footer classy */
@@ -22249,3 +22249,21 @@ placeholder-image > img {
 }
 
 /* Mint start custom */
+@font-face {
+  font-family: 'Charlotte';
+  src: url('./Charlotte.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.custom-font {
+  font-family: 'Charlotte', sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.5rem !important;
+  line-height: 1.1 !important;
+}
+
+.custom-tracking {
+  letter-spacing: -0.5rem;
+}
