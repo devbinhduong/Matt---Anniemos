@@ -106,7 +106,7 @@
 					{%- if section.settings.layout == 'vertical' and section.settings.type_vertical == 'carousel' -%}
             <div class="swiper d-block pos-relative no-js-overflow-x">
           {%- endif -%}
-            <div class="carousel__items{% if section.settings.layout != 'horizontal' and section.settings.type_vertical == 'scroll' %} a-i-start j-c-between f-wrap{% endif %} {% if section.settings.layout == 'horizontal' %}f-wrap grid{% else %}{% if section.settings.type_vertical == 'carousel' %}swiper-wrapper f-nowrap{% else %}grid{% endif %}{% endif %} d-flex spacing-xs" id="Slider-{{ section.id }}" role="list" aria-label="Icon with text"
+            <div class="carousel__items carousel__items--custom{% if section.settings.layout != 'horizontal' and section.settings.type_vertical == 'scroll' %} a-i-start j-c-between f-wrap{% endif %} {% if section.settings.layout == 'horizontal' %}f-wrap grid{% else %}{% if section.settings.type_vertical == 'carousel' %}swiper-wrapper f-nowrap{% else %}grid{% endif %}{% endif %} d-flex spacing-xs" id="Slider-{{ section.id }}" role="list" aria-label="Icon with text"
               {% if section.settings.layout == 'horizontal' or section.settings.type_vertical != 'carousel' %} 
                 style="--c-xs: {{ column_xs | default: '1'}}; --c-sm: {{ column_sm | default: '2'}}; --c-md: {{ column_md | default: '2'}}; --c-lg: {{ column_lg | default: '4'}}; --c-xl: {{ column_xl | default: '0'}};
                 {% if section.settings.layout == 'vertical' %}
@@ -123,7 +123,7 @@
                     style="--animation-order: {{ forloop.index }};"
                   {% endif %}
                 >
-                  <{% if block.settings.link != blank and block.settings.link_label == blank %}a{% else %}div{% endif %} class="item{% if section.settings.layout == 'horizontal' %} d-flex a-i-center j-c-{{ section.settings.text_alignment }} h-100 c-gap{% else %} pos-relative {{ section.settings.text_alignment }}{% endif %}{% if block.settings.link != blank and block.settings.link_label == blank %} h-link u-none{% endif %} color-foreground animate-icon link-cover"{% if section.settings.layout == 'horizontal' %} style="--c-gap: 2rem;"{% endif %}{% if block.settings.link != blank and block.settings.link_label == blank %} href="{{ block.settings.link }}"{% endif %}>
+                  <{% if block.settings.link != blank and block.settings.link_label == blank %}a{% else %}div{% endif %} class="item{% if section.settings.layout == 'horizontal' %} d-flex a-i-center j-c-{{ section.settings.text_alignment }} h-100 c-gap{% else %} pos-relative {{ section.settings.text_alignment }}{% endif %}{% if block.settings.link != blank and block.settings.link_label == blank %} h-link u-none{% endif %} color-foreground animate-icon link-cover"{% if section.settings.layout == 'horizontal' %} style="--c-gap: 1.3rem;"{% endif %}{% if block.settings.link != blank and block.settings.link_label == blank %} href="{{ block.settings.link }}"{% endif %}>
                     {%- if block.settings.icon != 'none' -%}
                       <div class="item__icon{% if block.settings.enable_custom_size_icon %} custom-size-icon{% endif %}{% if section.settings.layout != 'horizontal' %}{% if block.settings.link != blank and block.settings.link_label == blank %} d-flex m-auto {{ section.settings.text_alignment }}{% else %} d-inline-block{% endif %}{% if section.settings.enable_background_icon %} background-icon{% if block.settings.custom_icon_background != blank %} bg-custom{% else %} gradient{% endif %} gradient-global{% endif %} b-circle c-inline l-h-1{% endif %}"
                         style="
@@ -267,10 +267,10 @@
   {
     "type": "range",
     "id": "customize_width",
-    "min": 1000,
+    "min": 890,
     "max": 1800,
-    "step": 50,
-    "default": 1200,
+    "step": 10,
+    "default": 890,
     "unit": "px",
     "label": "t:sections.all.customize_width.label",
     "visible_if": "{{ section.settings.section_width == 'customized-width' }}"

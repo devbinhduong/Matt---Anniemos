@@ -1,3 +1,9 @@
+.m-0 {
+  margin: 0 !important;
+}
+p-0 {
+  padding: 0 !important;
+}
 .announcement-bar__inner {
   --cus-size: 0.18rem;
   line-height: 1.33;
@@ -24,6 +30,15 @@
 .heading-section {
   font-size: var(--heading-section-size);
   color: var(--heading-section-color);
+}
+
+.section__slideshow .slider__content--wrapper .banner__text > p {
+  margin: 0;
+  line-height: 1;
+}
+
+.section__slideshow .slider__content--wrapper .banner__heading {
+  margin-bottom: 1.5rem;
 }
 
 @media (max-width: 1024px) {
@@ -72,6 +87,20 @@
   .swiperWrapper .carousel__controls {
     right: calc(var(--carousel-gap) * -1);
   }
+
+  .carousel__items--custom {
+    --grid-h-md-u: 7.5rem;
+  }
+
+  .section__slideshow .slider__content--wrapper {
+    position: relative;
+    top: 3.6rem;
+    left: -2.5rem;
+  }
+
+  .section__slideshow .slider__content--wrapper .banner__heading {
+    --cus-size: 6rem;
+  }
 }
 
 .footer-block__heading.m-0 {
@@ -86,4 +115,16 @@
 
 .custom-banner-contain img {
   object-fit: contain;
+}
+
+[style*="--max-width"] {
+  max-width: var(--max-width, 100%);
+}
+
+[style*="--custom-tracking"] {
+  letter-spacing: var(--custom-tracking, 0) !important;
+}
+
+[style*="--word-spacing"] {
+  word-spacing: var(--word-spacing, 0) !important;
 }

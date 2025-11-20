@@ -104,6 +104,8 @@
                       style="--padding-top: {{ block.settings.padding_top }}px;
                         --padding-bottom: {{ block.settings.padding_bottom }}px;
                         --a-delay: {{ '0.2' | times: forloop.index }}s;
+                        --custom-tracking: {{ block.settings.custom_tracking }}px;
+                        --word-spacing: {{ block.settings.word_spacing }}px;
                         --heading-section-size: {{ block.settings.custom_heading_size }}px; --heading-section-color: {{ block.settings.custom_heading_color }};
                         "
                     >{{ block.settings.heading | escape }}</h2>
@@ -311,6 +313,8 @@
                     style="
                       --m-spacing-b: {{ block.settings.heading_margin_bottom }}px;
                       --a-delay: {{ '0.2' | times: forloop.index }}s;
+                      --custom-tracking: {{ block.settings.custom_tracking }}px;
+                      --word-spacing: {{ block.settings.word_spacing }}px;
                       {% if block.settings.use_custom_color_heading %}
                         --color-foreground: {{ block.settings.colors_heading.red }}, {{ block.settings.colors_heading.green }}, {{ block.settings.colors_heading.blue }};
                       {% endif %}
@@ -816,6 +820,28 @@
       "id": "use_custom_heading_font",
       "default": false,
       "label": "Use custom heading font",
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
+    },
+    {
+      "type": "range",
+      "id": "custom_tracking",
+      "min": -5,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Letter spacing",
+      "default": 3,
+      "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
+    },
+    {
+      "type": "range",
+      "id": "word_spacing",
+      "min": -5,
+      "max": 5,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Word spacing",
+      "default": 0,
       "visible_if": "{{ block.settings.use_custom_heading and block.settings.heading != blank }}"
     },
     {

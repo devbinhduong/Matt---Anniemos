@@ -32,10 +32,10 @@
             {%- if section.settings.heading != blank or section.settings.text != blank -%}
               <div class="p-w__header--item">
                 {%- if section.settings.heading != blank -%}
-                  <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading {% if section.settings.use_custom_heading %} heading-section{% else %} heading-size-default{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %} m-0" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }};">{{ section.settings.heading | escape }}</h2>
+                  <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading {% if section.settings.use_custom_heading %} heading-section{% else %} heading-size-default{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %} m-0" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }}; --word-spacing: 0.1rem;">{{ section.settings.heading | escape }}</h2>
                 {%- endif-%}
                 {%- if section.settings.text != blank -%}
-                  <div class="p-w__text rte m-t" style="--m-t: 1rem;">{{ section.settings.text }}</div>
+                  <div class="p-w__text rte m-t" style="--m-t: 0rem;">{{ section.settings.text }}</div>
                 {%- endif-%}
               </div>
             {%- endif -%}
@@ -131,8 +131,13 @@
                       {%- endfor -%}
                       {%- if has_product -%}
                         <lookbook-drawer-opener class="lookbook__drawer-opener d-none d-block-xl pos-absolute o-h no-js-hidden" data-side-drawer="#LOOKBOOK-{{ block.id }}-{{ section.id }}">
-                          <button class="d-block t-button b-none c-pointer o-h l-h-1 gradient" type="button" aria-haspopup="dialog" aria-label="{{ 'general.lookbook.show' | t }}">
+                          <button class="cursor-fixed__parallax-target d-inline-block pos-relative p-0 b-none">
+                            <span class="cursor-fixed__parallax-inner d-inline-block"><span class="button button--main-classic button--icon-caret button--style-ripple">
                             <span class="text">{{ 'general.lookbook.show' | t }}</span>
+                            <div class="button-main main-arrow-classic d-flex z-index-2 p-l" style="--p-l: 3rem;">
+                              {% render 'button-main-style' %}
+                            </div>
+                          <span class="layer" style="translate: none; rotate: none; scale: none;"></span></span></span>
                           </button>
                         </lookbook-drawer-opener>
                         <lookbook-drawer id="LOOKBOOK-{{ block.id }}-{{ section.id }}" class="lookbook__drawer drawer pos-fixed top-0 left-0 z-index-8 w-100v h-100 d-flex a-i-end j-c-end no-js-hidden">

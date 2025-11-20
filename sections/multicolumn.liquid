@@ -29,8 +29,8 @@
   >
     <div class="page-width m-auto{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       {%- unless section.settings.heading == blank -%}
-        <div class="p-w__header">
-          <div class="p-w__header--wrapper{% if section.settings.link_label != blank %} d-flex f-wrap j-c-between a-i-center a-i-end-lg{% else %} {{ section.settings.text_alignment }}{% endif %}" {% if section.settings.link_label != blank %} style="--g-gap: 1.5rem;" {% endif %}>
+        <div class="p-w__header m-spacing">
+          <div class="p-w__header--wrapper{% if section.settings.link_label != blank %} d-flex f-wrap j-c-between a-i-center a-i-center-lg{% else %} {{ section.settings.text_alignment }}{% endif %}" {% if section.settings.link_label != blank %} style="--g-gap: 1.5rem;" {% endif %}>
             <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-w{% if section.settings.link_label == blank and section.settings.text_alignment == 'center' %} mx-auto{% else %} m-0{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.use_custom_heading %} heading-section{% else %} heading-size-default{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %}" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }};">
               {{ section.settings.heading | escape }}
             </h2>
@@ -42,7 +42,7 @@
           </div>
         </div>
       {%- endunless -%}
-      <div class="p-w__content">
+      <div class="p-w__content p-0">
         <slider-component class="carousel d-block pos-relative swiper-more-item{% if section.settings.carousel_infinite_scroll %}{% if section.blocks.size > section.settings.carousel_number %} infinite-scroll{% endif %}{% endif %}"
             data-space-between="{{ section.settings.carousel_gap_mobile }}" 
             data-space-between-tablet="{{ section.settings.carousel_gap_tablet }}" 
@@ -110,16 +110,16 @@
                                   </div>
                                 {%- endif -%}
                                 {%- if block.settings.heading != blank -%}
-                                  <h3 class="heading{% if block.settings.heading_size == 'h1' %} h1{% else %} {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %}">
+                                  <h3 class="heading{% if block.settings.heading_size == 'h1' %} h1{% else %} {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} m-0">
                                     {{ block.settings.heading | escape }}
                                   </h3>
                                 {%- endif -%}
                                 {%- if block.settings.text != blank -%}
-                                  <div class="rte {{ block.settings.text_size | prepend: 'text-size-' }}">{{ block.settings.text }}</div>
+                                  <div class="rte {{ block.settings.text_size | prepend: 'text-size-' }}" style="--cus-size: 1px;">{{ block.settings.text }}</div>
                                 {%- endif -%}
                                 {%- if block.settings.button_label != blank -%}
                                   {%- if settings.enable_animated_cursor -%}
-                                    <a {% if block.settings.button_link == blank %} role="link" aria-disabled="true"{% else %}href="{{ block.settings.button_link }}"{% endif %} class="cursor-fixed__parallax-target d-inline-block pos-relative {{ block.settings.button_type | prepend: 'button--' }}">
+                                    <a {% if block.settings.button_link == blank %} role="link" aria-disabled="true"{% else %}href="{{ block.settings.button_link }}"{% endif %} class="cursor-fixed__parallax-target d-inline-block pos-relative {{ block.settings.button_type | prepend: 'button--' }}" style="--max-width: 248px;">
                                       <span class="cursor-fixed__parallax-inner d-inline-block">
                                   {%- endif -%}
                                         <{% if settings.enable_animated_cursor %}span{% else %}a {% if block.settings.button_link == blank %}role="link" aria-disabled="true"{% else %}href="{{ block.settings.button_link }}"{% endif %}{% endif %} class="button {{ block.settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }} {{ settings.button_style | prepend: 'button--style-' }} {% if section.settings.button_transparent == 'transparent' %} button--transparent{% endif %}"
@@ -263,7 +263,8 @@
     "type": "checkbox",
     "id": "use_custom_heading_font",
     "default": false,
-    "label": "Use custom heading font"
+    "label": "Use custom heading font",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
   },
   {
     "type": "text",

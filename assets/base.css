@@ -4065,14 +4065,14 @@ summary::-webkit-details-marker {
 
 /* component-price */
 .price {
-  font-size: clamp(1.6rem, var(--font-body-size), 3rem);
+  font-size: clamp(1.6rem, var(--price-font-size), 3rem);
   font-weight: var(--font-body-weight-bold);
   line-height: calc(1 + 0.5 / var(--font-body-scale));
   color: rgb(var(--color-default-price), 1);
 }
 
 .price--large {
-  font-size: clamp(2rem, calc(var(--font-body-size) + 0.4rem), 2.4rem);
+  font-size: clamp(2rem, calc(var(--price-font-size) + 0.4rem), 2.4rem);
 }
 
 .price-item {
@@ -5804,7 +5804,7 @@ details.modal .modal__toggle-close {
 
 /* swiper - progressbar */
   .swiper-pagination-progressbar {
-    height: 0.5rem !important;
+    height: 1.2rem !important;
     background: transparent;
     z-index: 1;
   }
@@ -8787,16 +8787,6 @@ animate-element:not([loaded]) split-cursor {
   left: 4.5rem;
 }
 
-.lookbook__drawer-opener button {
-  color: rgba(var(--color-foreground), 1);
-  background: rgba(var(--color-background), 1);
-  background: var(--gradient-background);
-  padding: 1rem 1.5rem;
-  min-width: 14.5rem;
-  font-size: clamp(1.4rem, calc(var(--font-body-size) - 0.2rem), 1.8rem);
-  border-radius: var(--buttons-radius-outset);
-}
-
 .lookbook__drawer-opener button:after {
   content: "";
   z-index: 1;
@@ -9012,8 +9002,8 @@ animate-element:not([loaded]) split-cursor {
 }
 
 .section__c-list .item__content {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+  margin-top: 0.7rem;
+  margin-bottom: 1.5rem;
 }
 
 .section__c-list h3 .icon {
@@ -9363,7 +9353,7 @@ animate-element:not([loaded]) split-cursor {
 .section__multicolumn .content-inside-image [class*=button--main-] {
   width: 100%;
   min-width: initial;
-  padding: 0 3.2rem;
+  padding: 0 1.4rem 0 2rem;
 }
 
 .section__multicolumn .carousel__item--column-text .cursor-fixed__parallax-target ,
@@ -9400,7 +9390,7 @@ animate-element:not([loaded]) split-cursor {
 }
 
 .section__multicolumn .content-inside-image .item__content.content--bottom > .d-block {
-  padding: 2rem;
+  padding: 3rem 3rem 2.8rem 3.8rem;
 }
 
 .section__multicolumn .content-inside-image:not(.not-image) .item__content .heading {
@@ -9785,9 +9775,11 @@ details[open] .newsletter__summary {
 }
 
 .newsletter-form__field-wrapper .field__input {
+  --color-foreground: #a7aab3;
   padding: 1.7rem 5.7rem 1.7rem 2.5rem;
   height: 6rem;
-  border: 0.2rem solid rgba(var(--color-foreground), var(--inputs-border-opacity));
+  border: 0.2rem solid var(--color-foreground);
+  background-color: var(--color-foreground);
 }
 
 .newsletter-form__field-wrapper .field__label {
@@ -16710,11 +16702,11 @@ body.multitasking__show .newsletter-popup-opener {
 
   /* component-lookbook */
     .section__lookbook .p-w__content {
-      padding-top: 2.4rem;
+      padding-top: 0.5rem;
     }
 
   /* component-multicolumn */
-    .section__multicolumn .p-w__content,
+    .section__multicolumn .p-w__content:not(.p-0),
     .section__f-blog .p-w__content {
       padding-top: 2.2rem;
     }
@@ -16730,12 +16722,17 @@ body.multitasking__show .newsletter-popup-opener {
 
     .section__multicolumn h3,
     .section__f-blog h3,
-    .section__multicolumn .rte,
     .section__f-blog .rte {
       margin-bottom: 1.5rem;
     }
+    .section__multicolumn .rte {
+      margin-bottom: 0.5rem;
+    }
 
-    .section__multicolumn .button,
+    .section__multicolumn .button {
+      margin-top: 0;
+    }
+    
     .section__f-blog .button {
       margin-top: 2.5rem;
       min-width: 26rem;
@@ -16843,8 +16840,8 @@ body.multitasking__show .newsletter-popup-opener {
     }
 
     .banner__content--middle-center .banner__box {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .banner__content--bottom-center .banner__box {
@@ -21291,7 +21288,7 @@ body.multitasking__show .newsletter-popup-opener {
 
   /* component-banner */
     .banner__content {
-      padding: 6rem;
+      padding: 12.4rem;
     }
 
     .banner__box {
@@ -21304,14 +21301,14 @@ body.multitasking__show .newsletter-popup-opener {
     .banner__content--top-left .banner__box,
     .banner__content--top-center .banner__box,
     .banner__content--top-right .banner__box {
-      padding-top: 8rem;
+      padding-top: 12.8rem;
       padding-bottom: 0;
     }
 
     .banner__content--middle-left .banner__box,
     .banner__content--middle-center .banner__box,
     .banner__content--middle-right .banner__box {
-      padding-top: 8rem;
+      padding-top: 5.5rem;
       padding-bottom: 8rem;
     }
 
@@ -22260,8 +22257,13 @@ placeholder-image > img {
 .custom-font {
   font-family: 'Charlotte', sans-serif !important;
   font-weight: 400 !important;
-  letter-spacing: -0.5rem !important;
   line-height: 1.1 !important;
+  word-spacing: -1.2rem;
+  letter-spacing: -0.5px;
+}
+
+.heading-section.custom-font {
+  letter-spacing: -3.5px;
 }
 
 .custom-tracking {

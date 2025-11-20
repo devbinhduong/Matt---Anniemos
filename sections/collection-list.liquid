@@ -91,7 +91,7 @@
     
       assign carousel_controls_width = button_arrow_width | times: 2 | plus: 5.2
       assign carousel_controls_height = button_arrow_height | append: 'rem'
-      assign carousel_controls_top = heading_margin_bottom | plus: carousel_controls_height
+      assign carousel_controls_top = heading_margin_bottom | plus: carousel_controls_height | minus: 0.5
       assign carousel_controls_prev_right = button_arrow_width | plus: 2.7 | append: 'rem'
       assign header_margin_bottom = carousel_controls_height | plus: 0.5 | append: 'rem'
       assign header_padding-right = carousel_controls_width | plus: 10 | append: 'rem'

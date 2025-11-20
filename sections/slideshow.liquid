@@ -56,7 +56,6 @@
                                 --a-delay: 0.6s;
                                 --m-spacing-t: 0;
                                 --m-spacing-b: {{ block.settings.heading_margin_bottom }}px;
-                                --cus-size: 6rem;
                               "
                             >
                               {{ block.settings.heading | escape }}
@@ -73,7 +72,7 @@
                                 --cus-size: 1.3rem;
                               "
                             >
-                              {{ block.settings.subheading | escape }}
+                              {{ block.settings.subheading }}
                             </div>
                           {%- endif -%}
                           {%- if block.settings.primary_button_label != blank or block.settings.secondary_button_label != blank -%}
@@ -1083,9 +1082,9 @@
           "default": 20
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "subheading",
-          "default": "Tell your brand's story through images",
+          "default": "<p>Tell your brand's story through images</p>",
           "label": "t:sections.all.subheading.label"
         },
         {
@@ -1652,9 +1651,9 @@
           "default": 20
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "subheading",
-          "default": "Tell your brand's story through images",
+          "default": "<p>Tell your brand's story through images</p>",
           "label": "t:sections.all.subheading.label"
         },
         {
