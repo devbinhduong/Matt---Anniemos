@@ -128,7 +128,7 @@
             {%- endcase -%}
           </div>
           {%- if section.blocks.size > 0 -%}
-            <div class="collection-hero__content pos-absolute pos-absolute-c-c z-index-2 center bg-transparent w-100 p-t p-b p-r p-l m-w" style="--p-t: 1.5rem; --p-l: 1.5rem; --p-b: 1.5rem; --p-r: 1.5rem; --m-w: 40rem;">
+            <div class="collection-hero__content pos-absolute cus-pos-absolute-c-r z-index-2 left bg-transparent w-100 p-t p-b p-r p-l m-w" style="--p-t: 1.5rem; --p-l: 1.5rem; --p-b: 1.5rem; --p-r: 1.5rem; --m-w: 70rem;--cus-l: 20rem;">
               {%- for block in section.blocks -%}
                 {%- case block.type -%}
                   {%- when 'heading' -%}
