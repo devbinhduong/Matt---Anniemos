@@ -46,7 +46,7 @@
                   </div>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="announcement-bar__message rte center {{ section.settings.text_size | prepend: 'text-size-' }}">
+                  <div class="announcement-bar__message text-responsive rte center {{ section.settings.text_size | prepend: 'text-size-' }}">
                     {{ block.settings.text }}
                   </div>
                 {%- endif -%}

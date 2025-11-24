@@ -35,7 +35,7 @@
               {{ section.settings.heading | escape }}
             </h2>
             {%- if section.settings.link_label != blank -%}
-              <a {% if section.settings.link == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.link }}"{% endif %} class="link u-link {{ settings.link_type | prepend: "link--style-" }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" aria-label="{{ section.settings.link_label | escape }}">
+              <a {% if section.settings.link == blank %}role="link" aria-disabled="true"{% else %}href="{{ section.settings.link }}"{% endif %} class="link u-link {{ settings.link_type | prepend: "link--style-" }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} text-responsive" aria-label="{{ section.settings.link_label | escape }}">
                 <span class="link-style">{{ section.settings.link_label | escape }}</span>
               </a>
             {%- endif -%}
@@ -115,7 +115,7 @@
                                   </h3>
                                 {%- endif -%}
                                 {%- if block.settings.text != blank -%}
-                                  <div class="rte {{ block.settings.text_size | prepend: 'text-size-' }}" style="--cus-size: 1px;">{{ block.settings.text }}</div>
+                                  <div class="rte {{ block.settings.text_size | prepend: 'text-size-' }} text-responsive" style="--cus-size: 1px;">{{ block.settings.text }}</div>
                                 {%- endif -%}
                                 {%- if block.settings.button_label != blank -%}
                                   {%- if settings.enable_animated_cursor -%}

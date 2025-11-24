@@ -216,7 +216,7 @@
                           </div>
                         </{% if block.settings.collection != blank %}a{% else %}div{% endif %}>
                         <div class="item__content {{ section.settings.text_alignment }}">
-                          <h3 class="d-inline-block pos-relative{% if section.settings.blocks_heading_size == 'text-body' %} text-body{% else %} text-body {{ section.settings.blocks_heading_size | prepend: 'heading-size-' }}{% endif %} {{ section.settings.font_transform }} m-0 f-bold" data-animate="{{ section.settings.text_animation }}" style="--a-delay: {{ '0.05' | times: forloop.index }}s;">
+                          <h3 class="d-inline-block pos-relative{% if section.settings.blocks_heading_size == 'text-body' %} text-body{% else %} text-body {{ section.settings.blocks_heading_size | prepend: 'heading-size-' }}{% endif %} {{ section.settings.font_transform }} m-0 f-bold text-responsive" data-animate="{{ section.settings.text_animation }}" style="--a-delay: {{ '0.05' | times: forloop.index }}s;">
                             {%- if section.settings.type_style == 'default' -%}
                               {{ block.settings.collection.title | default: 'Collection heading' }}
                             {%- else -%}

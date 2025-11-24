@@ -35,7 +35,7 @@
                   <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading {% if section.settings.use_custom_heading %} heading-section{% else %} heading-size-default{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %} m-0" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }}; --word-spacing: 0.1rem;">{{ section.settings.heading | escape }}</h2>
                 {%- endif-%}
                 {%- if section.settings.text != blank -%}
-                  <div class="p-w__text rte m-t" style="--m-t: 0rem;">{{ section.settings.text }}</div>
+                  <div class="p-w__text rte m-t text-responsive" style="--m-t: 0rem;">{{ section.settings.text }}</div>
                 {%- endif-%}
               </div>
             {%- endif -%}

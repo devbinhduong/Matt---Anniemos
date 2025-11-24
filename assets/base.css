@@ -5804,7 +5804,7 @@ details.modal .modal__toggle-close {
 
 /* swiper - progressbar */
   .swiper-pagination-progressbar {
-    height: 1.2rem !important;
+    height: 0.6rem !important;
     background: transparent;
     z-index: 1;
   }

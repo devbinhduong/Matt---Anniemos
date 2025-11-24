@@ -36,7 +36,7 @@
                   "
                 >
                   {%- if block.settings.heading != blank -%}
-                    <div class="footer-block__heading m-0 {{ block.settings.heading_font }} {{ section.settings.heading_typography | prepend: 'typography-' }} {% if section.settings.heading_size == 'h3' %} h3{% else %} {{ section.settings.heading_size | prepend: 'text-size-' }}{% endif %}">
+                    <div class="footer-block__heading m-0 {{ block.settings.heading_font }} {{ section.settings.heading_typography | prepend: 'typography-' }} {% if section.settings.heading_size == 'h3' %} h3{% else %} {{ section.settings.heading_size | prepend: 'text-size-' }}{% endif %} text-responsive">
                       {{- block.settings.heading | escape -}}
                     </div>
                   {%- endif -%}
@@ -59,7 +59,7 @@
                       </div>
                     {%- endif -%}
                     {%- if block.settings.subtext != blank -%}
-                      <div class="footer-block__details-item rte {{ block.settings.subtext_size | prepend: 'text-size-' }} footer-block__link m-spacing">
+                      <div class="footer-block__details-item rte {{ block.settings.subtext_size | prepend: 'text-size-' }} footer-block__link m-spacing text-responsive">
                         {{ block.settings.subtext }}
                       </div>
                     {%- endif -%}
@@ -100,14 +100,14 @@
                           {% endif %}
                         "
                       >
-                        <div class="footer-block__heading m-0 summary__title {{ block.settings.heading_font }} {{ section.settings.heading_typography | prepend: 'typography-' }}{% if section.settings.heading_size == 'h3' %} h3{% else %} {{ section.settings.heading_size | prepend: 'text-size-' }}{% endif %}">
+                        <div class="footer-block__heading m-0 summary__title {{ block.settings.heading_font }} {{ section.settings.heading_typography | prepend: 'typography-' }}{% if section.settings.heading_size == 'h3' %} h3{% else %} {{ section.settings.heading_size | prepend: 'text-size-' }}{% endif %} text-responsive">
                           {{- block.settings.heading | default: block.settings.menu.title | escape -}}
                         </div>
                       </summary>
                       <ul class="footer-block__details-content list-unstyled m-t" role="list" style="--r-gap: {{ section.settings.link_row_gap }}px; --m-t: 1rem;">
                         {%- for link in block.settings.menu.links -%}
                           <li class="footer-block__item {{ section.settings.text_typography | prepend: 'typography-' }} {{ section.settings.text_size | prepend: 'text-size text-size-' }} {{ section.settings.text_font_transform }}">
-                            <a href="{{ link.url }}" class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset">
+                            <a href="{{ link.url }}" class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset text-responsive">
                               <span class="link-style">{{ link.title }}</span>
                             </a>
                           </li>
@@ -132,14 +132,14 @@
                  <div class="d-flex r-gap j-c-between" style="--r-gap: 2rem;">
                   <div>
                     {%- if block.settings.heading != blank -%}
-                      <div class="footer-block__heading m-0 {{ block.settings.text_alignment }} {{ block.settings.heading_font }} {{ block.settings.heading_typography | prepend: 'typography-' }}{% if block.settings.heading_size == 'h3' %} h3{% else %} p-w__heading {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %}"
+                      <div class="footer-block__heading m-0 {{ block.settings.text_alignment }} {{ block.settings.heading_font }} {{ block.settings.heading_typography | prepend: 'typography-' }}{% if block.settings.heading_size == 'h3' %} h3{% else %} p-w__heading {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} text-responsive"
                         {%- if block.settings.heading_size != 'h3' -%} style="--cus-size: {{ block.settings.heading_size_step | divided_by: 10.0 }}rem;"{%- endif -%}
                       >
                         {{- block.settings.heading | escape -}}
                       </div>
                     {%- endif -%}
                     {%- if block.settings.subtext != blank -%}
-                      <div class="footer-block__subtext {{ block.settings.text_alignment }} m-spacing {{ block.settings.text_size | prepend: 'text-size-' }}" style="--m-spacing-t: {{ block.settings.text_margin_top }}px;--m-spacing-b: {{ block.settings.text_margin_bottom }}px;">{{ block.settings.subtext }}</div>
+                      <div class="footer-block__subtext {{ block.settings.text_alignment }} m-spacing {{ block.settings.text_size | prepend: 'text-size-' }} text-responsive" style="--m-spacing-t: {{ block.settings.text_margin_top }}px;--m-spacing-b: {{ block.settings.text_margin_bottom }}px;">{{ block.settings.subtext }}</div>
                     {%- endif -%}
                   </div>
 
@@ -161,7 +161,7 @@
                     </div>
                   {%- endif -%}
                  </div>
-                  <{% if block.settings.check_text != blank %}form-has-check{% else %}div{% endif %} class="footer-block__details-content rte m-t{% if block.settings.check_text != blank %} d-block{% endif %}" style="--m-t: 1.3rem;">
+                  <{% if block.settings.check_text != blank %}form-has-check{% else %}div{% endif %} class="footer-block__details-content rte m-t text-responsive{% if block.settings.check_text != blank %} d-block{% endif %}" style="--m-t: 1.3rem;">
                     {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
                       <input type="hidden" name="contact[tags]" value="newsletter">
                       <div class="newsletter-form__field-wrapper">
@@ -228,7 +228,7 @@
                       {%- endif -%}
                     {%- endform -%}
                     {%- if block.settings.caption != blank -%}
-                      <div class="footer-block__caption subrte m-t {{ block.settings.caption_size | prepend: 'text-size text-size-' }}" style="--m-t: 3.7rem;">
+                      <div class="footer-block__caption subrte m-t {{ block.settings.caption_size | prepend: 'text-size text-size-' }} text-responsive" style="--m-t: 3.7rem;">
                         {{ block.settings.caption }}
                       </div>
                     {%- endif -%}
@@ -281,7 +281,7 @@
                           {% endif %}
                         "
                       >
-                        <div class="footer-block__heading m-0 {{ block.settings.heading_font }} {{ section.settings.heading_typography | prepend: 'typography-' }}{% if block.settings.show_appstore != true %} summary__title{% endif %}{% if block.settings.social_heading_size == 'h3'%} h3{% else %} {{ block.settings.social_heading_size | prepend: 'text-size-' }}{% endif %}">
+                        <div class="footer-block__heading m-0 {{ block.settings.heading_font }} {{ section.settings.heading_typography | prepend: 'typography-' }}{% if block.settings.show_appstore != true %} summary__title{% endif %}{% if block.settings.social_heading_size == 'h3'%} h3{% else %} {{ block.settings.social_heading_size | prepend: 'text-size-' }}{% endif %} text-responsive">
                           {{- block.settings.heading | escape -}}
                         </div>
                       </{% if block.settings.show_appstore == true %}div{% else %}summary{% endif %}>
@@ -330,7 +330,7 @@
                             <div class="apps_list-item">
                               <a
                                 href="{{ block.settings.appstore_link_2 }}"
-                                class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset"
+                                class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset text-responsive"
                               >
                               {{
                                 block.settings.image_2

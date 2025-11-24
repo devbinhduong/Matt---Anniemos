@@ -112,7 +112,7 @@
                   {%- endif -%}
                 {%- when 'text' -%}
                   {%- if block.settings.text != blank -%}
-                    <div class="banner__text {{ block.settings.text_size | prepend: 'text-size-' }} rte element-spacing data__media-hover" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
+                    <div class="banner__text {{ block.settings.text_size | prepend: 'text-size-' }} rte element-spacing data__media-hover text-responsive" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
                       style="--padding-top: {{ block.settings.padding_top }}px;
                         --padding-bottom: {{ block.settings.padding_bottom }}px;
                         --a-delay: {{ '0.2' | times: forloop.index }}s;"
@@ -325,7 +325,7 @@
                   </h2>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="banner__text rte m-spacing"
+                  <div class="banner__text rte m-spacing text-responsive"
                     style="
                       --m-spacing-b: {{ block.settings.text_margin_bottom }}px;
                       --a-delay: {{ '0.2' | times: forloop.index }}s;
@@ -336,7 +336,7 @@
                   </div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
-                  <div class="banner__link rte"
+                  <div class="banner__link rte text-responsive"
                     style="
                       --a-delay: {{ '0.2' | times: forloop.index }}s;
                     "

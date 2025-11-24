@@ -63,7 +63,7 @@
                           {%- endif -%}
                           {%- if block.settings.subheading != blank -%}
                             <div 
-                              class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing f-normal" 
+                              class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing f-normal text-responsive" 
                               data-animate="fade-down" 
                               style="
                                 --a-delay: 0.8s;
@@ -238,7 +238,7 @@
                         {%- endif -%}
                         {%- if block.settings.subheading != blank -%}
                           <div
-                            class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing"
+                            class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing text-responsive"
                             data-animate="fade-down"
                             style="
                               --a-delay: 0.8s;

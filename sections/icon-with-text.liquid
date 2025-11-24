@@ -145,7 +145,7 @@
                             endif
                           -%}
                           <div
-                            class="p-w__caption {{ blocks_caption_size  }} rte {{ section.settings.blocks_caption_font | prepend: 'typography-' }} m-spacing{% if section.settings.use_custom_color_caption %} gradient{% endif %}"
+                            class="p-w__caption {{ blocks_caption_size  }} rte {{ section.settings.blocks_caption_font | prepend: 'typography-' }} m-spacing{% if section.settings.use_custom_color_caption %} gradient{% endif %} text-responsive"
                             style="
                               {% if section.settings.use_custom_color_caption %}
                                 --color-foreground: {{ section.settings.colors_caption.red }}, {{ section.settings.colors_caption.green }}, {{ section.settings.colors_caption.blue }};
@@ -178,7 +178,7 @@
                         {%- endif -%}
                         {%- if block.settings.text != blank -%}
                           <div {% if section.settings.text_animation == 'split' %}data-splitting-element="chars" data-splitting-animate="up"{% else %}data-animate="{{ section.settings.text_animation }}"{% endif %} 
-                            class="text{% if block.settings.link != blank and block.settings.link_label == blank %} {{ section.settings.text_alignment }}{% endif %} {{ section.settings.blocks_text_size | prepend: 'text-size-' }} rte m-spacing" 
+                            class="text{% if block.settings.link != blank and block.settings.link_label == blank %} {{ section.settings.text_alignment }}{% endif %} {{ section.settings.blocks_text_size | prepend: 'text-size-' }} rte m-spacing text-responsive" 
                             style="
                               --a-delay: 0.4s;
                               --m-spacing-t: 0; --m-spacing-b: {{ section.settings.text_margin_bottom }}px;
@@ -188,7 +188,7 @@
                           </div>
                         {%- endif -%}
                         {%- if block.settings.link_label != blank -%}
-                          <div {% if section.settings.text_animation == 'split' %}data-splitting-element="chars" data-splitting-animate="up"{% else %}data-animate="{{ section.settings.text_animation }}"{% endif %} class="rte" style="--a-delay: 0.6s;">
+                          <div {% if section.settings.text_animation == 'split' %}data-splitting-element="chars" data-splitting-animate="up"{% else %}data-animate="{{ section.settings.text_animation }}"{% endif %} class="rte text-responsive" style="--a-delay: 0.6s;">
                             <a {% if block.settings.link == blank %}role="link" aria-disabled="true"{% else %}href="{{ block.settings.link }}"{% endif %} class="link link--text u-link {{ settings.link_type | prepend: "link--style-" }}" aria-label="{{ block.settings.link_label }}">
                               <span class="link-style">{{ block.settings.link_label | escape }}</span>
                             </a>

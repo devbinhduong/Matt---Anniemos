@@ -26,7 +26,7 @@
   >
     <div class="{{ section.settings.section_width }} m-auto{% if section.settings.section_width == 'full-width' %} p-banner{% endif %}">
       {%- if section.settings.type_layout == 'scroll' -%}
-        <div class="link-list__inner d-flex a-i-center{% if section.blocks.size > 1 %} j-c-between{% else %} j-c-center{% endif %} g-gap{% if check_selector %} w-s-nowrap-md overflow-x-md{% else %} w-s-nowrap overflow-x{% endif %}"{% if section.settings.section_width == 'page-width' %} style="--g-gap: 3rem;"{% endif %}>
+        <div class="link-list__inner d-flex a-i-center{% if section.blocks.size > 1 %} j-c-between{% else %} j-c-center{% endif %} g-gap{% if check_selector %} w-s-nowrap-md overflow-x-md{% else %} w-s-nowrap overflow-x{% endif %} custom-scrollbar"{% if section.settings.section_width == 'page-width' %} style="--g-gap: 3rem;"{% endif %}>
           {%- for block in section.blocks -%}
             {%- liquid
               if section.settings.section_width == 'full-width'
@@ -62,7 +62,7 @@
                     "
                   >
                     {%- if block.settings.text -%}
-                      <div class="link-list__text rte subrte {{ section.settings.text_size | prepend: 'text-size-' }}">{{ block.settings.text }}</div>
+                      <div class="link-list__text rte subrte {{ section.settings.text_size | prepend: 'text-size-' }} text-responsive">{{ block.settings.text }}</div>
                     {%- endif -%}
                   </div>
                 {%- endif -%}
@@ -73,7 +73,7 @@
 
                     {%- if block.settings.socials_phone -%}
                       <div class="link-list__text rte subrte {{ section.settings.text_size | prepend: 'text-size-' }}">
-                        <a href="tel:{{ block.settings.socials_phone }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }}">
+                        <a href="tel:{{ block.settings.socials_phone }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }} text-responsive">
                           <span class="link-style">{{ block.settings.socials_phone }}</span>
                         </a>
                       </div>
@@ -91,7 +91,7 @@
                     <ul class="link-list__list d-flex list-unstyled j-c-{{ aligment | replace: 'left', 'start' | replace: 'right', 'end' }} c-gap subrte padding-style" style="--c-gap: {{ block.settings.link_list_gap }}px; --p-l: {{ block.settings.padding_left }}px; --p-r: {{ block.settings.padding_right }}px;" role="list">
                       {%- for link in block.settings.link_list.links -%}
                         <li>
-                          <a href="{{ link.url }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }} {{ block.settings.font_transform }}">
+                          <a href="{{ link.url }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }} {{ block.settings.font_transform }} text-responsive">
                             <span class="link-style">{{ link.title }}</span>
                           </a>
                         </li>
@@ -261,7 +261,7 @@
                         "
                       >
                         {%- if block.settings.text -%}
-                          <div class="link-list__text rte subrte {{ section.settings.text_size | prepend: 'text-size-' }}">{{ block.settings.text }}</div>
+                          <div class="link-list__text rte subrte {{ section.settings.text_size | prepend: 'text-size-' }} text-responsive">{{ block.settings.text }}</div>
                         {%- endif -%}
                       </div>
                     {%- endif -%}
@@ -279,7 +279,7 @@
                         <ul class="link-list__list d-flex list-unstyled j-c-{{ aligment | replace: 'left', 'start' | replace: 'right', 'end' }} c-gap subrte" style="--c-gap: 2.5rem;" role="list">
                           {%- for link in block.settings.link_list.links -%}
                             <li>
-                              <a href="{{ link.url }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }} {{ block.settings.font_transform }}">
+                              <a href="{{ link.url }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }} {{ block.settings.font_transform }} text-responsive">
                                 <span class="link-style">{{ link.title }}</span>
                               </a>
                             </li>

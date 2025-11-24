@@ -21,7 +21,7 @@
     render 'icon-account', style_icon: section.settings.icon_type_style
   endcapture
   assign has_transparent = false
-  if request.page_type == 'index' and section.settings.enable_transparent
+  if request.page_type == 'index' or request.page_type == 'collection' and section.settings.enable_transparent
     if section.settings.logo_transparent != blank
       assign header_class = 'has-logo-tr transparent pos-absolute top-0 left-0 w-100'
       assign has_transparent = true
@@ -57,7 +57,7 @@
     assign header__icons_mobile = "disable-icons__mobile"
   endunless
 -%}
-<{% if section.settings.type_sticky_header != 'none' %}sticky-header{% else %}div{% endif %} class="header-wrapper{% if section.settings.logo != blank or has_transparent %} has--logo{% endif %} header-style-{{ section.settings.type_style }} {{ header_class }} d-block pos-relative{% if section.settings.show_line_separator %} b-bottom{% endif %} header-sticky__{{ section.settings.type_sticky_header }} color-{{ section.settings.color_scheme }} {{ section.settings.text_size | prepend: 'text-size-' }} gradient"
+<{% if section.settings.type_sticky_header != 'none' %}sticky-header{% else %}div{% endif %} class="header-wrapper{% if section.settings.logo != blank or has_transparent %} has--logo{% endif %} header-style-{{ section.settings.type_style }} {{ header_class }} d-block pos-relative{% if section.settings.show_line_separator %} b-bottom{% endif %} header-sticky__{{ section.settings.type_sticky_header }} color-{{ section.settings.color_scheme }} {{ section.settings.text_size | prepend: 'text-size-' }} gradient test12121212121"
   style="
     {%- if section.settings.enable_transparent -%}
       --foreground-transparent: {{ section.settings.text_transparent.red }},{{ section.settings.text_transparent.green }},{{ section.settings.text_transparent.blue }};
@@ -93,7 +93,7 @@
       </h1>
     </div>
   {%- endif -%}
-  <header class="header main--icons-style-{{ section.settings.icon_type_style }}{% if section.settings.type_style != 'special' %} header--{{ section.settings.logo_position }}{% else %}  header--middle-left{% endif %}{% if section.settings.logo_position == 'middle-left' or section.settings.logo_position == 'middle-right' %}{% if section.settings.logo_width >= 110 %} header--nav__center{% endif %}{% endif %} {{ header__icons_desktop }} {{ header__icons_mobile }}{% if section.settings.use_custom_button %} has-button--customized{% endif %} d-grid header--mobile-{{ section.settings.mobile_logo_position }} {{ section.settings.section_width }} m-auto{% if section.settings.menu != blank %} header--has-menu{% endif %} spacing padding-style"
+  <header class="header main--icons-style-{{ section.settings.icon_type_style }}{% if section.settings.type_style != 'special' %} header--{{ section.settings.logo_position }}{% else %}  header--middle-left{% endif %}{% if section.settings.logo_position == 'middle-left' or section.settings.logo_position == 'middle-right' %}{% if section.settings.logo_width >= 110 %} header--nav__center{% endif %}{% endif %} {{ header__icons_desktop }} {{ header__icons_mobile }}{% if section.settings.use_custom_button %} has-button--customized{% endif %} d-grid header--mobile-{{ section.settings.mobile_logo_position }} {{ section.settings.section_width }} m-auto{% if section.settings.menu != blank %} header--has-menu{% endif %} spacing padding-style-large"
     style="{% if section.settings.section_width == 'customized-width' %}--page-width: {{ section.settings.customize_width }}px;{% endif %}
       --p-t: {{ section.settings.padding_top }}px;
       --p-b: {{ section.settings.padding_bottom }}px;
@@ -921,9 +921,11 @@
         -%}
         <h1 class="header__heading m-0{% if check_no_logo %} no--logo{% endif %}{% if section.settings.type_style != 'special' %} {{ section.settings.logo_alignment_desktop | prepend: 'j-s-' }}{%  else %} j-s-start{% endif %}{% if section.settings.logo_position == 'top-center-special' %} logo-special-inline no-js-hidden{% endif %}"{% if section.settings.type_style == 'special' or section.settings.logo_position == 'top-center-special' %} style="--m-w-logo: {{ section.settings.logo_width }}px;"{% endif %}>
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text u-none break focus-inset d-inline-block{% if section.settings.type_style == 'special' and section.settings.logo != blank %} m-w{% endif %}"
+          <a href="{{ routes.root_url }}" class="header__heading-link link link--text u-none break focus-inset d-inline-block{% if section.settings.type_style == 'special' and section.settings.logo != blank %} m-w{% endif %} logo-wrapper"
             {%- if section.settings.logo != blank -%}
-              style="--m-w: {{ section.settings.logo_width }}px;"
+              style="--m-w: {{ section.settings.logo_width }}px; --logo-width-mb: 100px;"
+            {%- else -%}
+              style="--logo-width-mb: 100px;"
             {%- endif -%}
           >
             {%- if section.settings.logo != blank or has_transparent -%}
@@ -1095,7 +1097,7 @@
       </div>
     {%- endif -%}
     {%- if section.settings.menu != blank -%}
-      <nav class="header__inline-menu d-none d-block-lg{% unless section.settings.logo_position == 'middle-center' %} {{ section.settings.menu_alignment_desktop }}{% endunless %} {{ section.settings.font_transform }} padding-style" style="--p-l: 4.4rem;--p-r: 0; --p-t: 0; --p-b: 0;">
+      <nav class="header__inline-menu d-none d-block-lg{% unless section.settings.logo_position == 'middle-center' %} {{ section.settings.menu_alignment_desktop }}{% endunless %} {{ section.settings.font_transform }} padding-style-large" style="--p-l: 4.4rem;--p-r: 0; --p-t: 0; --p-b: 0;">
         <ul class="list-menu list-menu--inline d-inline-flex j-c-center f-wrap list-unstyled left g-gap" role="list" style="--g-gap: {{ section.settings.spacing_gap }}px; --m-t: calc(var(--padding-bottom) * 1);">
           {%- for link in section.settings.menu.links -%}
             {%- liquid
@@ -1369,9 +1371,9 @@
       {%- if request.page_type == 'index' or section.settings.type_style == 'special' -%}
         <h1 class="header__heading m-0 {{ section.settings.logo_alignment_desktop | prepend: 'j-s-' }}">
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text u-none break focus-inset d-inline-block"
+          <a href="{{ routes.root_url }}" class="header__heading-link link link--text u-none break focus-inset d-inline-block logo-wrapper"
             {%- if section.settings.logo != blank -%}
-              style="--m-w: {{ section.settings.logo_width }}px;"
+              style="--m-w: {{ section.settings.logo_width }}px; --logo-width-mb: 100px;"
             {%- endif -%}
           >
             {%- if section.settings.logo != blank or has_transparent -%}
