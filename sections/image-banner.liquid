@@ -100,19 +100,17 @@
               {%- case block.type -%}
                 {%- when 'heading' -%}
                   {%- if block.settings.heading != blank -%}
-                    <h2 class="banner__heading element-spacing m-0 data__media-hover{% if block.settings.use_custom_heading %} heading-section{% else %} {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} {% if block.settings.use_custom_heading_font %} custom-font{% endif %}" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
+                    <h2 class="banner__heading element-spacing m-0 data__media-hover {% render 'heading-style', settings: block.settings, type: 'class' %}" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
                       style="--padding-top: {{ block.settings.padding_top }}px;
                         --padding-bottom: {{ block.settings.padding_bottom }}px;
                         --a-delay: {{ '0.2' | times: forloop.index }}s;
-                        --custom-tracking: {{ block.settings.custom_tracking }}px;
-                        --word-spacing: {{ block.settings.word_spacing }}px;
-                        --heading-section-size: {{ block.settings.custom_heading_size }}px; --heading-section-color: {{ block.settings.custom_heading_color }};
+                        {% render 'heading-style', settings: block.settings, type: 'style' %}
                         "
                     >{{ block.settings.heading | escape }}</h2>
                   {%- endif -%}
                 {%- when 'text' -%}
                   {%- if block.settings.text != blank -%}
-                    <div class="banner__text {{ block.settings.text_size | prepend: 'text-size-' }} rte element-spacing data__media-hover text-responsive" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
+                    <div class="banner__text {{ block.settings.text_size | prepend: 'text-size-' }} rte element-spacing data__media-hover" data-animate="{{ section.settings.text_animation }}" {{ block.shopify_attributes }}
                       style="--padding-top: {{ block.settings.padding_top }}px;
                         --padding-bottom: {{ block.settings.padding_bottom }}px;
                         --a-delay: {{ '0.2' | times: forloop.index }}s;"
@@ -325,7 +323,7 @@
                   </h2>
                 {%- endif -%}
                 {%- if block.settings.text != blank -%}
-                  <div class="banner__text rte m-spacing text-responsive"
+                  <div class="banner__text rte m-spacing"
                     style="
                       --m-spacing-b: {{ block.settings.text_margin_bottom }}px;
                       --a-delay: {{ '0.2' | times: forloop.index }}s;
@@ -336,7 +334,7 @@
                   </div>
                 {%- endif -%}
                 {%- if block.settings.link_label != blank -%}
-                  <div class="banner__link rte text-responsive"
+                  <div class="banner__link rte"
                     style="
                       --a-delay: {{ '0.2' | times: forloop.index }}s;
                     "

@@ -31,7 +31,7 @@
       {%- unless section.settings.heading == blank -%}
         <div class="p-w__header m-spacing">
           <div class="p-w__header--wrapper{% if section.settings.link_label != blank %} d-flex f-wrap j-c-between a-i-center a-i-center-lg{% else %} {{ section.settings.text_alignment }}{% endif %}" {% if section.settings.link_label != blank %} style="--g-gap: 1.5rem;" {% endif %}>
-            <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-w{% if section.settings.link_label == blank and section.settings.text_alignment == 'center' %} mx-auto{% else %} m-0{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.use_custom_heading %} heading-section{% else %} heading-size-default{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %}" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }};">
+            <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-w{% if section.settings.link_label == blank and section.settings.text_alignment == 'center' %} mx-auto{% else %} m-0{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% render 'heading-style', settings: section.settings, type: 'class' %}" style="{% render 'heading-style', settings: section.settings, type: 'style' %}">
               {{ section.settings.heading | escape }}
             </h2>
             {%- if section.settings.link_label != blank -%}

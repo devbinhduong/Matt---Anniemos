@@ -1,0 +1,23 @@
+{%- assign settings = settings -%}
+
+{% if type == 'class' %}
+  {% if settings.use_custom_heading %} heading-section{% else %} {{ section.settings.heading_size | prepend: 'heading-size-' | default: 'heading-size-default' }}{% endif %} {% if settings.use_custom_heading_font %} custom-font{% endif %}
+{% else %}
+    {% if settings.use_custom_heading %}
+      {% if settings.custom_heading_size != blank %}  
+        --heading-section-size: {{ settings.custom_heading_size }}px; 
+      {% endif %}
+      {% if settings.custom_heading_color != blank %}
+        --heading-section-color: {{ settings.custom_heading_color }}; 
+      {% endif %}
+      {% if settings.custom_heading_leading != blank %}
+        --leading: {{ settings.custom_heading_leading }};
+      {% endif %}
+      {% if settings.custom_heading_tracking != blank %}
+        --custom-tracking: {{ settings.custom_heading_tracking }}px; 
+      {% endif %}
+      {% if settings.custom_heading_word_spacing != blank %}
+        --word-spacing: {{ settings.custom_heading_word_spacing }}px;
+      {% endif %}
+    {% endif %}
+{% endif %}

@@ -45,16 +45,14 @@
               style="{% if block.settings.text_alignment != 'center' %}{% if block.settings.show_view_all == 'link' %}--g-gap: 3.2rem{% else %}--g-gap: 1.5rem{% endif %};{% endif %}"
             {% endif %}
           >
-            <h2 id="SectionHeading-{{ block.id }}" class="p-w__heading m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.use_custom_color_heading %} bg-transparent-i gradient{% endif %}{% if block.settings.use_custom_heading %} heading-section{% else %} {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} {% if block.settings.use_custom_heading_font %} custom-font{% endif %}"
+            <h2 id="SectionHeading-{{ block.id }}" class="p-w__heading m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if block.settings.use_custom_color_heading %} bg-transparent-i gradient{% endif %} {% render 'heading-style', settings: block.settings, type: 'class' %}"
               {% if section.settings.text_animation == 'split' %}
                 data-splitting-element="chars"
                 data-splitting-animate="up"
               {% else %}
                 data-animate="{{ section.settings.text_animation }}"
               {% endif %}
-              {% if block.settings.use_custom_heading %}
-                style="--heading-section-size: {{ block.settings.custom_heading_size }}px; --heading-section-color: {{ block.settings.custom_heading_color }};"
-              {% endif %}
+              style="{% render 'heading-style', settings: block.settings, type: 'style' %}"
             >
               {{ block.settings.heading | escape | default: collection.title }}
             </h2>

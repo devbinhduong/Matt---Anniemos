@@ -54,6 +54,55 @@
               %}
             </div>
           {%- endif -%}
+
+          <div class="test12121212">
+            {% for block in section.blocks %}
+              {%- case block.type -%}
+                {%- when 'ask_an_expert' -%}
+                  <div class="product__quickview-ask element-spacing-all color-{{ block.settings.button_color_scheme }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" {{ block.shopify_attributes }}
+                      style="
+                        {% if settings.animations_reveal_on_scroll %}--animation-order: {{ forloop.index }};{% endif %}
+                        --padding-top: {{ block.settings.padding_top }}px;
+                        --padding-bottom: {{ block.settings.padding_bottom }}px;
+                      "
+                  >
+                    <div class="ask-an-exp d-flex a-i-center j-c-between">
+                      <div class="ask-an-exp__text d-flex a-i-center">
+                        <div class="icon-wrap"
+                          style="
+                            --color-foreground: {{ block.settings.colors_icon.red }}, {{ block.settings.colors_icon.green }}, {{ block.settings.colors_icon.blue }};
+                            --color-background: {{ block.settings.colors_icon_background.red }}, {{ block.settings.colors_icon_background.green }}, {{ block.settings.colors_icon_background.blue }};
+                          "
+                        >
+                          {% render 'icon-accordion', icon: block.settings.icon -%}
+                        </div>
+                        <h2 class="{{ block.settings.heading_size | prepend: 'text-size text-size-' }} title m-0 d-inline-block break {{ block.settings.heading_font }}">
+                          {{ block.settings.heading | default: block.settings.page.title }}
+                        </h2>
+                      </div>
+                      <div class="ask-an-exp__button">
+                        {%- if block.settings.button_label != blank -%}
+                          <div class="o-h m-spacing m-spacing-xs">
+                            {%- if block.settings.button_label != blank -%}
+                              <side-drawer-opener class="product-popup-modal__opener d-inline-block no-js-hidden" data-side-drawer="#PopupModal-{{ block.id }}">
+                                <button
+                                  id="ProductPopup-{{ block.id }}"
+                                  class="button button--main-standard {{ settings.button_style | prepend: 'button--style-' }}{% if block.settings.button_type == 'transparent' %} button--transparent{% endif %}"
+                                  type="button"
+                                  aria-haspopup="dialog"
+                                >
+                                  <span>{{ block.settings.button_label | escape }}</span>
+                                </button>
+                              </side-drawer-opener>
+                            {%- endif -%}
+                          </div>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </div>
+              {%- endcase -%}
+            {% endfor %}
+          </div>
         </div>
       {%- endif -%}
       <div class="product__info-wrapper w-100 f-grow f-shrink product-view-{{ section.settings.type_style }}{% if section.settings.type_style == 'special' %} pos-relative{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
@@ -469,7 +518,7 @@
                       {%- liquid 
                         assign number = block.settings.number
                       -%}
-                      {{ product.description | replace: '&nbsp;', ' ' | truncatewords: number }}
+                      {{ product.description | replace: '&nbsp;', ' ' | truncatewords: number | strip_html }}
                     {%- else -%}
                       {{ block.settings.text }}
                     {%- endif -%}
@@ -1023,48 +1072,6 @@
                     </div>
                   </div>
                 </slider-component>
-              {%- when 'ask_an_expert' -%}
-                <div class="product__quickview-ask element-spacing-all color-{{ block.settings.button_color_scheme }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" {{ block.shopify_attributes }}
-                    style="
-                      {% if settings.animations_reveal_on_scroll %}--animation-order: {{ forloop.index }};{% endif %}
-                      --padding-top: {{ block.settings.padding_top }}px;
-                      --padding-bottom: {{ block.settings.padding_bottom }}px;
-                    "
-                >
-                  <div class="ask-an-exp d-flex a-i-center j-c-between">
-                    <div class="ask-an-exp__text d-flex a-i-center">
-                      <div class="icon-wrap"
-                        style="
-                          --color-foreground: {{ block.settings.colors_icon.red }}, {{ block.settings.colors_icon.green }}, {{ block.settings.colors_icon.blue }};
-                          --color-background: {{ block.settings.colors_icon_background.red }}, {{ block.settings.colors_icon_background.green }}, {{ block.settings.colors_icon_background.blue }};
-                        "
-                      >
-                        {% render 'icon-accordion', icon: block.settings.icon -%}
-                      </div>
-                      <h2 class="{{ block.settings.heading_size | prepend: 'text-size text-size-' }} title m-0 d-inline-block break {{ block.settings.heading_font }}">
-                        {{ block.settings.heading | default: block.settings.page.title }}
-                      </h2>
-                    </div>
-                    <div class="ask-an-exp__button">
-                      {%- if block.settings.button_label != blank -%}
-                        <div class="o-h m-spacing m-spacing-xs">
-                          {%- if block.settings.button_label != blank -%}
-                            <side-drawer-opener class="product-popup-modal__opener d-inline-block no-js-hidden" data-side-drawer="#PopupModal-{{ block.id }}">
-                              <button
-                                id="ProductPopup-{{ block.id }}"
-                                class="button button--main-standard {{ settings.button_style | prepend: 'button--style-' }}{% if block.settings.button_type == 'transparent' %} button--transparent{% endif %}"
-                                type="button"
-                                aria-haspopup="dialog"
-                              >
-                                <span>{{ block.settings.button_label | escape }}</span>
-                              </button>
-                            </side-drawer-opener>
-                          {%- endif -%}
-                        </div>
-                      {%- endif -%}
-                    </div>
-                  </div>
-                </div>
               {%- when 'size_chart' -%}
                 {%- liquid 
                   assign has_size_chart = false

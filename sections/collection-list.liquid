@@ -120,7 +120,7 @@
             style="{% if section.settings.type_style == 'classic' %}--m-spacing-b: -{{ header_margin_bottom }};--m-spacing-b-xs: {{ heading_margin_bottom | times: 0.75 }}rem; --p-r: {{ carousel_controls_width }}rem;--p-r-xxl: {{ header_padding-right }};{% else %}--m-spacing-b: {{ section.settings.heading_margin_bottom }}px;{% endif %}"
           >
             <div class="p-w__header--wrapper {{ section.settings.header_alignment }}">
-              <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}{% if section.settings.use_custom_heading %} heading-section{% else %} {{ section.settings.heading_size | prepend: 'heading-size-' }}{% endif %} {% if section.settings.use_custom_heading_font %} custom-font{% endif %}" style="--heading-section-size: {{ section.settings.custom_heading_size }}px; --heading-section-color: {{ section.settings.custom_heading_color }};">
+              <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in {% render 'heading-style', settings: section.settings, type: 'class' %}{% endif %}" style="{% render 'heading-style', settings: section.settings, type: 'style' %}">
                 {{ section.settings.heading | escape }}
               </h2>
             </div>
