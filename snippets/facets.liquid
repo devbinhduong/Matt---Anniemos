@@ -283,12 +283,12 @@
                     </summary>
                     <div
                       id="Facet-{{ forloop.index }}-{{ section.id }}"
-                      class="details_smooth{% if filter_type == 'horizontal' or filter_type == 'horizontal-plus' %} facets__display global-settings-popup gradient pos-absolute left-0 overflow-y cus-scrollbar{% else %} facets__display-vertical{% endif %}"
+                      class="details_smooth{% if filter_type == 'horizontal' or filter_type == 'horizontal-plus' %} facets__display global-settings-popup gradient pos-absolute left-0 overflow-y cus-scrollbar{% else %} facets__display-vertical o-h{% endif %}"
                     >
                       {%- unless filter_type == 'horizontal-plus' -%}
                         <div class="facets__header facets__header-{{ filter_type }}{% if filter_type != 'vertical' %} pos-sticky d-flex a-i-center j-c-between top-0 b-bottom z-index-1 gradient subrte{% endif %}">
                           {%- assign max_price_amount = filter.range_max | money | strip_html | escape -%}
-                          <span class="facets__selected">
+                          <span class="facets__selected hidden">
                             {{- 'products.facets.max_price' | t: price: max_price_amount -}}
                           </span>
                           {%- if filter_type != 'vertical' -%}

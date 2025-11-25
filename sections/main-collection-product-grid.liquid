@@ -120,9 +120,9 @@
         >
           {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
             <facet-filters-form class="facets facets-vertical-sort d-none-mw-md no-js-hidden">
-              <form id="FacetSortForm" class="facets-vertical-form d-flex j-c-between a-i-center">
+              <form id="FacetSortForm" class="facets-vertical-form d-flex j-c-between a-i-center color-{{ section.settings.filtering_color_scheme }}">
                 <div class="product-count-vertical" role="status">
-                  <h2 class="product-count__text m-0 text-body">
+                  <h2 class="product-count__text m-0 text-size-default text-responsive font-normal" style="--cus-size: 0.2rem;">
                     <span id="ProductCountDesktop">
                       {%- if collection.results_count -%}
                         {{
@@ -156,7 +156,7 @@
                     {%- endif -%}
 
                     {% if section.settings.sorting_style == 'default' %}
-                      <span class="text-size-default text-responsive capitalize m-r" style="--m-r: 1rem;">{{ 'products.facets.sort_by_label_2' | t }}</span>
+                      <span class="text-size-default text-responsive capitalize m-r" style="--m-r: 1rem; --cus-size: 0.2rem;">{{ 'products.facets.sort_by_label_2' | t }}</span>
                     {% endif %}
                     <details class="product-filter-sorting disclosure-has-popup facets__disclosure pos-relative">
                       <summary class="facets__summary pos-relative c-pointer list-unstyled">
@@ -370,11 +370,14 @@
                   {%- endfor -%}
                 </ul>
                 {%- if paginate.pages > 1 -%}
+                  {% assign custom_class = 'color-' | append: section.settings.filtering_color_scheme %}
+                  
                   {%- render 'pagination',
                     paginate: paginate,
                     anchor: '', 
                     pageType: section.settings.type_style,
-                    filter_type: section.settings.filter_type
+                    filter_type: section.settings.filter_type,
+                    custom_class: custom_class
                   -%}
                 {%- endif -%}
               </div>

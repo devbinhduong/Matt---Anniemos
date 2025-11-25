@@ -9,9 +9,9 @@
   endcapture
 -%}
 {%- if paginate.parts.size > 0 -%}
-  <div class="pagination-wrapper {{ alignment }} {{ pageType | prepend: 'style-' }} {{ filter_type | prepend: 'filter-' }}">
+  <div class="pagination-wrapper {{ alignment }} {{ pageType | prepend: 'style-' }} {{ filter_type | prepend: 'filter-' }} {{ custom_class }}">
     <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
-      <ul class="pagination__list d-flex f-wrap j-c-center a-i-center a-i-stretch list-unstyled g-gap" role="list" style="--g-gap: 1rem;">
+      <ul class="pagination__list d-flex f-wrap j-c-center a-i-center a-i-stretch list-unstyled g-gap font-bold" role="list" style="--g-gap: 1rem;">
         {%- if paginate.previous -%}
           <li class="pagination--prev">
             <a href="{{ paginate.previous.url }}{{ anchor }}" class="pagination__item pagination__item--prev pagination__item-arrow d-inline-flex a-i-center j-c-center pos-relative w-100 motion-reduce gradient{% if filter_type == 'horizontal-plus' %} a-i-center j-c-between uppercase link u-link link--style-line{% else %} u-none{% endif %}" aria-label="{{ 'general.pagination.previous' | t }}">

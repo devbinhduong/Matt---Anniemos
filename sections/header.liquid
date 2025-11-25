@@ -57,7 +57,7 @@
     assign header__icons_mobile = "disable-icons__mobile"
   endunless
 -%}
-<{% if section.settings.type_sticky_header != 'none' %}sticky-header{% else %}div{% endif %} class="header-wrapper{% if section.settings.logo != blank or has_transparent %} has--logo{% endif %} header-style-{{ section.settings.type_style }} {{ header_class }} d-block pos-relative{% if section.settings.show_line_separator %} b-bottom{% endif %} header-sticky__{{ section.settings.type_sticky_header }} color-{{ section.settings.color_scheme }} {{ section.settings.text_size | prepend: 'text-size-' }} gradient test12121212121"
+<{% if section.settings.type_sticky_header != 'none' %}sticky-header{% else %}div{% endif %} class="header-wrapper{% if section.settings.logo != blank or has_transparent %} has--logo{% endif %} header-style-{{ section.settings.type_style }} {{ header_class }} d-block pos-relative{% if section.settings.show_line_separator %} b-bottom{% endif %} header-sticky__{{ section.settings.type_sticky_header }} color-{{ section.settings.color_scheme }} {{ section.settings.text_size | prepend: 'text-size-' }} gradient"
   style="
     {%- if section.settings.enable_transparent -%}
       --foreground-transparent: {{ section.settings.text_transparent.red }},{{ section.settings.text_transparent.green }},{{ section.settings.text_transparent.blue }};

@@ -257,7 +257,7 @@
                   </div>
                 {% endfor %}
               </div>
-              {%- if menu.links.size > 1 -%}
+              {%- if menu.links.size > columns_desktop -%}
                 <div class="carousel__controls arrow-style-{{ settings.arrow_style }}{% if type_style != 'default' %} carousel__controls--inner{% endif %}{% if arrows_type == 'none' or enable_carousel == false %} hidden{% endif %} no-js-hidden" style="--padding: 0px;{% if type_style == 'classic' %}--carousel_controls_width: {{ carousel_controls_width }}rem;--carousel_controls_height: {{ carousel_controls_height }};--carousel_controls_height_mb: {{ carousel_controls_height_mb }}rem;{% endif %}">
                   {% if enable_carousel and arrows_type != 'none' and settings.arrow_style == 'modern-plus' %}
                     <div class="arrow-wrap d-flex top-0 right-0 z-index-2 pos-absolute swiper-screen__{{ arrows_type }}">

@@ -19595,7 +19595,7 @@ body.multitasking__show .newsletter-popup-opener {
 
     .card__quickadd {
       margin-top: 0;
-      padding: 2rem 2.5rem;
+      padding: 1rem 0 0;
       background: rgba(var(--color-background), 1);
       background: var(--gradient-background);
       transform: translate3d(0, 100%, 0);
