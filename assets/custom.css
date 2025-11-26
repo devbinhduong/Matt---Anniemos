@@ -225,3 +225,11 @@ p-0 {
     }
   }
 }
+
+.product__title.has-wishlist-button {
+  column-gap: 5.7rem;
+
+  @media (max-width: 1800px) {
+    column-gap: 2rem;
+  }
+}

@@ -784,10 +784,6 @@
   width: 33%;
 }
 
-.icon-with-text--vertical .icon-with-text__item {
-  margin-bottom: var(--icon-size);
-}
-
 /* Pickup availability */
 pickup-availability[available] {
   margin-top: 1rem;
@@ -979,10 +975,6 @@ pickup-availability[available] {
   height: 100%;
   padding: 0 1rem;
   margin: 0 -1rem;
-}
-
-.gallery-view-col.--thumb .swiper.carousel-thumb--horizontal {
-  max-width: 40rem;
 }
 
 .gallery-view-col.--thumb .swiper.carousel-thumb--vertical {
@@ -1220,8 +1212,11 @@ pickup-availability[available] {
 }
 
 .product-view-modern .product-form__wlist .wishlist-form {
-  width: 4.8rem;
-  height: 4.8rem;
+  width: 15rem;
+  height: 6rem;
+  padding: 2rem 2.3rem;
+  display: flex;
+  gap: 2rem;
 }
 
 .product-view-modern .shopify-payment-button__button {
@@ -1249,15 +1244,6 @@ pickup-availability[available] {
 .ask-an-exp__text {
   --c-gap: .8rem;
   column-gap: .8rem;
-}
-
-.ask-an-exp__text .icon-wrap {
-  width: 4.2rem;
-  height: 4.2rem;
-  border-radius: 100rem;
-  padding: 0.8rem 0.9rem;
-  color: rgb(var(--color-foreground));
-  background-color: rgb(var(--color-background));
 }
 
 /* ask an expert popup */
@@ -1627,16 +1613,7 @@ pickup-availability[available] {
     min-height: calc(3.4rem + var(--inputs-border-width) * 2);
   }
 
-  .product-form__wlist .icon {
-    width: 2.4rem;
-    height: 2.1rem;
-  }
-
   /* product view modern */
-  .ask-an-exp__text .icon-wrap svg {
-    width: 2.4rem;
-  }
-
   .ask-an-exp__button .button {
     font-size: var(--font-body-size);
   }
@@ -1810,11 +1787,6 @@ pickup-availability[available] {
     height: 6rem;
   }
 
-  .product-form__wlist .icon {
-    height: 3rem;
-    width: 3rem;
-  }
-
   .product__positive-bundle .product__quickview-inner,
   .product__positive-bundle .product__custext-inner {
     font-size: 1.2rem;
@@ -1874,20 +1846,9 @@ pickup-availability[available] {
     min-height: calc(5.2rem + var(--inputs-border-width) * 2);
   }
 
-  .product-view-modern .product-form__wlist .wishlist-form {
-    width: 5.6rem;
-    height: 5.6rem;
-  }
-
   .ask-an-exp__button .button{
     min-height: calc(5.4rem + var(--buttons-border-width) * 2);
     padding: 0 2.8rem;
-  }
-
-  .ask-an-exp__text .icon-wrap{
-    width: 5rem;
-    height: 5rem;
-    padding: 1.3rem 1rem;
   }
 }
 
@@ -2204,7 +2165,7 @@ pickup-availability[available] {
   }
 
   .gallery-view.full .carousel-thumb__wrap.--thumb{
-    padding: 0 14.7rem;
+    padding: 0 6.5rem;
   }
 
   .carousel-thumb--horizontal + .carousel__controls .button-slider__next {
@@ -2241,4 +2202,18 @@ pickup-availability[available] {
     width: 59rem;
     padding: 7rem 6rem 0 6rem;
   }
+}
+
+.product-form__wlist .icon {
+  height: 2.4rem;
+  width: 2rem;
+}
+
+.product-form__wlist .wishlist-text {
+  color: rgba(var(--color-foreground), 1);
+}
+
+.product-form__wlist .wishlist-form:hover .wishlist-text,
+.product-form__wlist .wishlist-form.added .wishlist-text {
+  color: rgba(var(--button-color-text-hover),1);
 }

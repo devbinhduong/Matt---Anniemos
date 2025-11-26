@@ -138,21 +138,6 @@
           </span>
           <div class="loading-overlay__spinner d-inline-block z-index-2 hidden">{{ icon_spinner }}</div>
         </button>
-        {%- if show_wishlist_product -%}
-          <card-wishlist class="product-form__wlist c-pointer d-inline-flex a-i-center j-c-center pos-relative bg-transparent"
-            style="--button-color-text: {{ block.settings.wishlist_colors_text.red }}, {{ block.settings.wishlist_colors_text.green }}, {{ block.settings.wishlist_colors_text.blue }};
-              --button-color-background: {{ block.settings.wishlist_colors_background.red }}, {{ block.settings.wishlist_colors_background.green }}, {{ block.settings.wishlist_colors_background.blue }};
-              --button-gradient-background: {% if block.settings.add_to_cart_gradient_background != blank %}{{ block.settings.add_to_cart_gradient_background }}{% else %}{{ block.settings.add_to_cart_colors_background }}{% endif %};
-              --button-color-text-hover: {{ block.settings.wishlist_colors_text_hover.red }}, {{ block.settings.wishlist_colors_text_hover.green }}, {{ block.settings.wishlist_colors_text_hover.blue }};
-              --button-color-background-hover: {{ block.settings.wishlist_colors_background_hover.red }}, {{ block.settings.wishlist_colors_background_hover.green }}, {{ block.settings.wishlist_colors_background_hover.blue }};
-              --button-gradient-background-hover: {% if block.settings.add_to_cart_gradient_background_hover != blank %}{{ block.settings.add_to_cart_gradient_background_hover }}{% else %}{{ block.settings.add_to_cart_colors_background_hover }}{% endif %};
-            "
-          >
-            <button class="wishlist-form pos-relative c-pointer b-none bg-transparent p-0 d-inline-flex a-i-center j-c-center" type="button" aria-haspopup="dialog" aria-label="{{ 'templates.wishlist.wishlist_items' | t: count: cart.item_count }}" data-wishlist-handle="{{ product.handle }}">
-              {%- render 'icon-heart' -%}
-            </button>
-          </card-wishlist>
-        {%- endif -%}
         {%- if show_dynamic_checkout -%}
           <style type="text/css" media="screen">
             .shopify-payment-button{

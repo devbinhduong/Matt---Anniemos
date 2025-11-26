@@ -14,6 +14,7 @@
       "blocks": {
         "663b1401-2653-492c-8576-70628c7c7b65": {
           "type": "vendor",
+          "disabled": true,
           "settings": {
             "padding_top": 0,
             "padding_bottom": 0
@@ -22,9 +23,15 @@
         "title": {
           "type": "title",
           "settings": {
-            "padding_top": 8,
-            "padding_bottom": 8,
-            "heading_size": "medium"
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "heading_size": "large",
+            "show_wishlist_product": true,
+            "wishlist_text": "Favourite",
+            "wishlist_colors_text": "#000000",
+            "wishlist_colors_background": "#000000",
+            "wishlist_colors_text_hover": "#eb9c9c",
+            "wishlist_colors_background_hover": "#eb9c9c"
           }
         },
         "7bb79f3c-d40b-4ca5-9a57-27085fdc0c00": {
@@ -38,49 +45,35 @@
         "price": {
           "type": "price",
           "settings": {
-            "show_taxes": true,
+            "show_taxes": false,
             "show_shipping": false,
             "use_custom_color": true,
-            "colors_text": "#a5a3a3",
+            "colors_text": "#464e5c",
             "padding_top": 12,
             "padding_bottom": 16
           }
         },
-        "1efd3a14-832f-4cbc-b597-1f3c80b2c8a7": {
-          "type": "inventory",
+        "icon_with_text_Udag9Q": {
+          "type": "icon-with-text",
           "settings": {
-            "inventory_threshold": 24,
-            "show_inventory_label": false,
-            "show_availability": true,
-            "show_shipping": true,
-            "inventory_text": "standard",
-            "colors_text": "#824bc2",
-            "colors_icon": "#ffffff",
-            "colors_background": "#121212",
-            "gradient_background": "linear-gradient(90deg, rgba(126, 38, 241, 1) 6.26%, rgba(187, 22, 111, 1) 103.5%)",
-            "padding_top": 5,
-            "padding_bottom": 8
-          }
-        },
-        "2fcd6f2a-d844-44c2-a61d-fe0c57a763e3": {
-          "type": "information",
-          "settings": {
-            "show_sku": false,
-            "show_availability": false,
-            "show_type": false,
-            "show_shipping": false,
-            "padding_top": 5,
-            "padding_bottom": 5
-          }
-        },
-        "d3b55398-95c5-4d57-979f-24802dda108a": {
-          "type": "description",
-          "settings": {
-            "description_type": "product_desc",
-            "number": 17,
-            "text": "",
-            "padding_top": 12,
-            "padding_bottom": 12
+            "layout": "vertical",
+            "item_gap": 12,
+            "icon_gap": 12,
+            "icon_1": "box-2",
+            "item_text_1": "<p>Item 1 text</p>",
+            "icon_2": "return",
+            "item_text_2": "<p>Item 2 text</p>",
+            "icon_3": "truck",
+            "item_text_3": "<p>Item 3 text</p>",
+            "show_border_block": false,
+            "border": "none",
+            "border_width": 1,
+            "border_color": "#898d9a",
+            "border_radius": 0,
+            "padding_top": 0,
+            "padding_left": 5,
+            "padding_right": 5,
+            "padding_bottom": 0
           }
         },
         "variant_picker": {
@@ -112,12 +105,31 @@
             "buy_it_now_colors_text_hover": "#ffffff",
             "buy_it_now_colors_background_hover": "#000000",
             "buy_it_now_gradient_background_hover": "",
-            "wishlist_colors_text": "#000000",
-            "wishlist_colors_background": "#000000",
-            "wishlist_colors_text_hover": "#eb9c9c",
-            "wishlist_colors_background_hover": "#eb9c9c",
             "padding_top": 10,
             "padding_bottom": 5
+          }
+        },
+        "icon_with_text_AP8en4": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "vertical",
+            "item_gap": 16,
+            "icon_gap": 12,
+            "icon_1": "heart",
+            "item_text_1": "<p>Item 1 text</p>",
+            "icon_2": "return",
+            "item_text_2": "<p>Item 2 text</p>",
+            "icon_3": "truck",
+            "item_text_3": "<p>Item 3 text</p>",
+            "show_border_block": true,
+            "border": "solid",
+            "border_width": 1,
+            "border_color": "#898d9a",
+            "border_radius": 0,
+            "padding_top": 18,
+            "padding_left": 18,
+            "padding_right": 18,
+            "padding_bottom": 18
           }
         },
         "b4a60cb8-a075-4a50-b5c5-69cc79a79503": {
@@ -137,13 +149,14 @@
         "f172f031-f0cf-4aaa-8ee0-ba3892df0310": {
           "type": "ask_an_expert",
           "settings": {
-            "heading": "HAVE QUESTIONS",
+            "text_1": "<p>Please note, whilst we try to ensure as true a match as possible, images are for illustrative purposes only.</p>",
+            "text_2": "<p>If you have any questions please #button. Or use the CHAT button for further information. </p>",
             "heading_size": "large",
             "heading_font": "f-w-600",
-            "icon": "message",
+            "icon": "chat",
             "colors_icon": "#000000",
             "colors_icon_background": "#e8e2dc",
-            "button_label": "ASK AN EXPERT",
+            "button_label": "get in touch",
             "button_type": "transparent",
             "button_color_scheme": "scheme-f1b707b9-9166-4638-81dc-8d500cf73a11",
             "padding_top": 24,
@@ -168,18 +181,19 @@
         "title",
         "7bb79f3c-d40b-4ca5-9a57-27085fdc0c00",
         "price",
-        "1efd3a14-832f-4cbc-b597-1f3c80b2c8a7",
-        "2fcd6f2a-d844-44c2-a61d-fe0c57a763e3",
-        "d3b55398-95c5-4d57-979f-24802dda108a",
+        "icon_with_text_Udag9Q",
         "variant_picker",
         "buy_buttons",
+        "icon_with_text_AP8en4",
         "b4a60cb8-a075-4a50-b5c5-69cc79a79503",
         "f172f031-f0cf-4aaa-8ee0-ba3892df0310"
       ],
       "settings": {
+        "section_width": "customized-width",
+        "customize_width": 1600,
         "enable_sticky_add_to_cart": true,
         "show_product_badges": false,
-        "enable_share": true,
+        "enable_share": false,
         "type_style": "modern",
         "media_size": "small",
         "gallery_layout": "slider_thumbnail",
@@ -189,7 +203,7 @@
         "carousel_direction": "horizontal",
         "carousel_gap_desktop": 16,
         "carousel_gap_tablet": 8,
-        "color_scheme": "background-1",
+        "color_scheme": "scheme-89b6d850-7344-4b60-8a06-5b847e8e19a0",
         "padding_top": 0,
         "padding_bottom": 77,
         "padding_top_mobile": 0,

@@ -63,6 +63,7 @@
       --foreground-transparent: {{ section.settings.text_transparent.red }},{{ section.settings.text_transparent.green }},{{ section.settings.text_transparent.blue }};
       --color_opacity_1: {{ section.settings.color_opacity_1 | times: 0.01 }};
       --color_opacity_2: {{ section.settings.color_opacity_2 | times: 0.01 }};
+      --cus-o: 1;
     {%- endif -%}
     {%- if section.settings.type_style == 'special' and section.settings.logo != blank -%}
       --m-w-logo-special: {{ section.settings.logo_width |  divided_by: 10 }}rem;

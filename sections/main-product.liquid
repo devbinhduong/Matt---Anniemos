@@ -1,3 +1,12 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Spectral&display=swap');
+
+.custom-font-2 {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+}
+</style>
+
 <section
   id="MainProduct-{{ section.id }}"
   data-section="{{ section.id }}"
@@ -20,7 +29,7 @@
     <link id="ModelViewerStyle" rel="stylesheet" href="https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css" media="print" onload="this.media='all'">
     <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
   {%- endif -%}
-  <div class="page-width m-auto">
+  <div class="{{ section.settings.section_width }} m-auto" {% if section.settings.section_width == 'customized-width' %}style="--page-width: {{ section.settings.customize_width }}px;"{% endif %}>
     {% render 'breadcrumb',
       padding_top: '2rem',
       padding_bottom: '4rem',
@@ -55,10 +64,16 @@
             </div>
           {%- endif -%}
 
-          <div class="test12121212">
+          <div class="product-ask-an-expert-wrapper">
             {% for block in section.blocks %}
               {%- case block.type -%}
                 {%- when 'ask_an_expert' -%}
+                  {% if block.settings.button_label != blank %}
+                    {%- assign button_link = '<a class="ask-an-exp__button-link link u-link u-u link--style-line" href="#PopupModal-' | append: block.id | append: '"><span class="link-style">' | append: block.settings.button_label | append: '</span></a>' -%}
+                  {% else %}
+                    {%- assign button_link = '#' -%}
+                  {% endif %}
+
                   <div class="product__quickview-ask element-spacing-all color-{{ block.settings.button_color_scheme }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" {{ block.shopify_attributes }}
                       style="
                         {% if settings.animations_reveal_on_scroll %}--animation-order: {{ forloop.index }};{% endif %}
@@ -66,7 +81,12 @@
                         --padding-bottom: {{ block.settings.padding_bottom }}px;
                       "
                   >
-                    <div class="ask-an-exp d-flex a-i-center j-c-between">
+                    <div class="ask-an-exp d-flex f-column">
+                      {% if block.settings.text_1 != blank %}
+                        <p class="{{ block.settings.heading_size | prepend: 'text-size text-size-' }} title m-0 d-inline-block break {{ block.settings.heading_font }}">
+                          {{ block.settings.text_1 }}
+                        </p>
+                      {% endif %}
                       <div class="ask-an-exp__text d-flex a-i-center">
                         <div class="icon-wrap"
                           style="
@@ -76,11 +96,13 @@
                         >
                           {% render 'icon-accordion', icon: block.settings.icon -%}
                         </div>
-                        <h2 class="{{ block.settings.heading_size | prepend: 'text-size text-size-' }} title m-0 d-inline-block break {{ block.settings.heading_font }}">
-                          {{ block.settings.heading | default: block.settings.page.title }}
-                        </h2>
+                        {% if block.settings.text_2 != blank %}
+                          <p class="{{ block.settings.heading_size | prepend: 'text-size text-size-' }} title m-0 d-inline-block break {{ block.settings.heading_font }}">
+                            {{ block.settings.text_2 | replace: '#button', button_link }}
+                          </p>
+                        {% endif %}
                       </div>
-                      <div class="ask-an-exp__button">
+                      <div class="ask-an-exp__button hidden">
                         {%- if block.settings.button_label != blank -%}
                           <div class="o-h m-spacing m-spacing-xs">
                             {%- if block.settings.button_label != blank -%}
@@ -143,7 +165,7 @@
                   {{ block.settings.text }}
                 </p>
               {%- when 'title' -%}
-                <div class="product__title break element-spacing-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" 
+                <div class="product__title break element-spacing-all d-flex c-gap {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {% if block.settings.show_wishlist_product %} has-wishlist-button{% endif %} " 
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     style="--animation-order: {{ forloop.index }};
@@ -154,9 +176,28 @@
                       --padding-bottom: {{ block.settings.padding_bottom }}px;"
                   {% endif %}
                 >
-                  <h1 class="{% if block.settings.heading_size == 'h1' or block.settings.heading_size == 'h2' %} {{ block.settings.heading_size }}{%  else %}p-w__heading {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} m-0">
+                  <h1 class="{% if block.settings.heading_size == 'h1' or block.settings.heading_size == 'h2' %} {{ block.settings.heading_size }}{%  else %}p-w__heading {{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} m-0 custom-font-2" style="--custom-tracking: -0.3rem; --leading: 1.2;">
                     {{ product.title | escape }}
                   </h1>
+
+                  {% if block.settings.show_wishlist_product %}
+                    <card-wishlist class="product-form__wlist c-pointer d-inline-flex j-c-center pos-relative bg-transparent"
+                      style="--button-color-text: {{ block.settings.wishlist_colors_text.red }}, {{ block.settings.wishlist_colors_text.green }}, {{ block.settings.wishlist_colors_text.blue }};
+                        --button-color-background: {{ block.settings.wishlist_colors_background.red }}, {{ block.settings.wishlist_colors_background.green }}, {{ block.settings.wishlist_colors_background.blue }};
+                        --button-gradient-background: {% if block.settings.add_to_cart_gradient_background != blank %}{{ block.settings.add_to_cart_gradient_background }}{% else %}{{ block.settings.add_to_cart_colors_background }}{% endif %};
+                        --button-color-text-hover: {{ block.settings.wishlist_colors_text_hover.red }}, {{ block.settings.wishlist_colors_text_hover.green }}, {{ block.settings.wishlist_colors_text_hover.blue }};
+                        --button-color-background-hover: {{ block.settings.wishlist_colors_background_hover.red }}, {{ block.settings.wishlist_colors_background_hover.green }}, {{ block.settings.wishlist_colors_background_hover.blue }};
+                        --button-gradient-background-hover: {% if block.settings.add_to_cart_gradient_background_hover != blank %}{{ block.settings.add_to_cart_gradient_background_hover }}{% else %}{{ block.settings.add_to_cart_colors_background_hover }}{% endif %};
+                      "
+                    >
+                      <button class="wishlist-form pos-relative c-pointer b-none bg-transparent p-0 d-inline-flex a-i-center j-c-center" type="button" aria-haspopup="dialog" aria-label="{{ 'templates.wishlist.wishlist_items' | t: count: cart.item_count }}" data-wishlist-handle="{{ product.handle }}">
+                        {% if block.settings.wishlist_text != blank %}
+                          <span class="wishlist-text">{{ block.settings.wishlist_text }}</span>
+                        {% endif %}
+                        {%- render 'icon-heart-2' -%}
+                      </button>
+                    </card-wishlist>
+                  {% endif %}
                 </div>
               {%- when 'vendor' -%}
                 <div class="product__vendor element-spacing-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" 
@@ -893,20 +934,28 @@
                   {%- endif -%}
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
-                <div class="product__icons element-spacing-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" 
+                {% liquid
+                  assign item_gap = block.settings.item_gap | default: 12 | append: 'px'
+                  assign icon_gap = block.settings.icon_gap | default: 12 | append: 'px'
+                  assign show_border_block = block.settings.show_border_block
+                  assign border_color = block.settings.border_color
+                %}
+                <div class="product__icons element-spacing-all padding-style{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}{% if show_border_block %} border-style{% endif %}" 
                   {{ block.shopify_attributes }}
+                  style="
+                  --p-t: {{ block.settings.padding_top }}px;
+                  --p-l: {{ block.settings.padding_left }}px;
+                  --p-r: {{ block.settings.padding_right }}px;
+                  --p-b: {{ block.settings.padding_bottom }}px;
                   {% if settings.animations_reveal_on_scroll %}
-                    style="--animation-order: {{ forloop.index }};
-                      --padding-top: {{ block.settings.padding_top }}px;
-                      --padding-bottom: {{ block.settings.padding_bottom }}px;"
-                  {% else %}
-                    style="--padding-top: {{ block.settings.padding_top }}px;
-                      --padding-bottom: {{ block.settings.padding_bottom }}px;"
+                    --animation-order: {{ forloop.index }};
                   {% endif %}
+                  {% render 'border-override', settings: block.settings %} --border-color: {{ border_color }};
+                  "
                 >
-                  <ul class="icon-with-text icon-with-text--{{ block.settings.layout }}{% if block.settings.layout == 'horizontal' %} d-flex f-row j-c-center{% endif %} list-unstyled">
-                    {%- if block.settings.heading_1 != blank -%}
-                      <li class="icon-with-text__item d-flex a-i-center{% if block.settings.layout == 'horizontal' %} f-column{% endif %}">
+                  <ul class="icon-with-text d-flex icon-with-text--{{ block.settings.layout }}{% if block.settings.layout == 'horizontal' %} f-row j-c-center{% endif %} f-column list-unstyled c-gap r-gap m-0" style="--c-gap: {{ item_gap }}; --r-gap: {{ item_gap }};">
+                    {%- if block.settings.item_text_1 != blank -%}
+                      <li class="icon-with-text__item d-flex a-i-center c-gap{% if block.settings.layout == 'horizontal' %} f-column{% endif %}" style="--c-gap: {{ icon_gap }};">
                         {%- if block.settings.image_1 == null -%}
                           {%- render 'icon-accordion', icon: block.settings.icon_1 -%}
                         {%- else -%}
@@ -922,13 +971,13 @@
                             loading="lazy"
                           >
                         {%- endif -%}
-                        <span class="h4 m-0{% if block.settings.layout == 'horizontal' %} center{% endif %}">
-                          {{- block.settings.heading_1 -}}
+                        <span class="text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} center{% endif %}" style="--cus-size: 0.2rem;">
+                          {{- block.settings.item_text_1 -}}
                         </span>
                       </li>
                     {%- endif -%}
-                    {%- if block.settings.heading_2 != blank -%}
-                      <li class="icon-with-text__item d-flex a-i-center{% if block.settings.layout == 'horizontal' %} f-column{% endif %}">
+                    {%- if block.settings.item_text_2 != blank -%}
+                      <li class="icon-with-text__item d-flex a-i-center c-gap{% if block.settings.layout == 'horizontal' %} f-column{% endif %}" style="--c-gap: {{ icon_gap }};">
                         {%- if block.settings.image_2 == null -%}
                           {% render 'icon-accordion', icon: block.settings.icon_2 -%}
                         {%- else -%}
@@ -944,13 +993,13 @@
                             loading="lazy"
                           >
                         {%- endif -%}
-                        <span class="h4 m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}">
-                          {{- block.settings.heading_2 -}}
+                        <span class="text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}" style="--cus-size: 0.2rem;">
+                          {{- block.settings.item_text_2 -}}
                         </span>
                       </li>
                     {%- endif -%}
-                    {%- if block.settings.heading_3 != blank -%}
-                      <li class="icon-with-text__item d-flex a-i-center{% if block.settings.layout == 'horizontal' %} f-column{% endif %}">
+                    {%- if block.settings.item_text_3 != blank -%}
+                      <li class="icon-with-text__item d-flex a-i-center c-gap{% if block.settings.layout == 'horizontal' %} f-column{% endif %}" style="--c-gap: {{ icon_gap }};">
                         {%- if block.settings.image_3 == null -%}
                           {% render 'icon-accordion', icon: block.settings.icon_3 -%}
                         {%- else -%}
@@ -966,8 +1015,8 @@
                             loading="lazy"
                           >
                         {%- endif -%}
-                        <span class="h4 m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}">
-                          {{- block.settings.heading_3 -}}
+                        <span class="text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}" style="--cus-size: 0.2rem;">
+                          {{- block.settings.item_text_3 -}}
                         </span>
                       </li>
                     {%- endif -%}
@@ -1616,6 +1665,44 @@
       ]
     }
   </script>
+
+  {% javascript %}
+    document.addEventListener('DOMContentLoaded', function () {
+      var check_JS_load = true;
+      function loadFunction() {
+          if (check_JS_load) {
+              check_JS_load = false;
+
+              handleAskAnExpertClick();
+              
+          }
+      }
+
+      function eventLoad() {
+          ['keydown', 'mousemove', 'touchstart'].forEach((event) => {
+              document.addEventListener(event, () => {
+                  loadFunction();
+              });
+          });
+      }
+      eventLoad();
+
+      // Optimized handleAskAnExpertClick function using event delegation
+      function handleAskAnExpertClick() {
+        document.body.addEventListener('click', function (e) {
+          const link = e.target.closest('.ask-an-exp__button-link');
+          if (!link) return;
+
+          e.preventDefault();
+          const link_id = link.getAttribute('href');
+          const dialog = document.querySelector(link_id);
+          if (dialog && typeof dialog.open === 'function') {
+            dialog.open();
+          }
+        }, false);
+      }
+    });
+  {% endjavascript %}
 </section>
 {% schema %}
 {
@@ -1741,7 +1828,52 @@
         ],
         "default": "h1",
         "label": "t:sections.all.font_size.label__2"
-      }]
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-product.blocks.buy_buttons.settings.header__3.content",
+      },
+      {
+        "type": "checkbox",
+        "id": "show_wishlist_product",
+        "default": true,
+        "label": "Show wishlist product"
+      },
+      {
+        "type": "text",
+        "id": "wishlist_text",
+        "label": "Wishlist text",
+        "default": "Favourite"
+      },
+      {
+        "type": "color",
+        "id": "wishlist_colors_text",
+        "label": "t:sections.all.colors.colors_text",
+        "default": "#000000",
+        "visible_if": "{{ block.settings.show_wishlist_product }}"
+      },
+      {
+        "type": "color",
+        "id": "wishlist_colors_background",
+        "label": "t:sections.all.colors.colors_background",
+        "default": "#000000",
+        "visible_if": "{{ block.settings.show_wishlist_product }}"
+      },
+      {
+        "type": "color",
+        "id": "wishlist_colors_text_hover",
+        "label": "t:sections.all.colors.colors_text_hover",
+        "default": "#EB9C9C",
+        "visible_if": "{{ block.settings.show_wishlist_product }}"
+      },
+      {
+        "type": "color",
+        "id": "wishlist_colors_background_hover",
+        "label": "t:sections.all.colors.colors_background_hover",
+        "default": "#EB9C9C",
+        "visible_if": "{{ block.settings.show_wishlist_product }}"
+      }
+    ]
     },
     {
       "type": "vendor",
@@ -2430,39 +2562,6 @@
       },
       {
         "type": "header",
-        "content": "t:sections.main-product.blocks.buy_buttons.settings.header__3.content",
-        "visible_if": "{{ block.settings.show_wishlist_product }}"
-      },
-      {
-        "type": "color",
-        "id": "wishlist_colors_text",
-        "label": "t:sections.all.colors.colors_text",
-        "default": "#000000",
-        "visible_if": "{{ block.settings.show_wishlist_product }}"
-      },
-      {
-        "type": "color",
-        "id": "wishlist_colors_background",
-        "label": "t:sections.all.colors.colors_background",
-        "default": "#000000",
-        "visible_if": "{{ block.settings.show_wishlist_product }}"
-      },
-      {
-        "type": "color",
-        "id": "wishlist_colors_text_hover",
-        "label": "t:sections.all.colors.colors_text_hover",
-        "default": "#EB9C9C",
-        "visible_if": "{{ block.settings.show_wishlist_product }}"
-      },
-      {
-        "type": "color",
-        "id": "wishlist_colors_background_hover",
-        "label": "t:sections.all.colors.colors_background_hover",
-        "default": "#EB9C9C",
-        "visible_if": "{{ block.settings.show_wishlist_product }}"
-      },
-      {
-        "type": "header",
         "content": "t:sections.all.padding.block_padding_heading"
       },
       {
@@ -2635,6 +2734,10 @@
         {
           "value": "none",
           "label": "t:sections.all.icon.options__1"
+        },
+        {
+          "value": "chat",
+          "label": "Chat"
         },
         {
           "value": "apple",
@@ -3063,6 +3166,28 @@
         "label": "t:sections.main-product.blocks.icon_with_text.settings.layout.label"
       },
       {
+        "type": "range",
+        "id": "item_gap",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 12,
+        "unit": "px",
+        "label": "Item Gap",
+        "info": "This is the gap between the items"
+      },
+      {
+        "type": "range",
+        "id": "icon_gap",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 12,
+        "unit": "px",
+        "label": "Icon Gap",
+        "info": "This is the gap between the icon and the text"
+      },
+      {
         "type": "header",
         "content": "t:sections.main-product.blocks.icon_with_text.settings.header__1.content",
         "info": "t:sections.main-product.blocks.icon_with_text.settings.header__1.info"
@@ -3074,6 +3199,10 @@
         {
           "value": "none",
           "label": "t:sections.all.icon.options__1"
+        },
+        {
+          "value": "box-2",
+          "label": "Box 2"
         },
         {
           "value": "apple",
@@ -3256,11 +3385,10 @@
         "label": "t:sections.all.image.image_1"
       },
       {
-        "type": "text",
-        "id": "heading_1",
-        "default": "Heading",
-        "label": "t:sections.all.heading.heading_1",
-        "info": "t:sections.all.heading.info__2"
+        "type": "richtext",
+        "id": "item_text_1",
+        "default": "<p>Item 1 text</p>",
+        "label": "Item 1 text"
       },
       {
         "type": "select",
@@ -3269,6 +3397,10 @@
         {
           "value": "none",
           "label": "t:sections.all.icon.options__1"
+        },
+        {
+          "value": "box-2",
+          "label": "Box 2"
         },
         {
           "value": "apple",
@@ -3451,11 +3583,10 @@
         "label": "t:sections.all.image.image_2"
       },
       {
-        "type": "text",
-        "id": "heading_2",
-        "default": "Heading",
-        "label": "t:sections.all.heading.heading_2",
-        "info": "t:sections.all.heading.info__2"
+        "type": "richtext",
+        "id": "item_text_2",
+        "default": "<p>Item 2 text</p>",
+        "label": "Item 2 text"
       },
       {
         "type": "select",
@@ -3464,6 +3595,10 @@
         {
           "value": "none",
           "label": "t:sections.all.icon.options__1"
+        },
+        {
+          "value": "box-2",
+          "label": "Box 2"
         },
         {
           "value": "apple",
@@ -3646,11 +3781,68 @@
         "label": "t:sections.all.image.image_3"
       },
       {
-        "type": "text",
-        "id": "heading_3",
-        "default": "Heading",
-        "label": "t:sections.all.heading.heading_3",
-        "info": "t:sections.all.heading.info__2"
+        "type": "richtext",
+        "id": "item_text_3",
+        "default": "<p>Item 3 text</p>",
+        "label": "Item 3 text"
+      },
+      {
+        "type": "header",
+        "content": "Block Border"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_border_block",
+        "default": false,
+        "label": "Show Border Block"
+      },
+      {
+        "type": "header",
+        "content": "t:flex_section.content.borders"
+      },
+      {
+        "type": "select",
+        "id": "border",
+        "label": "t:flex_section.settings.style",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:flex_section.options.none"
+          },
+          {
+            "value": "solid",
+            "label": "t:flex_section.options.solid"
+          }
+        ],
+        "default": "none"
+      },
+      {
+        "type": "range",
+        "id": "border_width",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:flex_section.settings.thickness",
+        "default": 1,
+        "visible_if": "{{ block.settings.border != 'none' }}"
+      },
+      {
+        "type": "color",
+        "id": "border_color",
+        "default": "#898d9a",
+        "label": "Border Color",
+        "visible_if": "{{ block.settings.border != 'none' }}"
+      },
+      {
+        "type": "range",
+        "id": "border_radius",
+        "label": "t:flex_section.settings.border_radius",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "default": 0
       },
       {
         "type": "header",
@@ -3664,6 +3856,26 @@
         "step": 1,
         "unit": "px",
         "label": "t:sections.all.padding.padding_top",
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "padding_left",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_left",
+        "default": 5
+      },
+      {
+        "type": "range",
+        "id": "padding_right",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_right",
         "default": 5
       },
       {
@@ -3723,11 +3935,16 @@
       "limit": 1,
       "settings": [
       {
-        "type": "text",
-        "id": "heading",
-        "default": "Ask an expert",
-        "info": "t:sections.all.heading.info__1",
-        "label": "t:sections.all.heading.label"
+        "type": "richtext",
+        "id": "text_1",
+        "default": "<p>Please note, whilst we try to ensure as true a match as possible, images are for illustrative purposes only.</p>",
+        "label": "t:sections.all.text.label"
+      },
+      {
+        "type": "richtext",
+        "id": "text_2",
+        "default": "<p>If you have any questions please #button. Or use the CHAT button for further information. </p>",
+        "label": "t:sections.all.text.label"
       },
       {
         "type": "select",
@@ -3798,6 +4015,10 @@
         {
           "value": "none",
           "label": "t:sections.all.icon.options__1"
+        },
+        {
+          "value": "chat",
+          "label": "Chat"
         },
         {
           "value": "apple",
@@ -4265,6 +4486,36 @@
     {
       "type": "header",
       "content": "t:settings_schema.general.name"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "options": [
+      {
+        "value": "full-width",
+        "label": "t:sections.all.section_width.options__1"
+      },
+      {
+        "value": "page-width",
+        "label": "t:sections.all.section_width.options__2"
+      },
+      {
+        "value": "customized-width",
+        "label": "t:sections.all.section_width.options__3"
+      }],
+      "default": "page-width",
+      "label": "t:sections.all.section_width.label"
+    },
+    {
+      "type": "range",
+      "id": "customize_width",
+      "min": 1000,
+      "max": 1800,
+      "step": 50,
+      "default": 1800,
+      "unit": "px",
+      "label": "t:sections.all.customize_width.label",
+      "visible_if": "{{ section.settings.section_width == 'customized-width' }}"
     },
     {
       "type": "checkbox",
