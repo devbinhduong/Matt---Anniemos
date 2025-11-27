@@ -34,14 +34,6 @@
             "wishlist_colors_background_hover": "#eb9c9c"
           }
         },
-        "7bb79f3c-d40b-4ca5-9a57-27085fdc0c00": {
-          "type": "rating",
-          "settings": {
-            "link_to_review": true,
-            "padding_top": 8,
-            "padding_bottom": 8
-          }
-        },
         "price": {
           "type": "price",
           "settings": {
@@ -53,6 +45,14 @@
             "padding_bottom": 16
           }
         },
+        "7bb79f3c-d40b-4ca5-9a57-27085fdc0c00": {
+          "type": "rating",
+          "settings": {
+            "link_to_review": true,
+            "padding_top": 8,
+            "padding_bottom": 8
+          }
+        },
         "icon_with_text_Udag9Q": {
           "type": "icon-with-text",
           "settings": {
@@ -60,19 +60,19 @@
             "item_gap": 12,
             "icon_gap": 12,
             "icon_1": "box-2",
-            "item_text_1": "<p>Item 1 text</p>",
+            "item_text_1": "<p>Estimated delivery time 2-3 days</p>",
             "icon_2": "return",
-            "item_text_2": "<p>Item 2 text</p>",
+            "item_text_2": "",
             "icon_3": "truck",
-            "item_text_3": "<p>Item 3 text</p>",
+            "item_text_3": "",
             "show_border_block": false,
             "border": "none",
             "border_width": 1,
             "border_color": "#898d9a",
             "border_radius": 0,
-            "padding_top": 0,
-            "padding_left": 5,
-            "padding_right": 5,
+            "padding_top": 10,
+            "padding_left": 0,
+            "padding_right": 0,
             "padding_bottom": 0
           }
         },
@@ -89,24 +89,18 @@
           "type": "buy_buttons",
           "settings": {
             "show_quantity_selector": true,
-            "show_wishlist_product": true,
-            "show_dynamic_checkout": true,
-            "show_pickup_availability": true,
+            "show_stock_status": false,
+            "show_dynamic_checkout": false,
+            "show_pickup_availability": false,
             "show_gift_card_recipient": false,
-            "add_to_cart_colors_text": "#ffffff",
-            "add_to_cart_colors_background": "#000000",
-            "add_to_cart_gradient_background": "",
-            "add_to_cart_colors_text_hover": "#ffffff",
-            "add_to_cart_colors_background_hover": "#fff9f9",
-            "add_to_cart_gradient_background_hover": "linear-gradient(215deg, rgba(248, 208, 218, 0.6) 34.38%, rgba(195, 236, 252, 0.72) 73.44%)",
-            "buy_it_now_colors_text": "#000000",
-            "buy_it_now_colors_background": "#ffffff",
-            "buy_it_now_gradient_background": "",
-            "buy_it_now_colors_text_hover": "#ffffff",
-            "buy_it_now_colors_background_hover": "#000000",
-            "buy_it_now_gradient_background_hover": "",
-            "padding_top": 10,
-            "padding_bottom": 5
+            "button_atc_transparent": "default",
+            "button_buy_now_transparent": "transparent",
+            "button_buy_now_color": "#898d9a",
+            "button_buy_now_background": "#898d9a",
+            "button_buy_now_color_hover": "#ffffff",
+            "button_buy_now_background_hover": "#898d9a",
+            "padding_top": 5,
+            "padding_bottom": 25
           }
         },
         "icon_with_text_AP8en4": {
@@ -115,12 +109,12 @@
             "layout": "vertical",
             "item_gap": 16,
             "icon_gap": 12,
-            "icon_1": "heart",
-            "item_text_1": "<p>Item 1 text</p>",
-            "icon_2": "return",
-            "item_text_2": "<p>Item 2 text</p>",
+            "icon_1": "box-2",
+            "item_text_1": "<p>Delivery from £4.95 or Next Day from £9.95</p>",
+            "icon_2": "back",
+            "item_text_2": "<p>Eligible for return within 28 days. <br/>Exclusions apply. Please see our <a href=\"/pages/private-policy\" title=\"Private Policy\">returns policy </a></p>",
             "icon_3": "truck",
-            "item_text_3": "<p>Item 3 text</p>",
+            "item_text_3": "",
             "show_border_block": true,
             "border": "solid",
             "border_width": 1,
@@ -136,14 +130,28 @@
           "type": "collapsible_tab",
           "settings": {
             "heading": "Description",
-            "heading_size": "small",
+            "heading_size": "default",
             "heading_font": "f-normal",
-            "icon": "none",
+            "icon": "information",
             "content_type": "description",
             "content": "",
             "page": "",
-            "padding_top": 24,
-            "padding_bottom": 24
+            "padding_top": 16,
+            "padding_bottom": 16
+          }
+        },
+        "collapsible_tab_RVzwUh": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Details & Dimensions",
+            "heading_size": "default",
+            "heading_font": "f-normal",
+            "icon": "dimensions",
+            "content_type": "custom",
+            "content": "<p>Details & Dimensions Content</p>",
+            "page": "",
+            "padding_top": 16,
+            "padding_bottom": 16
           }
         },
         "f172f031-f0cf-4aaa-8ee0-ba3892df0310": {
@@ -179,13 +187,14 @@
       "block_order": [
         "663b1401-2653-492c-8576-70628c7c7b65",
         "title",
-        "7bb79f3c-d40b-4ca5-9a57-27085fdc0c00",
         "price",
+        "7bb79f3c-d40b-4ca5-9a57-27085fdc0c00",
         "icon_with_text_Udag9Q",
         "variant_picker",
         "buy_buttons",
         "icon_with_text_AP8en4",
         "b4a60cb8-a075-4a50-b5c5-69cc79a79503",
+        "collapsible_tab_RVzwUh",
         "f172f031-f0cf-4aaa-8ee0-ba3892df0310"
       ],
       "settings": {
@@ -212,6 +221,7 @@
     },
     "1679044770251ee1c2": {
       "type": "apps",
+      "disabled": true,
       "settings": {
         "section_width": "page-width",
         "customize_width": 1800,
@@ -230,16 +240,23 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "heading": "You may also like",
+        "heading": "Related Products",
+        "use_custom_heading": true,
+        "custom_heading_size": 82,
+        "custom_heading_color": "#898d9a",
+        "custom_heading_leading": 1.1,
+        "custom_heading_tracking": 0,
+        "custom_heading_word_spacing": 0,
+        "use_custom_heading_font": true,
         "products_to_show": 5,
-        "color_scheme": "accent-2",
+        "color_scheme": "scheme-89b6d850-7344-4b60-8a06-5b847e8e19a0",
         "arrows_type": "all",
         "carousel_infinite_scroll": false,
-        "carousel_number": 3,
+        "carousel_number": 4.2,
         "enable_pagination_type": "all",
         "pagination_type": "progressbar",
         "padding_top": 36,
-        "padding_bottom": 28,
+        "padding_bottom": 62,
         "padding_top_mobile": 35,
         "padding_bottom_mobile": 15
       }

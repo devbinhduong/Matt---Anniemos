@@ -48,7 +48,7 @@
               <label class="quantity__label form__label d-block" for="Quantity-{{ section.id }}">
                 {{ 'products.product.quantity.label' | t }}
               </label>
-              {%- if show_quantity_selector -%}
+              {%- if show_stock_status -%}
                 <div class="product-form__messages d-flex f-column g-gap pos-absolute top-0" style="--g-gap: 1rem;">
                   <span class="quantity__rules-cart quantity__main no-js-hidden{% if cart_qty == 0 %} hidden{% endif %}" data-quantity-rules>
                     <span class="icon__rules-cart loading-overlay__hide loading-overlay hidden">
@@ -113,44 +113,48 @@
             </quantity-input>
           </div>
         {%- endif -%}
-        <button
-          id= "ProductSubmitButton-{{ section_id }}"
-          type="submit"
-          name="add"
-          class="product-form__submit button button--style-diagonal-swipe{% if type_style == 'special' %} uppercase{% endif %} w-100"
-          {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-            disabled
-          {% endif %}
-          style="--button-color-text: {{ block.settings.add_to_cart_colors_text.red }}, {{ block.settings.add_to_cart_colors_text.green }}, {{ block.settings.add_to_cart_colors_text.blue }};
-            --button-color-background: {{ block.settings.add_to_cart_colors_background.red }}, {{ block.settings.add_to_cart_colors_background.green }}, {{ block.settings.add_to_cart_colors_background.blue }};
-            --button-gradient-background: {% if block.settings.add_to_cart_gradient_background != blank %}{{ block.settings.add_to_cart_gradient_background }}{% else %}{{ block.settings.add_to_cart_colors_background }}{% endif %};
-            --button-color-text-hover: {{ block.settings.add_to_cart_colors_text_hover.red }}, {{ block.settings.add_to_cart_colors_text_hover.green }}, {{ block.settings.add_to_cart_colors_text_hover.blue }};
-            --button-color-background-hover: {{ block.settings.add_to_cart_colors_background_hover.red }}, {{ block.settings.add_to_cart_colors_background_hover.green }}, {{ block.settings.add_to_cart_colors_background_hover.blue }};
-            --button-gradient-background-hover: {% if block.settings.add_to_cart_gradient_background_hover != blank %}{{ block.settings.add_to_cart_gradient_background_hover }}{% else %}{{ block.settings.add_to_cart_colors_background_hover }}{% endif %};
-          "
-        >
-          <span>
-            {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-              {{ 'products.product.sold_out' | t }}
-            {%- else -%}
-              {{ 'products.product.add_to_cart' | t }}
-            {%- endif -%}
-          </span>
-          <div class="loading-overlay__spinner d-inline-block z-index-2 hidden">{{ icon_spinner }}</div>
-        </button>
-        {%- if show_dynamic_checkout -%}
-          <style type="text/css" media="screen">
-            .shopify-payment-button{
-              --button-color-text: {{ block.settings.buy_it_now_colors_text.red }}, {{ block.settings.buy_it_now_colors_text.green }}, {{ block.settings.buy_it_now_colors_text.blue }};
-              --button-color-background: {{ block.settings.buy_it_now_colors_background.red }}, {{ block.settings.buy_it_now_colors_background.green }}, {{ block.settings.buy_it_now_colors_background.blue }};
-              --button-gradient-background: {% if block.settings.buy_it_now_gradient_background != blank %}{{ block.settings.buy_it_now_gradient_background }}{% else %}{{ block.settings.buy_it_now_colors_background }}{% endif %};
-              --button-color-text-hover: {{ block.settings.buy_it_now_colors_text_hover.red }}, {{ block.settings.buy_it_now_colors_text_hover.green }}, {{ block.settings.buy_it_now_colors_text_hover.blue }};
-              --button-color-background-hover: {{ block.settings.buy_it_now_colors_background_hover.red }}, {{ block.settings.buy_it_now_colors_background_hover.green }}, {{ block.settings.buy_it_now_colors_background_hover.blue }};
-              --button-gradient-background-hover: {% if block.settings.buy_it_now_gradient_background_hover != blank %}{{ block.settings.buy_it_now_gradient_background_hover }}{% else %}{{ block.settings.buy_it_now_colors_background_hover }}{% endif %};
-            }  
-          </style>
+
+        <div class="buy-buttons-group w-100" style="--g-gap: 1rem;">
+          <a
+            id= "ProductSubmitButton-{{ section_id }}"
+            type="submit"
+            name="add"
+            href="#"
+            class="w-100 button {{ settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }} {{ settings.button_style | prepend: 'button--style-' }}{% if button_atc_transparent == 'transparent' %} button--transparent{% endif %}"
+            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
+              disabled
+            {% endif %}
+          >
+            <span class="text">
+              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- else -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- endif -%}
+            </span>
+            <div class="loading-overlay__spinner d-inline-block z-index-2 hidden">{{ icon_spinner }}</div>
+            {% render 'button-main-style' %}
+          </a>
+
+          <div class="product-button-buy-now">
+            <a class="button {{ settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }} {{ settings.button_style | prepend: 'button--style-' }}{% if button_buy_now_transparent == 'transparent' %} button--transparent{% endif %}" href="#checkout-now-button" style="--button-color-text: {{ button_buy_now_color.red }}, {{ button_buy_now_color.green }}, {{ button_buy_now_color.blue }};
+              --button-color-background: {{ button_buy_now_background.red }}, {{ button_buy_now_background.green }}, {{ button_buy_now_background.blue }};
+              --button-gradient-background: {% if button_buy_now_gradient_background != blank %}{{ button_buy_now_gradient_background }}{% else %}{{ button_buy_now_background }}{% endif %};
+              --button-color-text-hover: {{ button_buy_now_color_hover.red }}, {{ button_buy_now_color_hover.green }}, {{ button_buy_now_color_hover.blue }};
+              --button-color-background-hover: {{ button_buy_now_background_hover.red }}, {{ button_buy_now_background_hover.green }}, {{ button_buy_now_background_hover.blue }};
+              --button-gradient-background-hover: {% if button_buy_now_gradient_background_hover != blank %}{{ button_buy_now_gradient_background_hover }}{% else %}{{ button_buy_now_background_hover }}{% endif %};">
+              <span class="text">Buy Now</span>
+              {% render 'button-main-style' %}
+            </a>
+          </div>
+
+          <shopify-accelerated-checkout id="checkout-now-button" class="default-accelerated-checkout hidden" fallback="{&quot;name&quot;:&quot;buy_it_now&quot;,&quot;wallet_params&quot;:{}}" access-token="8e47b78494d9ccf565e8c4b7178bf7b9" buyer-country="{{ customer.country | default: 'GB' }}" buyer-locale="{{ shop.locale }}" buyer-currency="{{ shop.currency }}" variant-params="[{&quot;id&quot;:{{ product.selected_or_first_available_variant.id }},&quot;requiresShipping&quot;:{{ product.selected_or_first_available_variant.requires_shipping }}}]" shop-id="{{ shop.id }}" requires-shipping>
+          </shopify-accelerated-checkout>
+        </div>
+
+        <div class="{%- if show_dynamic_checkout -%} w-100{%  else %} hidden{% endif %}">
           {{ form | payment_button }}
-        {%- endif -%}
+        </div>
       </div>
     {%- endform -%}
   </product-form>

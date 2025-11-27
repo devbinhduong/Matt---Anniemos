@@ -87,6 +87,11 @@ p-0 {
       line-height: 1.33;
     }
   }
+
+  .accordion__content {
+    margin-bottom: 2rem;
+    padding-left: 3.8rem;
+  }
 }
 
 @media (min-width: 1800px) {
@@ -231,5 +236,65 @@ p-0 {
 
   @media (max-width: 1800px) {
     column-gap: 2rem;
+  }
+}
+
+.product-iwt-text {
+  flex: 1;
+  --cus-size: 0.2rem;
+  
+  @media (max-width: 1024px) {
+    --cus-size: 0 !important;
+  }
+}
+
+.product-iwt-text > p {
+  margin: 0;
+}
+
+/* Product page */
+@import url('https://fonts.googleapis.com/css2?family=Spectral&display=swap');
+
+.custom-font-2 {
+  font-family: 'Spectral', serif;
+  font-weight: 400;
+}
+
+.buy-buttons-group {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .button {
+    width: 100%;
+  }
+}
+
+.product-form__quantity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.product-form__input {
+  .quantity {
+    min-height: 3.6rem !important;
+  }
+
+  .quantity__button {
+    border: 1px solid rgba(var(--color-foreground),.55);
+    width: 4rem;
+    height: 3.6rem;
+    color: rgba(var(--color-foreground), 1);
+  }
+
+  .quantity__input {
+    min-width: 4rem;
+    min-height: 3.6rem !important;
+    max-height: 3.6rem !important;
   }
 }

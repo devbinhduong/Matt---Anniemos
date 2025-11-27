@@ -2,6 +2,17 @@
   capture icon_arrow_list
     render 'icon-arrow-list'
   endcapture
+
+  assign item_to_show_desktop = section.settings.carousel_number
+  assign item_to_show_tablet = item_to_show_desktop | minus: 1
+  assign item_to_show_mobile = item_to_show_tablet | minus: 1
+  if item_to_show_desktop < 3
+    assign item_to_show_tablet = item_to_show_desktop
+    assign item_to_show_mobile = item_to_show_tablet | minus: 1
+  endif
+  if item_to_show_tablet < 2
+    assign item_to_show_mobile = item_to_show_tablet
+  endif
 -%}
 <div class="section__f-collection style-collection-{{ settings.arrow_style }} section__r-product spacing spacing-xs pos-relative color-{{ section.settings.color_scheme }} gradient no-js-hidden"
   style="--padding-top: {{ section.settings.padding_top }}px;
@@ -15,14 +26,14 @@
         {%- if section.settings.heading != blank -%}
           <div class="p-w__header">
             <div class="p-w__header--wrapper left">
-              <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading heading-size-default m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+              <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% render 'heading-style', settings: section.settings, type: 'class' %}" style="{% render 'heading-style', settings: section.settings, type: 'style' %}">
                 {{ section.settings.heading | escape }}
               </h2>
             </div>
           </div>
         {%- endif -%}
         <div class="p-w__content">
-          <slider-component class="carousel d-block pos-relative{% if section.settings.carousel_infinite_scroll %} infinite-scroll{% endif %}" data-space-between="10" data-type-pagination="{{ section.settings.pagination_type }}" data-item-to-show-desktop="{{ section.settings.carousel_number }}" data-item-to-show-tablet="3" data-item-to-show-mobile="2">
+          <slider-component class="carousel d-block pos-relative{% if section.settings.carousel_infinite_scroll %} infinite-scroll{% endif %}" data-space-between="10" data-type-pagination="{{ section.settings.pagination_type }}" data-item-to-show-desktop="{{ item_to_show_desktop }}" data-item-to-show-tablet="{{ item_to_show_tablet }}" data-item-to-show-mobile="{{ item_to_show_mobile }}">
             <div class="swiper grid-scroll d-block pos-relative no-js-overflow-x">
               <div class="swiper-wrapper" style="--c-xs: 1; --c-sm: 2; --c-md: 3; --c-lg: 4;">
                 {%- for recommendation in recommendations.products -%}
@@ -96,8 +107,73 @@
   {
     "type": "text",
     "id": "heading",
-    "default": "You may also like",
+    "default": "Related Products",
     "label": "t:sections.all.heading.label"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading",
+    "default": false,
+    "label": "Use custom heading",
+    "visible_if": "{{ section.settings.heading != blank }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_size",
+    "min": 12,
+    "max": 110,
+    "step": 1,
+    "unit": "px",
+    "default": 82,
+    "label": "Custom heading size",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "color",
+    "id": "custom_heading_color",
+    "default": "#898d9a",
+    "label": "Custom heading color",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_leading",
+    "min": 0.5,
+    "max": 2,
+    "step": 0.1,
+    "unit": "px",
+    "default": 1.1,
+    "label": "Leading",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_tracking",
+    "min": -5,
+    "max": 5,
+    "step": 0.1,
+    "unit": "px",
+    "default": 0,
+    "label": "Tracking",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_word_spacing",
+    "min": -5,
+    "max": 5,
+    "step": 0.1,
+    "unit": "px",
+    "default": 0,
+    "label": "Word spacing",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading_font",
+    "default": false,
+    "label": "Use custom heading font",
+    "visible_if": "{{ section.settings.use_custom_heading and section.settings.heading != blank }}"
   },
   {
     "type": "range",
@@ -105,7 +181,7 @@
     "min": 2,
     "max": 10,
     "step": 1,
-    "default": 5,
+    "default": 6,
     "label": "t:sections.all.product.product_list_limit"
   },
   {
@@ -158,11 +234,11 @@
   {
     "type": "range",
     "id": "carousel_number",
-    "min": 1,
-    "max": 5,
-    "step": 1,
+    "min": 3,
+    "max": 6,
+    "step": 0.2,
     "label": "t:sections.all.carousel.heading_2",
-    "default": 4
+    "default": 4.2
   },
   {
     "type": "select",

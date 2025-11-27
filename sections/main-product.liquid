@@ -1,12 +1,3 @@
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Spectral&display=swap');
-
-.custom-font-2 {
-  font-family: 'Spectral', serif;
-  font-weight: 400;
-}
-</style>
-
 <section
   id="MainProduct-{{ section.id }}"
   data-section="{{ section.id }}"
@@ -74,7 +65,7 @@
                     {%- assign button_link = '#' -%}
                   {% endif %}
 
-                  <div class="product__quickview-ask element-spacing-all color-{{ block.settings.button_color_scheme }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" {{ block.shopify_attributes }}
+                  <div class="product__quickview-ask element-spacing-all text-responsive color-{{ block.settings.button_color_scheme }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" {{ block.shopify_attributes }}
                       style="
                         {% if settings.animations_reveal_on_scroll %}--animation-order: {{ forloop.index }};{% endif %}
                         --padding-top: {{ block.settings.padding_top }}px;
@@ -165,7 +156,7 @@
                   {{ block.settings.text }}
                 </p>
               {%- when 'title' -%}
-                <div class="product__title break element-spacing-all d-flex c-gap {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {% if block.settings.show_wishlist_product %} has-wishlist-button{% endif %} " 
+                <div class="product__title break element-spacing-all d-flex c-gap{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %} {% if block.settings.show_wishlist_product %} has-wishlist-button{% endif %} " 
                   {{ block.shopify_attributes }}
                   {% if settings.animations_reveal_on_scroll %}
                     style="--animation-order: {{ forloop.index }};
@@ -569,12 +560,13 @@
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
                 {%- if block.settings.heading != blank or block.settings.page != blank -%}
-                  <div class="product__accordion accordion l-h-1 b-top b-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+                  <div class="product__accordion accordion l-h-1 b-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
                     {{ block.shopify_attributes }}
                     {% if settings.animations_reveal_on_scroll %}
                       style="--animation-order: {{ forloop.index }};
                         --padding-top: {{ block.settings.padding_top }}px;
-                        --padding-bottom: {{ block.settings.padding_bottom }}px;"
+                        --padding-bottom: {{ block.settings.padding_bottom }}px;
+                        --cus-o: 1;"
                     {% else %}
                       style="--padding-top: {{ block.settings.padding_top }}px;
                         --padding-bottom: {{ block.settings.padding_bottom }}px;
@@ -583,11 +575,11 @@
                   >
                     <details id="Details-{{ block.id }}-{{ section.id }}">
                       <summary class="c-pointer pos-relative element-spacing">
-                        <div class="summary__title d-flex f-1">
+                        <div class="summary__title d-flex f-1 a-i-center c-gap" style="--c-gap: 1rem;">
                           {% render 'icon-accordion', icon: block.settings.icon %}
                           <h2
-                            class="{% if block.settings.heading_size == 'h4' %}{{ block.settings.heading_size }}{% else %}{{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} accordion__title m-0 d-inline-block break {{ block.settings.heading_font }}"
-                            style="{% if block.settings.heading_size != 'h4' %}--cus-size: .4rem;{% endif %}"
+                            class="{% if block.settings.heading_size == 'default' %} text-size-default text-responsive{% else %}{{ block.settings.heading_size | prepend: 'heading-size-' }}{% endif %} accordion__title m-0 d-inline-block break {{ block.settings.heading_font }}"
+                            style="--cus-size: .2rem;"
                           >
                             {{ block.settings.heading | default: block.settings.page.title }}
                           </h2>
@@ -669,10 +661,17 @@
                     product_form_id: product_form_id, 
                     section_id: section.id, 
                     show_pickup_availability: block.settings.show_pickup_availability, 
-                    show_quantity_selector: block.settings.show_quantity_selector, 
+                    show_quantity_selector: block.settings.show_quantity_selector,
+                    show_stock_status: block.settings.show_stock_status,
                     show_gift_card_recipient: block.settings.show_gift_card_recipient, 
                     show_wishlist_product: block.settings.show_wishlist_product,
-                    type_style: section.settings.type_style
+                    type_style: section.settings.type_style,
+                    button_atc_transparent: block.settings.button_atc_transparent
+                    button_buy_now_transparent: block.settings.button_buy_now_transparent
+                    button_buy_now_color: block.settings.button_buy_now_color
+                    button_buy_now_color_hover: block.settings.button_buy_now_color_hover
+                    button_buy_now_background: block.settings.button_buy_now_background
+                    button_buy_now_background_hover: block.settings.button_buy_now_background_hover
                   -%}
                 </div>
               {%- when 'rating' -%}
@@ -971,7 +970,7 @@
                             loading="lazy"
                           >
                         {%- endif -%}
-                        <span class="text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} center{% endif %}" style="--cus-size: 0.2rem;">
+                        <span class="product-iwt-text text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} center{% endif %}">
                           {{- block.settings.item_text_1 -}}
                         </span>
                       </li>
@@ -993,7 +992,7 @@
                             loading="lazy"
                           >
                         {%- endif -%}
-                        <span class="text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}" style="--cus-size: 0.2rem;">
+                        <span class="product-iwt-text text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}">
                           {{- block.settings.item_text_2 -}}
                         </span>
                       </li>
@@ -1015,7 +1014,7 @@
                             loading="lazy"
                           >
                         {%- endif -%}
-                        <span class="text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}" style="--cus-size: 0.2rem;">
+                        <span class="product-iwt-text text-size-default text-responsive m-0{% if block.settings.layout == 'horizontal' %} f-column{% endif %}">
                           {{- block.settings.item_text_3 -}}
                         </span>
                       </li>
@@ -1674,7 +1673,7 @@
               check_JS_load = false;
 
               handleAskAnExpertClick();
-              
+              handleBuyNowClick();
           }
       }
 
@@ -1687,7 +1686,6 @@
       }
       eventLoad();
 
-      // Optimized handleAskAnExpertClick function using event delegation
       function handleAskAnExpertClick() {
         document.body.addEventListener('click', function (e) {
           const link = e.target.closest('.ask-an-exp__button-link');
@@ -1698,6 +1696,26 @@
           const dialog = document.querySelector(link_id);
           if (dialog && typeof dialog.open === 'function') {
             dialog.open();
+          }
+        }, false);
+      }
+
+      function handleBuyNowClick() {
+        const buyNowButton = document.querySelector('.product-button-buy-now .button');
+        if (!buyNowButton) return;
+
+        buyNowButton.addEventListener('click', function (event) {
+          event.preventDefault();
+
+          const anchorHref = buyNowButton.getAttribute('href');
+          if (!anchorHref) return;
+
+          const checkoutContainer = document.querySelector(anchorHref);
+          if (!checkoutContainer) return;
+
+          const buyItNowBtn = checkoutContainer.querySelector('shopify-buy-it-now-button button');
+          if (buyItNowBtn) {
+            buyItNowBtn.click();
           }
         }, false);
       }
@@ -2452,9 +2470,10 @@
       },
       {
         "type": "checkbox",
-        "id": "show_wishlist_product",
-        "default": false,
-        "label": "t:sections.main-product.blocks.buy_buttons.settings.show_wishlist_product.label"
+        "id": "show_stock_status",
+        "default": true,
+        "label": "Show stock status",
+        "visible_if": "{{ block.settings.show_quantity_selector }}"
       },
       {
         "type": "checkbox",
@@ -2479,86 +2498,65 @@
       },
       {
         "type": "header",
-        "content": "t:sections.main-product.blocks.buy_buttons.settings.header__1.content"
+        "content": "Add to cart button"
       },
       {
-        "type": "color",
-        "id": "add_to_cart_colors_text",
-        "label": "t:sections.all.colors.colors_text",
-        "default": "#121212"
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_colors_background",
-        "label": "t:sections.all.colors.colors_background",
-        "default": "#ffffff"
-      },
-      {
-        "type": "color_background",
-        "id": "add_to_cart_gradient_background",
-        "label": "t:sections.all.colors.gradient_background"
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_colors_text_hover",
-        "label": "t:sections.all.colors.colors_text_hover",
-        "default": "#FFFFFF"
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_colors_background_hover",
-        "label": "t:sections.all.colors.colors_background_hover",
-        "default": "#396774"
-      },
-      {
-        "type": "color_background",
-        "id": "add_to_cart_gradient_background_hover",
-        "label": "t:sections.all.colors.gradient_background_hover"
+        "type": "select",
+        "id": "button_atc_transparent",
+        "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.button_style.label__2"
+        },
+        {
+          "value": "transparent",
+          "label": "t:sections.all.button_style.label__3"
+        }],
+        "default": "transparent",
+        "label": "t:sections.all.button_style.label__1"
       },
       {
         "type": "header",
-        "content": "t:sections.main-product.blocks.buy_buttons.settings.header__2.content",
-        "visible_if": "{{ block.settings.show_dynamic_checkout }}"
+        "content": "Buy now button"
+      },
+      {
+        "type": "select",
+        "id": "button_buy_now_transparent",
+        "options": [
+        {
+          "value": "default",
+          "label": "t:sections.all.button_style.label__2"
+        },
+        {
+          "value": "transparent",
+          "label": "t:sections.all.button_style.label__3"
+        }],
+        "default": "transparent",
+        "label": "t:sections.all.button_style.label__1"
       },
       {
         "type": "color",
-        "id": "buy_it_now_colors_text",
+        "id": "button_buy_now_color",
         "label": "t:sections.all.colors.colors_text",
-        "default": "#ffffff",
-        "visible_if": "{{ block.settings.show_dynamic_checkout }}"
+        "default": "#ffffff"
       },
       {
         "type": "color",
-        "id": "buy_it_now_colors_background",
-        "label": "t:sections.all.colors.colors_background",
-        "default": "#121212",
-        "visible_if": "{{ block.settings.show_dynamic_checkout }}"
-      },
-      {
-        "type": "color_background",
-        "id": "buy_it_now_gradient_background",
-        "label": "t:sections.all.colors.gradient_background",
-        "visible_if": "{{ block.settings.show_dynamic_checkout }}"
+        "id": "button_buy_now_background",
+        "label": "Background color",
+        "default": "#000000"
       },
       {
         "type": "color",
-        "id": "buy_it_now_colors_text_hover",
+        "id": "button_buy_now_color_hover",
         "label": "t:sections.all.colors.colors_text_hover",
-        "default": "#FFFFFF",
-        "visible_if": "{{ block.settings.show_dynamic_checkout }}"
+        "default": "#ffffff"
       },
       {
         "type": "color",
-        "id": "buy_it_now_colors_background_hover",
+        "id": "button_buy_now_background_hover",
         "label": "t:sections.all.colors.colors_background_hover",
-        "default": "#000000",
-        "visible_if": "{{ block.settings.show_dynamic_checkout }}"
-      },
-      {
-        "type": "color_background",
-        "id": "buy_it_now_gradient_background_hover",
-        "label": "t:sections.all.colors.gradient_background_hover",
-        "visible_if": "{{ block.settings.show_dynamic_checkout }}"
+        "default": "#000000"
       },
       {
         "type": "header",
@@ -2669,7 +2667,7 @@
         "id": "heading_size",
         "options": [
         {
-          "value": "h4",
+          "value": "default",
           "label": "t:sections.all.font_size.options"
         },
         {
@@ -2704,7 +2702,7 @@
           "value": "xxx-large",
           "label": "t:sections.all.font_size.options__8"
         }],
-        "default": "h4",
+        "default": "default",
         "label": "t:sections.all.font_size.label__2"
       },
       {
@@ -2734,6 +2732,14 @@
         {
           "value": "none",
           "label": "t:sections.all.icon.options__1"
+        },
+        {
+          "value": "information",
+          "label": "Information"
+        },
+        {
+          "value": "dimensions",
+          "label": "Dimensions"
         },
         {
           "value": "chat",
@@ -3205,6 +3211,10 @@
           "label": "Box 2"
         },
         {
+          "value": "back",
+          "label": "Back"
+        },
+        {
           "value": "apple",
           "label": "t:sections.all.icon.options__2"
         },
@@ -3403,6 +3413,10 @@
           "label": "Box 2"
         },
         {
+          "value": "back",
+          "label": "Back"
+        },
+        {
           "value": "apple",
           "label": "t:sections.all.icon.options__2"
         },
@@ -3599,6 +3613,10 @@
         {
           "value": "box-2",
           "label": "Box 2"
+        },
+        {
+          "value": "back",
+          "label": "Back"
         },
         {
           "value": "apple",

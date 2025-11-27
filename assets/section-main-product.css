@@ -303,7 +303,7 @@
 }
 
 .product-form__quantity .form__label{
-  margin-bottom: 1.1rem;
+  margin-bottom: 0;
 }
 
 .product-form__input input[type='radio'] {
@@ -431,11 +431,6 @@
 
 .product-form__input input[type='radio']:focus-visible + label {
   box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0 0.5rem rgba(var(--color-foreground), 0.55);
-}
-
-.product-form__quantity .quantity{
-  width: 100%;
-  border: 0.1rem solid rgba(var(--color-foreground),.55);
 }
 
 .product-form__quantity .quantity__input{
@@ -1217,6 +1212,13 @@ pickup-availability[available] {
   padding: 2rem 2.3rem;
   display: flex;
   gap: 2rem;
+
+  @media (max-width: 1024px) {
+    width: fit-content;
+    height: fit-content;
+    padding: 0.8rem 1rem;
+    gap: 0.8rem;
+  }
 }
 
 .product-view-modern .shopify-payment-button__button {
@@ -2211,6 +2213,10 @@ pickup-availability[available] {
 
 .product-form__wlist .wishlist-text {
   color: rgba(var(--color-foreground), 1);
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 
 .product-form__wlist .wishlist-form:hover .wishlist-text,
