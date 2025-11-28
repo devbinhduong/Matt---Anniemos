@@ -18,7 +18,7 @@
           padding_bottom: '0.5rem',
           alignment: 'start'
         %}
-        <h1 class="p-w__heading p-w__heading--page f-bold heading-size-small m-0">{{ 'sections.cart.title' | t }}</h1>
+        <h1 class="p-w__heading p-w__heading--page f-bold m-0 capitalize {% render 'heading-style', settings: section.settings, type: 'class' %}" style="{% render 'heading-style', settings: section.settings, type: 'style' %}">{{ 'sections.cart.title' | t }}</h1>
       </div>
     </div>
     <div class="p-w__content">
@@ -75,7 +75,7 @@
                               {%- if settings.show_vendor -%}
                                 <p class="caption-with-letter-spacing uppercase">{{ item.product.vendor }}</p>
                               {%- endif -%}
-                              <a href="{{ item.url }}" class="cart-item__name d-block w-100 u-none h-link color-foreground h4 break">{{ item.product.title | escape }}</a>
+                              <a href="{{ item.url }}" class="cart-item__name d-block w-100 u-none h-link color-foreground text-size-default text-responsive break" style="--cus-size: 0.4rem; --custom-tracking: -0.05rem;">{{ item.product.title | escape }}</a>
                               {%- if item.original_price != item.final_price -%}
                                 <div class="cart-item__discounted-prices d-flex f-wrap a-i-center j-c-start c-gap" style="--c-gap: 1rem;">
                                   <span class="visually-hidden">
@@ -106,7 +106,7 @@
                                   </span>
                                 </small>
                               {%- else -%}
-                                <div class="art-item__option-prices d-block left">
+                                <div class="cart-item__option-prices test121212 d-block left">
                                   {{ item.original_price | money }}
                                   <small class="unit-price caption d-block w-100{% if item.unit_price_measurement == nil %} hidden{% endif %}">
                                     <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
@@ -433,6 +433,74 @@
     "id": "color_scheme",
     "label": "t:sections.all.colors.label",
     "default": "background-1"
+  },
+  {
+    "type": "header",
+    "content": "Cart heading"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading",
+    "default": false,
+    "label": "Use custom heading",
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_size",
+    "min": 12,
+    "max": 110,
+    "step": 1,
+    "unit": "px",
+    "default": 82,
+    "label": "Size",
+    "visible_if": "{{ section.settings.use_custom_heading }}"
+  },
+  {
+    "type": "color",
+    "id": "custom_heading_color",
+    "default": "#ffffff",
+    "label": "Color",
+    "visible_if": "{{ section.settings.use_custom_heading }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_leading",
+    "min": 0.5,
+    "max": 2,
+    "step": 0.1,
+    "unit": "px",
+    "default": 1.1,
+    "label": "Leading",
+    "visible_if": "{{ section.settings.use_custom_heading }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_tracking",
+    "min": -5,
+    "max": 5,
+    "step": 0.1,
+    "unit": "px",
+    "default": 0,
+    "label": "Tracking",
+    "visible_if": "{{ section.settings.use_custom_heading }}"
+  },
+  {
+    "type": "range",
+    "id": "custom_heading_word_spacing",
+    "min": -5,
+    "max": 5,
+    "step": 0.1,
+    "unit": "px",
+    "default": 0,
+    "label": "Word spacing",
+    "visible_if": "{{ section.settings.use_custom_heading }}"
+  },
+  {
+    "type": "checkbox",
+    "id": "use_custom_heading_font",
+    "default": false,
+    "label": "Use custom heading font",
+    "visible_if": "{{ section.settings.use_custom_heading }}"
   },
   {
     "type": "header",

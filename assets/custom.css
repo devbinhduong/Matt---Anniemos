@@ -298,3 +298,11 @@ p-0 {
     max-height: 3.6rem !important;
   }
 }
+
+.cart-item__name {
+  color: var(--color-link, #898d9a);
+
+  &:hover {
+    color: var(--color-link-hover, #464e5c);
+  }
+}
