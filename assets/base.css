@@ -1938,7 +1938,7 @@ hr {
 }
 
 .recommendCartItem + .recommendCartItem {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 /* preview tool cart */
@@ -4583,8 +4583,8 @@ summary::-webkit-details-marker {
 
 .button--close {
   padding: 1.35rem;
-  width: 4.4rem;
-  height: 4.4rem;
+  width: 5.1rem;
+  height: 5.1rem;
   background: rgba(var(--color-foreground), 0.1);
   color: rgba(var(--color-foreground), 0.8);
 }

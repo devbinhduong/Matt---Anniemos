@@ -2467,6 +2467,74 @@
                 "default": false
             },
             {
+              "type": "header",
+              "content": "Cart heading"
+            },
+            {
+              "type": "checkbox",
+              "id": "use_custom_heading",
+              "default": false,
+              "label": "Use custom heading"
+            },
+            {
+              "type": "range",
+              "id": "custom_heading_size",
+              "min": 12,
+              "max": 110,
+              "step": 1,
+              "unit": "px",
+              "default": 40,
+              "label": "Size",
+              "visible_if": "{{ settings.use_custom_heading }}"
+            },
+            {
+              "type": "color",
+              "id": "custom_heading_color",
+              "default": "#898d9a",
+              "label": "Color",
+              "visible_if": "{{ settings.use_custom_heading }}"
+            },
+            {
+              "type": "range",
+              "id": "custom_heading_leading",
+              "min": 0.5,
+              "max": 2,
+              "step": 0.1,
+              "unit": "px",
+              "default": 1.1,
+              "label": "Leading",
+              "visible_if": "{{ settings.use_custom_heading }}"
+            },
+            {
+              "type": "range",
+              "id": "custom_heading_tracking",
+              "min": -5,
+              "max": 5,
+              "step": 0.1,
+              "unit": "px",
+              "default": 0,
+              "label": "Tracking",
+              "visible_if": "{{ settings.use_custom_heading }}"
+            },
+            {
+              "type": "range",
+              "id": "custom_heading_word_spacing",
+              "min": -5,
+              "max": 5,
+              "step": 0.1,
+              "unit": "px",
+              "default": 0,
+              "label": "Word spacing",
+              "visible_if": "{{ settings.use_custom_heading }}"
+            },
+            {
+              "type": "checkbox",
+              "id": "use_custom_heading_font",
+              "default": false,
+              "label": "Use custom heading font",
+              "visible_if": "{{ settings.use_custom_heading }}"
+            },
+            {
                 "type": "header",
                 "content": "t:settings_schema.cart.settings.tool_cart.content"
             },

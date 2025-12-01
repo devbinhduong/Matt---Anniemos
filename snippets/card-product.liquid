@@ -471,7 +471,7 @@
                 <a 
                   href="{{ card_product.url }}" 
                   id="CardLink-{{ section_id }}-{{ card_product.id }}" 
-                  class="full-unstyled-link d-block u-none color-current link-cover{% if product_cards_style == "default" %} pos-relative{% endif %}" 
+                  class="full-unstyled-link d-block u-none color-current link-cover{% if product_cards_style == "default" %} pos-relative{% endif %} {% if custom_font %} custom-font-2 {% endif %}" 
                   aria-labelledby="CardLink-{{ section_id }}-{{ card_product.id }}"
                 >
                   {{ card_product.title | escape }}
@@ -1436,7 +1436,7 @@
                 {%- endif -%}
               >
                 <div class="card__item d-flex a-i-center j-c-between f-wrap">
-                  <h3 class="card__heading m-0 typography-font-body uppercase" id="title-{{ section_id }}-{{ card_product.id }}">
+                  <h3 class="card__heading m-0 typography-font-body uppercase {% if custom_font %} custom-font-2 {% endif %}" id="title-{{ section_id }}-{{ card_product.id }}">
                     <a 
                       href="{{ card_product.url }}" 
                       id="CardLink-{{ section_id }}-{{ card_product.id }}" 
@@ -1626,7 +1626,7 @@
             </div>
           {%- endif -%}
           <h3 class="card__heading m-0">
-            <a role="link" aria-disabled="true" class="d-block u-none color-current link-cover">
+            <a role="link" aria-disabled="true" class="d-block u-none color-current link-cover {% if custom_font %} custom-font-2 {% endif %}">
               {{- 'onboarding.product_title' | t -}}
             </a>
           </h3>

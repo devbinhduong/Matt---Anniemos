@@ -41,7 +41,7 @@
           >
             {% if settings.quick_cart_popular_product_title != blank %}
               <div class="drawer__header">
-                <h2 class="recommendCartTitle text-left{% if settings.cart_style == 'special' %} text-size{% endif %}">
+                <h2 class="recommendCartTitle text-left capitalize {% if settings.cart_style == 'special' %} text-size{% endif %} {% render 'heading-style', settings: settings, type: 'class' %}" style="{% render 'heading-style', settings: settings, type: 'style' %}">
                   {{ settings.quick_cart_popular_product_title | escape }}         
                 </h2>
               </div>
@@ -69,7 +69,8 @@
                       card_button_type: settings.card_button_type,
                       card_button_transform: settings.card_button_transform,
                       index: forloop.index,
-                      section_id: section.id
+                      section_id: section.id,
+                      custom_font: true
                     %}
                   </li>
                 {%- endfor -%}
@@ -91,7 +92,7 @@
         "
       >
         <div class="drawer__header d-flex j-c-between a-i-center pos-relative">
-          <h2 class="drawer__heading break m-0{% if settings.cart_style == 'special' %} text-size{% endif %}">{{ 'sections.cart.title' | t }}</h2>
+          <h2 class="drawer__heading capitalize break m-0{% if settings.cart_style == 'special' %} text-size{% endif %} {% render 'heading-style', settings: settings, type: 'class' %}" style="{% render 'heading-style', settings: settings, type: 'style' %}">{{ 'sections.cart.title' | t }}</h2>
           <button
             class="drawer__close d-block t-button b-none b-circle c-pointer button--close"
             type="button"
@@ -200,7 +201,7 @@
                               {%- endif -%}
                               <a
                                 href="{{ item.url }}"
-                                class="cart-item__name d-block w-100 link link--style-line u-none color-foreground h4 break"
+                                class="cart-item__name custom-font-2 d-block w-100 link link--style-line u-none color-foreground h4 break text-size-default text-responsive" style="--cus-size: 0.4rem;--leading: 1.1;"
                               >
                                 <span class="link-style">{{ item.product.title | escape }}</span>
                               </a>
@@ -409,7 +410,7 @@
               <div class="recommendCartCollection recommendCartCollection-mobile d-none-md">
                 {% if settings.quick_cart_popular_product_title != blank %}
                   <div class="drawer__header">
-                    <h2 class="recommendCartTitle text-left{% if settings.cart_style == 'special' %} text-size{% endif %}">
+                    <h2 class="recommendCartTitle text-left capitalize {% if settings.cart_style == 'special' %} text-size{% endif %} {% render 'heading-style', settings: settings, type: 'class' %}" style="{% render 'heading-style', settings: settings, type: 'style' %}">
                       {{ settings.quick_cart_popular_product_title | escape }}         
                     </h2>
                   </div>
@@ -696,8 +697,8 @@
             <div class="cart-drawer__footer d-flex f-column r-gap" style="{% if settings.cart_style != 'special' %}--r-gap: 1rem;{% endif %}" {{ block.shopify_attributes }}>
               <ul class="cart__list{% if settings.cart_style == 'special' %} cart__list--total{% endif %} list-unstyled" role="list" aria-label="{{ 'sections.cart.subtotal' | t }}">
                 <li class="d-block c-inline clearfix{% if settings.cart_style == 'special' %} d-flex a-i-center{% endif %}">
-                  <div div class="cart__list--name left f-left{% if settings.cart_style == 'special' %} text-size text-size-small{% else %} text-body{% endif %}">{{ 'sections.cart.subtotal' | t }}{% if settings.cart_style == 'special' %}:{% endif %}</div>
-                  <div class="cart__list--value{% if settings.cart_style == 'special' %} text-size text-size-small{% else %} text-body{% endif %} right f-right f-bold total">
+                  <div class="cart__list--name left f-left{% if settings.cart_style == 'special' %} text-size-default text-responsive{% else %} text-body{% endif %}" style="--cus-size: 0.4rem;">{{ 'sections.cart.subtotal' | t }}{% if settings.cart_style == 'special' %}:{% endif %}</div>
+                  <div class="cart__list--value{% if settings.cart_style == 'special' %} price{% else %} text-body{% endif %} right f-right f-bold total">
                       <strong>{{ cart.total_price | money_with_currency }}</strong>
                   </div>
                 </li>
@@ -757,17 +758,19 @@
               <button
                 type="submit"
                 id="CartDrawer-Checkout"
-                class="cart__checkout-button button {{ settings.button_style | prepend: 'button--style-' }}{% if settings.checkout_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.checkout_color_scheme }} gradient"
+                class="cart__checkout-button button {{ settings.button_style | prepend: 'button--style-' }} {{ settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }}{% if settings.checkout_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.checkout_color_scheme }} gradient"
                 name="checkout"
-                form="CartDrawer-Form"
+                form="CartDrawer-Form"  
                 {% if cart == empty %}
                   disabled
                 {% endif %}
               >
                 <span>{{ 'sections.cart.checkout' | t }}</span>
+                {% render 'button-main-style' %}
               </button>
-              <a href="{{ routes.cart_url }}" class="button {{ settings.button_style | prepend: 'button--style-' }}{% if settings.view_cart_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.view_cart_color_scheme }} gradient">
+              <a href="{{ routes.cart_url }}" class="button {{ settings.button_style | prepend: 'button--style-' }} {{ settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }}{% if settings.view_cart_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.view_cart_color_scheme }} gradient">
                 <span class="text">{{ 'sections.cart.view_cart' | t }}</span>
+                {% render 'button-main-style' %}
               </a>
             </div>
           </div>
