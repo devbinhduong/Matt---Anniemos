@@ -1,9 +1,9 @@
 <side-drawer class="drawer pos-fixed top-0 left-0 z-index-8 w-100v h-100 d-flex j-c-end no-js-hidden" id="Drawer-Wishlist">
     <div class="side-drawer">
         <div id="Drawer-Overlay-Wishlist" class="drawer__overlay pos-fixed top-0 left-0 right-0 bottom-0 c-pointer"></div>
-            <div class="drawer__inner gradient d-flex f-column overflow-y overflow-x-h h-100" role="dialog" aria-modal="true" aria-label="{{ 'templates.wishlist.wishlist' | t }}" tabindex="-1">
+            <div class="drawer__inner gradient d-flex f-column overflow-y overflow-x-h h-100 color-{{ settings.drawer_color_scheme }}" role="dialog" aria-modal="true" aria-label="{{ 'templates.wishlist.wishlist' | t }}" tabindex="-1">
             <div class="drawer__header d-flex j-c-between a-i-center pos-relative">
-				<h2 class="drawer__heading break m-0">{{ 'templates.wishlist.wishlist' | t }}</h2>
+				<h2 class="drawer__heading break m-0 {% render 'heading-style', settings: settings, type: 'class' %}" style="{% render 'heading-style', settings: settings, type: 'style' %}">{{ 'templates.wishlist.wishlist' | t }}</h2>
 				<button class="drawer__close d-block t-button b-none c-pointer b-circle button--close" type="button" onclick="this.closest('side-drawer').close()" aria-label="{{ 'accessibility.close' | t }}"><span class="i__close e-none d-block pos-relative color-current w-100 h-100"></span></button>
 			</div>
             <div class="drawer__wrapper">

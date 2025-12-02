@@ -5221,7 +5221,7 @@ input[type='checkbox']:checked ~ svg {
 .drawer__inner {
   width: 40rem;
   max-width: calc(100vw - 3rem);
-  padding: 0 2rem 2rem;
+  padding: 0 1.7rem 2rem;
   transform: translateX(100%);
   transition-property: transform, visibility;
   transition-duration: var(--duration-extra-long);
@@ -5245,8 +5245,8 @@ input[type='checkbox']:checked ~ svg {
 }
 
 .drawer__header {
-  padding: 2rem 0 0;
-  margin: 0 0 2rem;
+  padding: 1.6rem 0 0 2.4rem;
+  margin: 0 0 2.8rem;
 }
 
 .drawer__heading {
@@ -13237,7 +13237,7 @@ cursor-move.mask-hover .cursor-move--link {
 }
 
 .wishlist__item + .wishlist__item {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .product-card-wishlist .card  {
@@ -13249,7 +13249,6 @@ cursor-move.mask-hover .cursor-move--link {
   -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
   background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0.5rem 0.6rem 0.9rem #b8b8b859;
 }
 
 .product-card-wishlist .card__inner{
@@ -13264,15 +13263,6 @@ cursor-move.mask-hover .cursor-move--link {
 
 .product-card-wishlist .card__information {
   padding: 0 !important;
-}
-
-.product-card-wishlist .card__information .card__heading {
-  margin-bottom: 0.3rem;
-}
-
-.product-card-wishlist .card__information .card__heading,
-.product-card-wishlist .card__information .price {
-  font-size: 1.6rem;
 }
 
 .product-card-wishlist .card__information .card__vendor {
@@ -16419,7 +16409,8 @@ body.multitasking__show .newsletter-popup-opener {
 
   /* component-drawer */
     .drawer__inner {
-      width: 47rem;
+      width: 53rem;
+      padding-left: 1rem;
     }
 
     /* account-drawer */

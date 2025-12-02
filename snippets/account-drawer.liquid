@@ -11,7 +11,7 @@ endcapture
 				<button class="drawer__close d-block t-button b-none b-circle c-pointer button--close" type="button" onclick="this.closest('side-drawer').close()" aria-label="{{ 'accessibility.close' | t }}"><span class="i__close e-none d-block pos-relative color-current w-100 h-100"></span></button>
 			{%- endif -%}
 			<div class="drawer__header{% if settings.login_style != 'special' %} d-flex j-c-between a-i-center{% endif %} pos-relative">
-				<h2 class="drawer__heading break m-0">
+				<h2 class="drawer__heading break m-0 {% render 'heading-style', settings: settings, type: 'class' %}" style="{% render 'heading-style', settings: settings, type: 'style' %}">
 					{%- liquid
 						if customer
 							echo 'customer.account_fallback' | t
@@ -97,7 +97,7 @@ endcapture
 							</div>
 						{%- endif -%}
 						<div class="field field-bg f-a-none f-wrap r-gap m-t d-flex w-100 pos-relative" style="--r-gap: 1rem;{% if settings.login_style == 'special' %} --m-t: 1.6rem;{% else %} --m-t: 3rem;{% endif %}">
-							<button class="button {{ settings.button_style | prepend: 'button--style-' }}{% if settings.sign_in_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.sign_in_color_scheme }} gradient">
+							<button class="button {{ settings.button_style | prepend: 'button--style-' }} {{ settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }}{% if settings.sign_in_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.sign_in_color_scheme }} gradient">
 								<span class="text">
 									{%- if settings.login_style == 'special' -%}
 										{{ 'customer.log_in' | t }}
@@ -105,10 +105,12 @@ endcapture
 										{{ 'customer.login_page.sign_in' | t }}
 									{%- endif -%}
 								</span>
+                {% render 'button-main-style' %}
 							</button>
 							{%- if settings.login_style != 'special' -%}
-								<a href="{{ routes.account_register_url }}" class="button {{ settings.button_style | prepend: 'button--style-' }}{% if settings.create_account_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.create_account_color_scheme }} gradient">
+								<a href="{{ routes.account_register_url }}" class="button {{ settings.button_style | prepend: 'button--style-' }} {{ settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }}{% if settings.create_account_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.create_account_color_scheme }} gradient">
 									<span class="text">{{ 'customer.login_page.create_account' | t }}</span>
+									{% render 'button-main-style' %}
 								</a>
 							{%- endif -%}
 						</div>

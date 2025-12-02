@@ -158,7 +158,7 @@
               "
             {%- endif -%}
           >
-            <h3 class="card__heading m-0" id="title-{{ section_id }}-{{ card_product.id }}">
+            <h3 class="card__heading m-0 custom-font-2 text-size-default text-responsive" id="title-{{ section_id }}-{{ card_product.id }}" style="--cus-size: 0.6rem;">
               <a 
                 href="{{ card_product.url }}" 
                 id="CardLink-{{ section_id }}-{{ card_product.id }}" 
@@ -387,12 +387,9 @@
                             disabled
                           {% endif %}
                         >
-                          <div class="block-text f-w-600">
-                            {{ 'products.product.quick_add' | t }}
-                          </div>
                           <div class="block-icon">
                             <span class="text{% if card_product.selected_or_first_available_variant.available %} d-flex a-i-center{% endif %} w-100">
-                              {% render 'icon-cart-card' %}
+                              {% render 'icon-cart-card-2' %}
                             </span>
                             <span class="sold-out-message hidden">
                               {{ 'products.product.sold_out' | t }}
