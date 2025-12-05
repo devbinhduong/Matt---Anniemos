@@ -253,10 +253,11 @@ p-0 {
 }
 
 /* Product page */
+
 @import url('https://fonts.googleapis.com/css2?family=Spectral&display=swap');
 
-.custom-font-2 {
-  font-family: 'Spectral', serif;
+.added-custom-font .custom-font-2 {
+  font-family: 'Spectral';
   font-weight: 400;
 }
 
@@ -446,4 +447,13 @@ a:hover {
       font-size: 3.6rem;
     }
   }
+}
+
+.lazy-hidden {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#shopify-pc__banner {
+  display: none !important;
 }

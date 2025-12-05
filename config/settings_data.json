@@ -66,6 +66,7 @@
     "show_rating_product": true,
     "enable_quick_add": true,
     "show_swatch": true,
+    "show_vendor_mobile": false,
     "show_rating_mobile": true,
     "show_swatch_mobile": true,
     "media_border_thickness": 1,

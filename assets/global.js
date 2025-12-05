@@ -4970,3 +4970,45 @@ customElements.define('cursor-blur', CursorBlur);
 //     },300)
 //   });
 // }
+
+function lazyLoadHiddenImages() {
+    const lazyImages = document.querySelectorAll('img.lazy-hidden');
+
+    if ('IntersectionObserver' in window) {
+
+      let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+        
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            let lazyImage = entry.target;
+
+            console.log("lazyImage", lazyImage);
+            
+            
+            lazyImage.src = lazyImage.dataset.src;
+            
+            lazyImage.onload = function() {
+              lazyImage.classList.remove('lazy-hidden');
+            };
+            
+            lazyImageObserver.unobserve(lazyImage);
+          }
+        });
+      }, {
+        rootMargin: '0px 0px 300px 0px' 
+      });
+  
+      lazyImages.forEach(function(lazyImage) {
+        lazyImageObserver.observe(lazyImage);
+      });
+    } 
+    
+    else {
+      lazyImages.forEach(function(lazyImage) {
+          lazyImage.src = lazyImage.dataset.src;
+          lazyImage.classList.remove('lazy-hidden');
+      });
+    }
+}
+
+lazyLoadHiddenImages();

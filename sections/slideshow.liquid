@@ -114,6 +114,7 @@
                   {%- if block.settings.mobile_image == blank and block.settings.image == blank %} mask{% endif -%}
                   {%- if forloop.first %} current{% endif -%}
                   {%- if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif -%}"
+                  rel="preload" as="image"
                 >
                   {%- if block.settings.image != blank -%}
                     {%- assign image_alt = block.settings.image.alt | default: shop.name | escape -%}
@@ -122,6 +123,7 @@
                           widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2250, 3000, 3840',
                           sizes: '100vw',
                           alt: image_alt,
+                          fetchpriority: 'high',
                           class: 'd-none d-block-md w-100 h-100 o-f-cover motion-reduce'
                       }}
                     {%- else -%}

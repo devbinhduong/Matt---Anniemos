@@ -152,7 +152,7 @@
               {%- if section.settings.enable_carousel -%}
                 <div class="swiper d-block pos-relative no-js-overflow-x{% if section.settings.type_style == 'masonry' %} grid-scroll{% endif %}{% if section.settings.type_style != 'masonry' %} o-v{% endif %}">
               {%- endif -%}
-                <div class="carousel__items d-flex{% if section.settings.enable_carousel %} swiper-wrapper{% else %} f-wrap grid{% endif %}" 
+                <div class="carousel__items custom-grid-default d-flex{% if section.settings.enable_carousel %} swiper-wrapper{% else %} f-wrap grid{% endif %}" 
                   id="Slider-{{ section.id }}" 
                   aria-label="Collection list" 
                   style="--c-xs: {{ column_xs }}; --c-sm: {{ column_sm }}; --c-md: {{ column_md }}; --c-lg: {{ column_lg }}; --c-xl: {{ column_xl }}; --c-xxl: {{ column_xxl }};"
@@ -200,16 +200,27 @@
                           >
                             {%- if block.settings.collection != blank and block.settings.collection.featured_image -%}
                               {%- capture sizes -%}
-                                (min-width: 990px) 550px, (min-width: 750px) 550px, calc(100vw - 30px)
+                                (min-width: 990px) 550px, (min-width: 750px) 200px, calc(100vw - 30px)
                               {%- endcapture -%}
-                              {{
-                                block.settings.collection.featured_image | image_url: width: 550 | image_tag:
-                                  loading: 'lazy',
-                                  sizes: sizes,
-                                  widths: '275, 550',
-                                  class: 'motion-reduce'
-                              }}
+                              {% if block.settings.custom_image != blank %}
+                                {{
+                                  block.settings.custom_image | image_url: width: 200 | image_tag:
+                                    loading: 'lazy',
+                                    sizes: sizes,
+                                    widths: '275, 200',
+                                    class: 'motion-reduce'
+                                }}
+                              {% else %}
+                                {{
+                                  block.settings.collection.featured_image | image_url: width: 200 | image_tag:
+                                    loading: 'lazy',
+                                    sizes: sizes,
+                                    widths: '275, 200',
+                                    class: 'motion-reduce'
+                                }}
+                              {% endif %}
                             {%- else -%}
+                              
                               {% capture index %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
                               {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
                             {%- endif -%}
@@ -859,7 +870,13 @@
       "type": "collection",
       "id": "collection",
       "label": "t:sections.all.collection.label"
-    }]
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Custom image"
+    }
+  ]
   }],
   "presets": [{
     "name": "t:sections.collection-list.presets.name",

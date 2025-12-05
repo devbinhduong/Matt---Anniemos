@@ -14,12 +14,12 @@
       render 'icon-caret'
     endcapture
 
-    assign image_width = image_width | default: '320, 450, 550, 750, 950, 1024, 1200, 1400, 1600, 1800, 2000'
-    assign sizes = "(min-width: 361px) calc(100vw/2), calc(100vw/3)"
+    assign image_width = image_width | default: '320, 450, 550, 750'
+    assign sizes = "(min-width: 1200px) 400px, calc(100vw/3)"
 
     assign secondary_image_class = ' card--1-image'
     assign product_img_first_classes = 'img-first motion-reduce'
-    assign product_img_second_classes = 'img-second motion-reduce'
+    assign product_img_second_classes = 'img-second motion-reduce test1234 lazy-hidden'
 
     assign product_image = card_product.featured_media | image_url: width: card_product.featured_media.width | image_tag: widths: image_width, sizes: sizes, alt: card_product.featured_media.alt, class: product_img_first_classes
     if card_product.media[1] != nil and show_secondary_image

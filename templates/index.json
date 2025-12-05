@@ -15,7 +15,7 @@
         "template--16793024757999__12b81e44-2b28-427b-9080-19dfb79fd112-1676275303a720accc-0": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/home-slideshow-1.jpg",
+            "image": "shopify://shop_images/home-slideshow-1-optimize.webp",
             "content_max_width": 1000,
             "heading_font": "custom-font",
             "heading": "The Art of Unwinding",
@@ -162,43 +162,50 @@
         "11cc0144-b0fb-4f1d-a415-bd1d8a50ff45": {
           "type": "collection",
           "settings": {
-            "collection": "sofas"
+            "collection": "sofas",
+            "custom_image": "shopify://shop_images/home-categories-banner-1.jpg"
           }
         },
         "3d65e484-cedc-409d-8bd1-e6722f400bb7": {
           "type": "collection",
           "settings": {
-            "collection": "sectional-sofas"
+            "collection": "seating",
+            "custom_image": "shopify://shop_images/home-categories-banner-2.jpg"
           }
         },
         "9f53099d-0898-4a6b-99f7-638915d3e2c5": {
           "type": "collection",
           "settings": {
-            "collection": "chairs"
+            "collection": "bed-frames-1",
+            "custom_image": "shopify://shop_images/home-categories-banner-3.jpg"
           }
         },
         "9298a67d-a92b-452c-9c21-14a031c2a4c3": {
           "type": "collection",
           "settings": {
-            "collection": "bedrooms"
+            "collection": "coffee-tables",
+            "custom_image": "shopify://shop_images/home-categories-banner-4.jpg"
           }
         },
         "fb7172ca-46fa-42a1-826f-3bb34a5e8b86": {
           "type": "collection",
           "settings": {
-            "collection": "living-room"
+            "collection": "vase",
+            "custom_image": "shopify://shop_images/home-categories-banner-5.jpg"
           }
         },
         "004436e0-e2cf-4a59-bf91-6668d2138e8f": {
           "type": "collection",
           "settings": {
-            "collection": "home-decor"
+            "collection": "botanical",
+            "custom_image": "shopify://shop_images/home-categories-banner-6.jpg"
           }
         },
         "a7e7e249-f6e6-4b09-9bef-19db66cbd683": {
           "type": "collection",
           "settings": {
-            "collection": "sofas"
+            "collection": "sofas",
+            "custom_image": "shopify://shop_images/home-categories-banner-1.jpg"
           }
         }
       },
@@ -243,8 +250,8 @@
         "carousel_infinite_scroll": false,
         "columns_desktop": 6,
         "columns_mobile": "2",
-        "image_animation": "zoom-in",
-        "text_animation": "fade-up",
+        "image_animation": "none",
+        "text_animation": "none",
         "padding_top": 34,
         "padding_bottom": 20,
         "padding_top_mobile": 20,
@@ -480,11 +487,11 @@
         "show_line_separator_bottom": false,
         "collection": "",
         "product_list": [
-          "jasper-square-cushion-tweed-heather-50cm-x-50cm",
-          "dijon-part-glazed-vase-with-handles-29cm",
-          "16-paper-napkins-ill-be-home-for-christmas-40cm",
-          "lilac-berry-branch-110cm",
-          "jasper-square-cushion-stitched-stripe-50x50cm"
+          "stella-floor-lamp-with-linen-shade-154cm",
+          "red-berry-spray-110cm-1",
+          "white-metal-cow-bell-garland-182cm-1",
+          "two-assorted-feather-skirt-angel-baubles-11cm-1",
+          "mini-christmas-pudding"
         ],
         "products_to_show": 5,
         "carousel_number": 4,
@@ -533,16 +540,17 @@
             "vertical_5": 50
           }
         },
-        "template--16801853964527__3d277f0b-f31b-482d-996e-089de61f3e90-167818052563a4fa59-1": {
+        "image_DYfGYV": {
           "type": "image",
           "settings": {
-            "product_1": "20-wide-tufted-gray-velvet-armchair",
+            "image": "shopify://shop_images/lookbook-banner-1.jpg",
+            "product_1": "mala-terracotta-vase-19cm",
             "horizontal_1": 32,
             "vertical_1": 26,
-            "product_2": "",
+            "product_2": "stax-three-seat-sofa-shallow-fabrics",
             "horizontal_2": 19,
             "vertical_2": 60,
-            "product_3": "",
+            "product_3": "stax-large-footstool-fabrics",
             "horizontal_3": 58,
             "vertical_3": 44,
             "product_4": "",
@@ -556,7 +564,7 @@
       },
       "block_order": [
         "template--16801853964527__3d277f0b-f31b-482d-996e-089de61f3e90-167818052563a4fa59-0",
-        "template--16801853964527__3d277f0b-f31b-482d-996e-089de61f3e90-167818052563a4fa59-1"
+        "image_DYfGYV"
       ],
       "settings": {
         "heading": "The Look, Curated",

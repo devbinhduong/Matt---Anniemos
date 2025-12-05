@@ -15,19 +15,74 @@
   rel="modulepreload"
   href="{{ 'component.js' | asset_url }}"
 >
-<script
-  src="{{ 'video-background.js' | asset_url }}"
-  type="module"
-></script>
-<script
-  src="{{ 'rte-formatter.js' | asset_url }}"
-  type="module"
-></script>
-<script
-  defer
-  src="{{ 'placeholder-image.js' | asset_url }}"
-  type="module"
-></script>
+
+<script type="module">
+  const lazyLoadVideoBackground = () => {
+    if (lazyLoadVideoBackground.hasLoaded || !document.querySelector('video-background-component')) {
+      return;
+    }
+    lazyLoadVideoBackground.hasLoaded = true;
+    import('{{ 'video-background.js' | asset_url }}');
+    if (lazyLoadVideoBackground.observer) {
+      lazyLoadVideoBackground.observer.disconnect();
+      lazyLoadVideoBackground.observer = null;
+    }
+  };
+
+  lazyLoadVideoBackground();
+
+  if (!lazyLoadVideoBackground.hasLoaded) {
+    const observer = new MutationObserver(() => lazyLoadVideoBackground());
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    lazyLoadVideoBackground.observer = observer;
+    document.addEventListener('DOMContentLoaded', lazyLoadVideoBackground, { once: true });
+  }
+</script>
+
+<script type="module">
+  const lazyLoadRTEFormatter = () => {
+    if (lazyLoadRTEFormatter.hasLoaded || !document.querySelector('rte-formatter')) {
+      return;
+    }
+    lazyLoadRTEFormatter.hasLoaded = true;
+    import('{{ 'rte-formatter.js' | asset_url }}');
+    if (lazyLoadRTEFormatter.observer) {
+      lazyLoadRTEFormatter.observer.disconnect();
+      lazyLoadRTEFormatter.observer = null;
+    }
+  };
+
+  lazyLoadRTEFormatter();
+
+  if (!lazyLoadRTEFormatter.hasLoaded) {
+    const observer = new MutationObserver(() => lazyLoadRTEFormatter());
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    lazyLoadRTEFormatter.observer = observer;
+    document.addEventListener('DOMContentLoaded', lazyLoadRTEFormatter, { once: true });
+  }
+</script>
+<script type="module">
+  const lazyLoadPlaceholderImage = () => {
+    if (lazyLoadPlaceholderImage.hasLoaded || !document.querySelector('placeholder-image')) {
+      return;
+    }
+    lazyLoadPlaceholderImage.hasLoaded = true;
+    import('{{ 'placeholder-image.js' | asset_url }}');
+    if (lazyLoadPlaceholderImage.observer) {
+      lazyLoadPlaceholderImage.observer.disconnect();
+      lazyLoadPlaceholderImage.observer = null;
+    }
+  };
+
+  lazyLoadPlaceholderImage();
+
+  if (!lazyLoadPlaceholderImage.hasLoaded) {
+    const observer = new MutationObserver(() => lazyLoadPlaceholderImage());
+    observer.observe(document.documentElement, { childList: true, subtree: true });
+    lazyLoadPlaceholderImage.observer = observer;
+    document.addEventListener('DOMContentLoaded', lazyLoadPlaceholderImage, { once: true });
+  }
+</script>
 
 <script>
   const basePath = 'https://cdn.shopify.com/static/themes/horizon/placeholders';
