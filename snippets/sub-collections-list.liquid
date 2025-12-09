@@ -176,84 +176,85 @@
                         style="--animation-order: {{ forloop.index }};"
                       {% endif %}
                     >
-                      <{% if link.url != blank %}a{% else %}div{% endif %} 
-                        class="item__media d-block m-w m-auto color-foreground link-cover {{ section.settings.text_alignment }} rounded o-h" 
-                        {% if link.url != blank %}href="{{ link.url }}"{% endif %}
-                        {% if link.url != blank and link.image and image_width == 'auto' %}
-                          style="--m-w: {{ link.image.width | append: 'px' }};"
+                    {%- assign collection_obj = collections[link.handle] -%}
+                    <{% if collection_obj.url != blank %}a{% else %}div{% endif %} 
+                      class="item__media d-block m-w m-auto color-foreground link-cover {{ section.settings.text_alignment }} rounded o-h" 
+                      {% if collection_obj.url != blank %}href="{{ collection_obj.url }}"{% endif %}
+                      {% if collection_obj.url != blank and collection_obj.image and image_width == 'auto' %}
+                        style="--m-w: {{ collection_obj.image.width | append: 'px' }};"
+                      {% endif %}
+                    >
+                      <div class="media media--transparent media--{{ image_ratio }} media--zoom pos-relative o-h d-block {{ image_type }}" 
+                        data-animate="{{ image_animation }}"
+                        {% if image_ratio == 'adapt' %}
+                          style="
+                            {%- if type_style == 'masonry' -%}
+                              {%- if image_type == 'image-even' -%}
+                                padding-bottom: {{ height_even_image }}%;
+                              {%- else -%}
+                                padding-bottom: {{ height_odd_image }}%;
+                              {%- endif -%}
+                            {%- else -%}
+                              padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;
+                            {%- endif -%}
+                            --a-delay: {{ '0.05' | times: forloop.index }}s;"
                         {% endif %}
                       >
-                        <div class="media media--transparent media--{{ image_ratio }} media--zoom pos-relative o-h d-block {{ image_type }}" 
-                          data-animate="{{ image_animation }}"
-                          {% if image_ratio == 'adapt' %}
-                            style="
-                              {%- if type_style == 'masonry' -%}
-                                {%- if image_type == 'image-even' -%}
-                                  padding-bottom: {{ height_even_image }}%;
-                                {%- else -%}
-                                  padding-bottom: {{ height_odd_image }}%;
-                                {%- endif -%}
-                              {%- else -%}
-                                padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;
-                              {%- endif -%}
-                              --a-delay: {{ '0.05' | times: forloop.index }}s;"
-                          {% endif %}
-                        >
-                          {%- if link.url != blank and link.image -%}
-                            {%- capture sizes -%}
-                              (min-width: 990px) 550px, (min-width: 750px) 550px, calc(100vw - 30px)
-                            {%- endcapture -%}
-                            {{
-                              link.image | image_url: width: 550 | image_tag:
-                                loading: 'lazy',
-                                sizes: sizes,
-                                widths: '275, 550',
-                                class: 'motion-reduce'
-                            }}
-                          {%- else -%}
-                            {% capture index %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                            {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
-                          {%- endif -%}
-                        </div>
-                      </{% if link.url != blank %}a{% else %}div{% endif %}>
-                      <div class="item__content {{ text_alignment }}">
-                        <h3 class="d-inline-block pos-relative{% if blocks_heading_size == 'text-body' %} text-body{% else %} text-body {{ blocks_heading_size | prepend: 'heading-size-' }}{% endif %} {{ font_transform }} m-0 f-bold" data-animate="{{ text_animation }}" style="--a-delay: {{ '0.05' | times: forloop.index }}s;">
-                          {%- if type_style == 'default' -%}
-                            {{ link.title | default: 'Collection heading' }}
-                          {%- else -%}
-                            <span class="link-style">
-                              {%- if type_style != 'masonry' -%}
-                                <strong>
-                              {%- endif -%}
-                                {{ link.title | default: 'Collection heading' }}
-                              {%- if type_style != 'masonry' -%}
-                                </strong>
-                              {%- endif -%}
-                            </span>
-                            {%- if link.title != blank and type_style != 'masonry' -%}
-                              {% render 'icon-caret' %}
-                            {%- endif -%}
-                          {%- endif -%}
-                        </h3>
-                        {%- if type_style == 'default' -%}
-                          {%- if link.description != blank -%}
-                            <div class="item-content__desc text-size-x-small rte">
-                                {{ link.description }}
-                            </div>
-                          {%- endif -%}
-                          <div class="item-content__button">
-                              <a href="{{ link.url }}"
-                                  class="link u-link {{ settings.link_type | prepend: "link--style-" }}"
-                                  aria-label="Shop Collection"
-                              >
-                                  <span class="text link-style">
-                                    Shop Collection
-                                  </span>
-                              </a>
-                          </div>
+                        {%- if collection_obj and collection_obj.image -%}
+                          {%- capture sizes -%}
+                            (min-width: 990px) 550px, (min-width: 750px) 550px, calc(100vw - 30px)
+                          {%- endcapture -%}
+                          {{
+                            collection_obj.image | image_url: width: 550 | image_tag:
+                              loading: 'lazy',
+                              sizes: sizes,
+                              widths: '275, 550',
+                              class: 'motion-reduce',
+                              alt: collection_obj.image.alt | default: 'Sub Collections Banner'
+                          }}
+                        {%- else -%}
+                          {% capture index %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                          {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
                         {%- endif -%}
                       </div>
-                    </animate-element>
+                    </{% if link.url != blank %}a{% else %}div{% endif %}>
+                    <div class="item__content {{ text_alignment }}">
+                      <h2 class="d-inline-block pos-relative{% if blocks_heading_size == 'text-body' %} text-body{% else %} text-body {{ blocks_heading_size | prepend: 'heading-size-' }}{% endif %} {{ font_transform }} m-0 f-bold" data-animate="{{ text_animation }}" style="--a-delay: {{ '0.05' | times: forloop.index }}s;">
+                        {%- if type_style == 'default' -%}
+                          {{ link.title | default: 'Collection heading' }}
+                        {%- else -%}
+                          <span class="link-style">
+                            {%- if type_style != 'masonry' -%}
+                              <strong>
+                            {%- endif -%}
+                              {{ link.title | default: 'Collection heading' }}
+                            {%- if type_style != 'masonry' -%}
+                              </strong>
+                            {%- endif -%}
+                          </span>
+                          {%- if link.title != blank and type_style != 'masonry' -%}
+                            {% render 'icon-caret' %}
+                          {%- endif -%}
+                        {%- endif -%}
+                      </h2>
+                      {%- if type_style == 'default' -%}
+                        {%- if link.description != blank -%}
+                          <div class="item-content__desc text-size-x-small rte">
+                              {{ link.description }}
+                          </div>
+                        {%- endif -%}
+                        <div class="item-content__button">
+                            <a href="{{ link.url }}"
+                                class="link u-link {{ settings.link_type | prepend: "link--style-" }}"
+                                aria-label="Shop Collection"
+                            >
+                                <span class="text link-style">
+                                  Shop Collection
+                                </span>
+                            </a>
+                        </div>
+                      {%- endif -%}
+                    </div>
                   </div>
                 {% endfor %}
               </div>

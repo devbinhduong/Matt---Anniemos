@@ -1,11 +1,11 @@
 {%- liquid
   assign full_width = '100vw'
-  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840'
+  assign widths = '375, 550, 750, 1100, 1500, 1780, 2000, 2240, 3000'
 
   if section.settings.image_behavior == 'ambient'
     assign half_width = '60vw'
     assign full_width = '120vw'
-    assign widths = '450, 660, 900, 1320, 1800, 2136, 2400, 3600, 7680'
+    assign widths = '450, 660, 900, 1320, 1500, 1800, 2000, 2240, 3600'
   endif
 
   if section.blocks.size > 0
@@ -45,7 +45,7 @@
             {% comment %} thumbnail images {% endcomment %}
             <div class="image-decor pos-absolute">
               {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 3840 | image_tag:
+                {{ block.settings.image | image_url: width: 2240 | image_tag:
                   loading: 'lazy',
                   width: block.settings.image.width,
                   height: image_height,
@@ -66,14 +66,14 @@
           {%- endfor -%}
         </animate-element>
       {%- endif -%}
-      <{% if section.settings.image_behavior == 'parallax-scroll' %}parallax-container{% else %}div{% endif %} class="banner__media media media--transparent d-block o-h w-100 h-100 pos-absolute top-0 left-0{% if section.settings.content_inside_image_mobile != true %} pos-relative-xs{% endif %}{% if section.settings.image != blank and section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
+      <{% if section.settings.image_behavior == 'parallax-scroll' %}parallax-container{% else %}div{% endif %} class="banner__media media media--transparent d-block o-h w-100 h-100 pos-absolute top-0 left-0 {% if section.settings.hide_banner_mobile %} sm-hidden{% endif %} {% if section.settings.content_inside_image_mobile != true %} pos-relative-xs{% endif %}{% if section.settings.image != blank and section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}"
         {% if section.settings.image_behavior == 'parallax-scroll' %}data-parallax-container="data-parallax-container"{% endif %}
       >
         {%- if section.settings.image != blank -%}
           {% if section.settings.image_behavior == 'parallax-scroll' %}
             {%- capture data-parallax -%}data-parallax{%- endcapture -%}
           {% endif %}
-          {{ section.settings.image | image_url: width: 3840 | image_tag:
+          {{ section.settings.image | image_url: width: 2240 | image_tag:
             loading: 'lazy',
             width: section.settings.image.width,
             height: image_height,
@@ -358,7 +358,7 @@
                     --color-background: {{ block.settings.colors_background_image_button.red }}, {{ block.settings.colors_background_image_button.green }}, {{ block.settings.colors_background_image_button.blue }};
                   "
                 >
-                  {{ block.settings.image_button | image_url: width: 3840 | image_tag:
+                  {{ block.settings.image_button | image_url: width: 2240 | image_tag:
                     loading: 'lazy',
                     width: block.settings.image_button.width,
                     height: image_height,
@@ -445,6 +445,12 @@
     "type": "image_picker",
     "id": "image",
     "label": "t:sections.all.image.label"
+  },
+  {
+    "type": "checkbox",
+    "id": "hide_banner_mobile",
+    "default": false,
+    "label": "Hide banner on mobile"
   },
   {
     "type": "checkbox",

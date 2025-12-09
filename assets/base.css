@@ -22235,28 +22235,3 @@ placeholder-image > img {
 .layout-panel-flex--column > .group-block--height-custom {
   flex-basis: var(--size-style-height);
 }
-
-/* Mint start custom */
-@font-face {
-  font-family: 'Charlotte';
-  src: url('./Charlotte.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-.custom-font {
-  font-family: 'Charlotte', sans-serif !important;
-  font-weight: 400 !important;
-  line-height: 1.1 !important;
-  word-spacing: -1.2rem;
-  letter-spacing: -0.5px;
-}
-
-.heading-section.custom-font {
-  letter-spacing: -3.5px;
-}
-
-.custom-tracking {
-  letter-spacing: -0.5rem;
-}

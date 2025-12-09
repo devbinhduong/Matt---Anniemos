@@ -4971,44 +4971,28 @@ customElements.define('cursor-blur', CursorBlur);
 //   });
 // }
 
-function lazyLoadHiddenImages() {
-    const lazyImages = document.querySelectorAll('img.lazy-hidden');
 
-    if ('IntersectionObserver' in window) {
+let isFontLoaded = false;
 
-      let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-        
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            let lazyImage = entry.target;
+function addFontCustom() {
+  if (isFontLoaded) return;
 
-            console.log("lazyImage", lazyImage);
-            
-            
-            lazyImage.src = lazyImage.dataset.src;
-            
-            lazyImage.onload = function() {
-              lazyImage.classList.remove('lazy-hidden');
-            };
-            
-            lazyImageObserver.unobserve(lazyImage);
-          }
-        });
-      }, {
-        rootMargin: '0px 0px 300px 0px' 
-      });
-  
-      lazyImages.forEach(function(lazyImage) {
-        lazyImageObserver.observe(lazyImage);
-      });
-    } 
-    
-    else {
-      lazyImages.forEach(function(lazyImage) {
-          lazyImage.src = lazyImage.dataset.src;
-          lazyImage.classList.remove('lazy-hidden');
-      });
-    }
+  const fontElements = document.querySelectorAll('.custom-font-2');
+  if (fontElements.length === 0) return;
+
+  isFontLoaded = true;
+
+  if (!document.getElementById('spectral-google-font')) {
+    const link = document.createElement('link');
+    link.id = 'spectral-google-font';
+    link.href = 'https://fonts.googleapis.com/css2?family=Spectral&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }
+
+  document.body.classList.add('added-custom-font');
 }
 
-lazyLoadHiddenImages();
+['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(event =>
+  window.addEventListener(event, addFontCustom, { once: true, passive: true })
+);

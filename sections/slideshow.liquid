@@ -63,7 +63,7 @@
                           {%- endif -%}
                           {%- if block.settings.subheading != blank -%}
                             <div 
-                              class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing f-normal" 
+                              class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing f-normal text-responsive" 
                               data-animate="fade-down" 
                               style="
                                 --a-delay: 0.8s;
@@ -120,7 +120,7 @@
                     {%- assign image_alt = block.settings.image.alt | default: shop.name | escape -%}
                     {%- if forloop.index == 1 -%}
                       {{ block.settings.image | image_url: width: block.settings.image.width | image_tag:
-                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2250, 3000, 3840',
+                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2250, 3000',
                           sizes: '100vw',
                           alt: image_alt,
                           fetchpriority: 'high',
@@ -129,7 +129,7 @@
                     {%- else -%}
                       {{ block.settings.image | image_url: width: block.settings.image.width | image_tag:
                           loading: 'lazy',
-                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2250, 3000, 3840',
+                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 2250, 3000',
                           sizes: '100vw',
                           alt: image_alt,
                           class: 'd-none d-block-md w-100 h-100 o-f-cover motion-reduce'
@@ -240,7 +240,7 @@
                         {%- endif -%}
                         {%- if block.settings.subheading != blank -%}
                           <div
-                            class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing"
+                            class="banner__text {{ block.settings.subheading_size | prepend: 'text-size-' }} m-spacing text-responsive"
                             data-animate="fade-down"
                             style="
                               --a-delay: 0.8s;
@@ -290,7 +290,7 @@
                         block.settings.image
                         | image_url: width: block.settings.image.width
                         | image_tag:
-                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000',
                           sizes: '100vw',
                           alt: image_alt,
                           class: 'd-none d-block-md w-100 h-100 o-f-cover motion-reduce'
@@ -301,7 +301,7 @@
                         | image_url: width: block.settings.image.width
                         | image_tag:
                           loading: 'lazy',
-                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000',
                           sizes: '100vw',
                           alt: image_alt,
                           class: 'd-none d-block-md w-100 h-100 o-f-cover motion-reduce'
@@ -569,7 +569,7 @@
                     {%- assign image_alt = block.settings.image.alt | default: shop.name | escape -%}
                     {%- if forloop.index == 1 -%}
                       {{ block.settings.image | image_url: width: block.settings.image.width | image_tag:
-                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000',
                           sizes: '100vw',
                           alt: image_alt,
                           class: 'd-none d-block-md w-100 h-100 o-f-cover motion-reduce'
@@ -577,7 +577,7 @@
                     {%- else -%}
                       {{ block.settings.image | image_url: width: block.settings.image.width | image_tag:
                           loading: 'lazy',
-                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+                          widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000',
                           sizes: '100vw',
                           alt: image_alt,
                           class: 'd-none d-block-md w-100 h-100 o-f-cover motion-reduce'

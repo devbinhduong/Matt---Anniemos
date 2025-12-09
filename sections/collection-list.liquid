@@ -208,7 +208,8 @@
                                     loading: 'lazy',
                                     sizes: sizes,
                                     widths: '275, 200',
-                                    class: 'motion-reduce'
+                                    class: 'motion-reduce',
+                                    alt: block.settings.custom_image |  default: 'Collection banner'
                                 }}
                               {% else %}
                                 {{
@@ -216,7 +217,8 @@
                                     loading: 'lazy',
                                     sizes: sizes,
                                     widths: '275, 200',
-                                    class: 'motion-reduce'
+                                    class: 'motion-reduce',
+                                    alt: block.settings.collection.featured_image |  default: 'Collection banner'
                                 }}
                               {% endif %}
                             {%- else -%}

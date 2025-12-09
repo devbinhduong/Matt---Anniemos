@@ -12,6 +12,9 @@
     capture icon_arrow_list
       render 'icon-arrow-list'
     endcapture
+
+    assign column_small_desktop = 3
+    assign column_small_mobile = 1.1
   -%}
   <div class="section__multicolumn m-spacing spacing spacing-xs color-{{ section.settings.color_scheme }} gradient"
     style="--padding-top: {{ section.settings.padding_top }}px;
@@ -49,11 +52,11 @@
             data-space-between-desktop="{{ section.settings.carousel_gap }}"
             data-type-pagination="{{ section.settings.pagination_type }}" 
             data-item-xxl="{{ section.settings.carousel_number }}"
-            data-item-xl="{{ section.settings.carousel_number }}" 
+            data-item-xl="{{ column_small_desktop }}" 
             data-item-lg="{{ section.settings.carousel_number_tablet }}" 
             data-item-md="{{ section.settings.carousel_number_tablet }}" 
             data-item-sm="{{ section.settings.carousel_number_mobile }}" 
-            data-item-xs="{{ section.settings.carousel_number_mobile }}"
+            data-item-xs="{{ column_small_mobile }}"
           >
             <div class="swiper grid-scroll d-block pos-relative no-js-overflow-x">
               <div class="carousel__items swiper-wrapper f-nowrap d-flex" id="Slider-{{ section.id }}" aria-label="Multicolumn">
