@@ -64,6 +64,9 @@
       --color_opacity_1: {{ section.settings.color_opacity_1 | times: 0.01 }};
       --color_opacity_2: {{ section.settings.color_opacity_2 | times: 0.01 }};
       --cus-o: 1;
+      --cart-color-text-transparent: {{ section.settings.header_bubble_color.red }}, {{ section.settings.header_bubble_color.green }}, {{ section.settings.header_bubble_color.blue }};
+      --cart-color-background-transparent: {{ section.settings.header_bubble_bg.red }}, {{ section.settings.header_bubble_bg.green }}, {{ section.settings.header_bubble_bg.blue }};
+      --cart-gradient-background-transparent: {% if section.settings.header_bubble_bg_gradient != blank %}{{ section.settings.header_bubble_bg_gradient }}{% else %}{{ section.settings.header_bubble_bg }}{% endif %};
     {%- endif -%}
     {%- if section.settings.type_style == 'special' and section.settings.logo != blank -%}
       --m-w-logo-special: {{ section.settings.logo_width |  divided_by: 10 }}rem;
@@ -726,147 +729,149 @@
                     {%- endfor -%}
                   </ul>
                 </nav>
-                <div class="menu-drawer__utility-links d-grid">
-                  {%- if section.settings.use_custom_button and section.settings.use_button_label != blank -%}
-                    <div class="header__custom-button d-none-md">
-                        <a {% if section.settings.use_button_link == blank %}role="link"aria-disabled="true"{% else %}href="{{ section.settings.use_button_link }}"{% endif %} 
-                          class="button {{ settings.button_style | prepend: 'button--style-' }} {{ section.settings.text_size | prepend: 'text-size-' }} center mi-w" 
-                          aria-label="{{ section.settings.use_button_label }}" 
-                          style="--mi-w: 10rem;--mi-h: 3rem;"
-                        >
-                            <span class="text">{{ section.settings.use_button_label | escape }}</span>
-                        </a>
-                    </div>
-                  {%- endif -%}
-                  {%- liquid
-                    if section.settings.enable_country_selector_mobile and localization.available_countries.size > 1
-                      assign check_selector = true
-                    elsif section.settings.enable_language_selector_mobile and localization.available_languages.size > 1
-                      assign check_selector = true
-                    else
-                      assign check_selector = false
-                    endif
-                  -%}
-                  {%- if check_selector -%}
-                    <div class="menu-drawer__localization header-localization">
-                      {%- if section.settings.enable_country_selector_mobile and localization.available_countries.size > 1 -%}
-                        <noscript>
-                          {%- form 'localization', 
-                            id: 'HeaderCountryMobileFormNoScriptDrawer', 
-                            class: 'localization-form' 
-                            -%}
-                            <div class="localization-form__select">
-                              <h2 class="visually-hidden" id="HeaderCountryMobileLabelNoScriptDrawer">
-                                {{ 'localization.country_label' | t }}
-                              </h2>
-                              <select
-                                class="localization-selector link"
-                                name="country_code"
-                                aria-labelledby="HeaderCountryMobileLabelNoScriptDrawer"
-                              >
-                                {%- for country in localization.available_countries -%}
-                                  <option
-                                    value="{{ country.iso_code }}"
-                                    {%- if country.iso_code == localization.country.iso_code %}
-                                      selected
-                                    {% endif %}
-                                  >
-                                    {{ country.name }} ({{ country.currency.iso_code }}
-                                    {{ country.currency.symbol }})
-                                  </option>
-                                {%- endfor -%}
-                              </select>
-                              {% render 'icon-caret' %}
-                            </div>
-                            <button class="button {{ settings.button_style | prepend: 'button--style-' }}">{{ 'localization.update_country' | t }}</button>
-                          {%- endform -%}
-                        </noscript>
-                        <localization-form class="no-js-hidden">
-                          {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
-                            <div>
-                              <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
-                                {{ 'localization.country_label' | t }}
-                              </h2>
-                              {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
-                            </div>
-                          {%- endform -%}
-                        </localization-form>
-                      {%- endif -%}
-
-                      {%- if section.settings.enable_language_selector_mobile and localization.available_languages.size > 1 -%}
-                        <noscript>
-                          {%- form 'localization',
-                            id: 'HeaderLanguageMobileFormNoScriptDrawer',
-                            class: 'localization-form'
-                          -%}
-                            <div class="localization-form__select">
-                              <h2 class="visually-hidden" id="HeaderLanguageMobileLabelNoScriptDrawer">
-                                {{ 'localization.language_label' | t }}
-                              </h2>
-                              <select
-                                class="localization-selector link"
-                                name="locale_code"
-                                aria-labelledby="HeaderLanguageMobileLabelNoScriptDrawer"
-                              >
-                                {%- for language in localization.available_languages -%}
-                                  <option
-                                    value="{{ language.iso_code }}"
-                                    lang="{{ language.iso_code }}"
-                                    {%- if language.iso_code == localization.language.iso_code %}
-                                      selected
-                                    {% endif %}
-                                  >
-                                    {{ language.endonym_name | capitalize }}
-                                  </option>
-                                {%- endfor -%}
-                              </select>
-                              {% render 'icon-caret' %}
-                            </div>
-                            <button class="button {{ settings.button_style | prepend: 'button--style-' }}">{{ 'localization.update_language' | t }}</button>
-                          {%- endform -%}
-                        </noscript>
-                        <localization-form class="no-js-hidden">
-                          {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
-                            <div>
-                              <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
-                                {{ 'localization.language_label' | t }}
-                              </h2>
-                              {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
-                            </div>
-                          {%- endform -%}
-                        </localization-form>
-                      {%- endif -%}
-                    </div>
-                  {%- endif -%}
-                  <side-drawer-opener class="menu-drawer__wishlist header__icon--wishlist p-0 pos-relative u-none color-foreground b-top b-bottom no-js-hidden" data-side-drawer="#Drawer-Wishlist">
-                    <button class="t-button b-none c-pointer d-flex a-i-center w-100 p-0 l-h-15 color-foreground bg-transparent focus-inset" 
-                      type="button" 
-                      aria-haspopup="dialog" 
-                      aria-label="{{ 'templates.wishlist.wishlist_items' | t: count: cart.item_count }}"
-                    >
-                      {%- render 'icon-wishlist', style_icon: 'classic' -%}
-                      <span class="text">{{ 'templates.wishlist.wishlist' | t }}</span>
-                      <div class="wishlist-text-count wishlist-count-bubble d-flex function-menu-item m-l" style="--m-l: 0.5rem;">  
-                        (<div class="wishlist-icon-bubble">
-                          <span class="number" aria-hidden="true">0</span>
-                          <span class="visually-hidden" data-text="{{ 'templates.wishlist.items' | t }}">0 {{ 'templates.wishlist.items' | t }}</span>
-                        </div>)
+                {%- if section.setting.show_menu_utility -%}
+                  <div class="menu-drawer__utility-links d-grid">
+                    {%- if section.settings.use_custom_button and section.settings.use_button_label != blank -%}
+                      <div class="header__custom-button d-none-md">
+                          <a {% if section.settings.use_button_link == blank %}role="link"aria-disabled="true"{% else %}href="{{ section.settings.use_button_link }}"{% endif %} 
+                            class="button {{ settings.button_style | prepend: 'button--style-' }} {{ section.settings.text_size | prepend: 'text-size-' }} center mi-w" 
+                            aria-label="{{ section.settings.use_button_label }}" 
+                            style="--mi-w: 10rem;--mi-h: 3rem;"
+                          >
+                              <span class="text">{{ section.settings.use_button_label | escape }}</span>
+                          </a>
                       </div>
-                    </button>
-                  </side-drawer-opener>
-                  {%- if shop.customer_accounts_enabled -%}
-                    <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="menu-drawer__account link u-none color-foreground d-flex a-i-center focus-inset b-bottom">
-                      {%- render 'icon-account', style_icon: 'modern-no-bg' -%}
-                      {%- liquid
-                        if customer
-                          echo 'customer.account_fallback' | t
-                        else
-                          echo 'customer.log_in' | t
-                        endif
-                      -%}
-                    </a>
-                  {%- endif -%}
-                </div>
+                    {%- endif -%}
+                    {%- liquid
+                      if section.settings.enable_country_selector_mobile and localization.available_countries.size > 1
+                        assign check_selector = true
+                      elsif section.settings.enable_language_selector_mobile and localization.available_languages.size > 1
+                        assign check_selector = true
+                      else
+                        assign check_selector = false
+                      endif
+                    -%}
+                    {%- if check_selector -%}
+                      <div class="menu-drawer__localization header-localization">
+                        {%- if section.settings.enable_country_selector_mobile and localization.available_countries.size > 1 -%}
+                          <noscript>
+                            {%- form 'localization', 
+                              id: 'HeaderCountryMobileFormNoScriptDrawer', 
+                              class: 'localization-form' 
+                              -%}
+                              <div class="localization-form__select">
+                                <h2 class="visually-hidden" id="HeaderCountryMobileLabelNoScriptDrawer">
+                                  {{ 'localization.country_label' | t }}
+                                </h2>
+                                <select
+                                  class="localization-selector link"
+                                  name="country_code"
+                                  aria-labelledby="HeaderCountryMobileLabelNoScriptDrawer"
+                                >
+                                  {%- for country in localization.available_countries -%}
+                                    <option
+                                      value="{{ country.iso_code }}"
+                                      {%- if country.iso_code == localization.country.iso_code %}
+                                        selected
+                                      {% endif %}
+                                    >
+                                      {{ country.name }} ({{ country.currency.iso_code }}
+                                      {{ country.currency.symbol }})
+                                    </option>
+                                  {%- endfor -%}
+                                </select>
+                                {% render 'icon-caret' %}
+                              </div>
+                              <button class="button {{ settings.button_style | prepend: 'button--style-' }}">{{ 'localization.update_country' | t }}</button>
+                            {%- endform -%}
+                          </noscript>
+                          <localization-form class="no-js-hidden">
+                            {%- form 'localization', id: 'HeaderCountryMobileForm', class: 'localization-form' -%}
+                              <div>
+                                <h2 class="visually-hidden" id="HeaderCountryMobileLabel">
+                                  {{ 'localization.country_label' | t }}
+                                </h2>
+                                {%- render 'country-localization', localPosition: 'HeaderCountryMobile' -%}
+                              </div>
+                            {%- endform -%}
+                          </localization-form>
+                        {%- endif -%}
+
+                        {%- if section.settings.enable_language_selector_mobile and localization.available_languages.size > 1 -%}
+                          <noscript>
+                            {%- form 'localization',
+                              id: 'HeaderLanguageMobileFormNoScriptDrawer',
+                              class: 'localization-form'
+                            -%}
+                              <div class="localization-form__select">
+                                <h2 class="visually-hidden" id="HeaderLanguageMobileLabelNoScriptDrawer">
+                                  {{ 'localization.language_label' | t }}
+                                </h2>
+                                <select
+                                  class="localization-selector link"
+                                  name="locale_code"
+                                  aria-labelledby="HeaderLanguageMobileLabelNoScriptDrawer"
+                                >
+                                  {%- for language in localization.available_languages -%}
+                                    <option
+                                      value="{{ language.iso_code }}"
+                                      lang="{{ language.iso_code }}"
+                                      {%- if language.iso_code == localization.language.iso_code %}
+                                        selected
+                                      {% endif %}
+                                    >
+                                      {{ language.endonym_name | capitalize }}
+                                    </option>
+                                  {%- endfor -%}
+                                </select>
+                                {% render 'icon-caret' %}
+                              </div>
+                              <button class="button {{ settings.button_style | prepend: 'button--style-' }}">{{ 'localization.update_language' | t }}</button>
+                            {%- endform -%}
+                          </noscript>
+                          <localization-form class="no-js-hidden">
+                            {%- form 'localization', id: 'HeaderLanguageMobileForm', class: 'localization-form' -%}
+                              <div>
+                                <h2 class="visually-hidden" id="HeaderLanguageMobileLabel">
+                                  {{ 'localization.language_label' | t }}
+                                </h2>
+                                {%- render 'language-localization', localPosition: 'HeaderLanguageMobile' -%}
+                              </div>
+                            {%- endform -%}
+                          </localization-form>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                    <side-drawer-opener class="menu-drawer__wishlist header__icon--wishlist p-0 pos-relative u-none color-foreground b-top b-bottom no-js-hidden" data-side-drawer="#Drawer-Wishlist">
+                      <button class="t-button b-none c-pointer d-flex a-i-center w-100 p-0 l-h-15 color-foreground bg-transparent focus-inset" 
+                        type="button" 
+                        aria-haspopup="dialog" 
+                        aria-label="{{ 'templates.wishlist.wishlist_items' | t: count: cart.item_count }}"
+                      >
+                        {%- render 'icon-wishlist', style_icon: 'classic' -%}
+                        <span class="text">{{ 'templates.wishlist.wishlist' | t }}</span>
+                        <div class="wishlist-text-count wishlist-count-bubble d-flex function-menu-item m-l" style="--m-l: 0.5rem;">  
+                          (<div class="wishlist-icon-bubble">
+                            <span class="number" aria-hidden="true">0</span>
+                            <span class="visually-hidden" data-text="{{ 'templates.wishlist.items' | t }}">0 {{ 'templates.wishlist.items' | t }}</span>
+                          </div>)
+                        </div>
+                      </button>
+                    </side-drawer-opener>
+                    {%- if shop.customer_accounts_enabled -%}
+                      <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="menu-drawer__account link u-none color-foreground d-flex a-i-center focus-inset b-bottom">
+                        {%- render 'icon-account', style_icon: 'modern-no-bg' -%}
+                        {%- liquid
+                          if customer
+                            echo 'customer.account_fallback' | t
+                          else
+                            echo 'customer.log_in' | t
+                          endif
+                        -%}
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
               </div>
             </div>
           </div>
@@ -1973,6 +1978,31 @@
     },
     {
       "type": "header",
+      "content": "t:settings_schema.colors.settings.header__5.content",
+      "visible_if": "{{ section.settings.enable_transparent }}"
+    },
+    {
+      "type": "color",
+      "id": "header_bubble_color",
+      "default": "#FFFFFF",
+      "label": "t:settings_schema.colors.settings.cart_colors_text.label",
+      "visible_if": "{{ section.settings.enable_transparent }}"
+    },
+    {
+      "type": "color",
+      "id": "header_bubble_bg",
+      "default": "#000000",
+      "label": "t:settings_schema.colors.settings.cart_colors_background.label",
+      "visible_if": "{{ section.settings.enable_transparent }}"
+    },
+    {
+      "type": "color_background",
+      "id": "header_bubble_bg_gradient",
+      "label": "t:settings_schema.colors.settings.cart_gradient_background.label",
+      "visible_if": "{{ section.settings.enable_transparent }}"
+    },
+    {
+      "type": "header",
       "content": "t:sections.header.settings.header__1.content"
     },
     {
@@ -2086,26 +2116,6 @@
       "unit": "px",
       "label": "t:sections.all.carousel.grid.label__5",
       "default": 20
-    },
-    {
-      "type": "select",
-      "id": "menu_transform",
-      "options": [
-        {
-          "value": "lowercase",
-          "label": "t:settings_schema.global.settings.font_transform.options__1"
-        },
-        {
-          "value": "capitalize",
-          "label": "t:settings_schema.global.settings.font_transform.options__2"
-        },
-        {
-          "value": "uppercase",
-          "label": "t:settings_schema.global.settings.font_transform.options__3"
-        }
-      ],
-      "default": "capitalize",
-      "label": "t:settings_schema.global.settings.font_transform.label"
     },
     {
       "type": "select",

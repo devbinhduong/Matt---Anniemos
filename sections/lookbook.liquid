@@ -25,6 +25,11 @@
     --padding-top-xs: {{ section.settings.padding_top_mobile }}px;
     --padding-bottom-xs: {{ section.settings.padding_bottom_mobile }}px;"
   >
+
+  {%- capture drawer_heading_style -%}
+    --heading-section-size: {{ section.settings.custom_drawer_heading_size }}px;--heading-section-color: {{ section.settings.custom_drawer_heading_color }};--leading: {{ section.settings.custom_drawer_heading_leading }};--custom-tracking: {{ section.settings.custom_drawer_heading_tracking }};--word-spacing: {{ section.settings.custom_drawer_heading_word_spacing }};
+  {%- endcapture -%}
+
     <div class="page-width m-auto">
       {%- if section.settings.heading != blank or section.settings.text != blank -%}
         <div class="p-w__header">
@@ -32,7 +37,7 @@
             {%- if section.settings.heading != blank or section.settings.text != blank -%}
               <div class="p-w__header--item">
                 {%- if section.settings.heading != blank -%}
-                  <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-0 {% render 'heading-style', settings: section.settings, type: 'class' %}" style="{% render 'heading-style', settings: section.settings, type: 'style' %}">{{ section.settings.heading | escape }}</h2>
+                  <h2 id="SectionHeading-{{ section.id }}" class="p-w__heading m-0 {% render 'heading-style', settings: section.settings, type: 'class' %}" style="{{ drawer_heading_style }}">{{ section.settings.heading | escape }}</h2>
                 {%- endif-%}
                 {%- if section.settings.text != blank -%}
                   <div class="p-w__text rte m-t text-responsive" style="--m-t: 0rem;">{{ section.settings.text }}</div>
@@ -146,7 +151,7 @@
                             <template>
                               <div class="lookbook__drawer-inner drawer__inner gradient d-flex f-column o-h color-background-1" role="dialog" aria-modal="true" aria-label="{{ 'general.lookbook.view_all' | t }}" tabindex="-1">
                                 <div class="lookbook__drawer-header drawer__header d-flex j-c-between a-i-center pos-relative">
-                                  <h2 class="lookbook__drawer-heading drawer__heading break m-0 {% render 'heading-style', settings: section.settings, type: 'class' %}" style="{% render 'heading-style', settings: section.settings, type: 'style' %}">{{ 'general.lookbook.view_all' | t }}</h2>
+                                  <h2 class="lookbook__drawer-heading drawer__heading break m-0 {% render 'heading-style', settings: section.settings, type: 'class' %}" style="{{ drawer_heading_style }}">{{ 'general.lookbook.view_all' | t }}</h2>
                                   <button class="lookbook__drawer-close drawer__close d-block t-button b-none c-pointer b-circle button--close" type="button" onclick="this.closest('lookbook-drawer').close()" aria-label="{{ 'accessibility.close' | t }}"><span class="i__close e-none d-block pos-relative color-current w-100 h-100"></span></button>
                                 </div>
                                 <div class="lookbook__drawer-wrapper drawer__wrapper d-flex f-nowrap overflow-x g-gap p-b" style="--g-gap: 1.8rem; --p-b: 5rem;">
@@ -161,39 +166,44 @@
                                         endif
                                       -%}
                                       <div class="item__card-drawer pos-relative">
-                                        <div class="item__card-media o-h">
-                                          <div class="media media--transparent media--adapt pos-relative" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;"
-                                          >
-                                            {%- if product.featured_media -%}
-                                              <img
-                                                srcset="{{ product.featured_media | image_url: width: 550 }}"
-                                                src="{{ product.featured_media | image_url: width: 550 }}"
-                                                sizes="(min-width: 750px) 550, calc(100vw - 30px)"
-                                                alt="{{ product.featured_media.alt | escape }}"
-                                                class="motion-reduce"
-                                                loading="lazy"
-                                                width="{{ product.featured_media.width }}"
-                                                height="{{ product.featured_media.height }}"
-                                              >
-                                            {%- else -%}
-                                              {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
-                                            {%- endif -%}
+                                        <div class="custom-focus">
+                                          <div class="item__card-media o-h">
+                                            <div class="media media--transparent media--adapt pos-relative" style="padding-bottom: {{ 1 | divided_by: ratio | times: 100 }}%;"
+                                            >
+                                              {%- if product.featured_media -%}
+                                                <img
+                                                  srcset="{{ product.featured_media | image_url: width: 550 }}"
+                                                  src="{{ product.featured_media | image_url: width: 550 }}"
+                                                  sizes="(min-width: 750px) 550, calc(100vw - 30px)"
+                                                  alt="{{ product.featured_media.alt | escape }}"
+                                                  class="motion-reduce"
+                                                  loading="lazy"
+                                                  width="{{ product.featured_media.width }}"
+                                                  height="{{ product.featured_media.height }}"
+                                                >
+                                              {%- else -%}
+                                                {{ 'product-' | append: forloop.index | placeholder_svg_tag: 'placeholder-svg' }}
+                                              {%- endif -%}
+                                            </div>
+                                          </div>
+                                          <div class="item__card-content m-t" style="--m-t: 1.5rem;">
+                                            <h3 class="item__card-title h4 m-b" style="--m-b: 0.3rem;">
+                                              <a href="{{ product.url }}" class="d-block link link--text h-link {{ settings.link_type | prepend: "link--style-" }} link-cover">
+                                                <span class="link-style">{{ product.title | escape }}</span>
+                                              </a>
+                                            </h3>
+                                            <div class="item__card-price d-flex a-i-center c-gap" style="--c-gap: 1.5rem;">
+                                              {% render 'price',
+                                                product: product,
+                                                price_class: ''
+                                              %}
+                                              {{ icon_arrow_long }}
+                                            </div>
                                           </div>
                                         </div>
-                                        <div class="item__card-content m-t" style="--m-t: 1.5rem;">
-                                          <h3 class="item__card-title h4 m-b" style="--m-b: 0.3rem;">
-                                            <a href="{{ product.url }}" class="d-block link link--text h-link {{ settings.link_type | prepend: "link--style-" }} link-cover">
-                                              <span class="link-style">{{ product.title | escape }}</span>
-                                            </a>
-                                          </h3>
-                                          <div class="item__card-price d-flex a-i-center c-gap" style="--c-gap: 1.5rem;">
-                                            {% render 'price',
-                                              product: product,
-                                              price_class: ''
-                                            %}
-                                            {{ icon_arrow_long }}
-                                          </div>
-                                        </div>
+                                        <span class="focus-border">
+                                          <i></i>
+                                        </span>
                                       </div>
                                     {%- endif -%}
                                   {%- endfor-%}

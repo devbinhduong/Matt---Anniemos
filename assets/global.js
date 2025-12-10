@@ -1633,6 +1633,7 @@ class LookbookPoint extends HTMLElement {
       if (window.matchMedia('(max-width: 1024px)').matches) {
         const drawer = document.querySelector(this.getAttribute('data-side-drawer'));
         if (drawer) drawer.open(this.button);
+        
       }
     }
     else if (this.querySelector(`.point-button.point-style--classic`)) {
@@ -1644,6 +1645,18 @@ class LookbookPoint extends HTMLElement {
       if (window.matchMedia('(max-width: 1199px)').matches) {
         const drawer = document.querySelector(this.getAttribute('data-side-drawer'));
         if (drawer) drawer.open(this.button);
+
+        const currentProductName = event.currentTarget?.getAttribute('aria-label').toLowerCase().replace('view product', '').trim();
+        const allProduct = drawer.querySelectorAll('.item__card-drawer .item__card-title');
+
+        allProduct.forEach((product) => {
+          if (product.textContent.toLowerCase().includes(currentProductName)) {
+            product.closest('.item__card-drawer').focus();
+            product.closest('.item__card-drawer').querySelector('.custom-focus').classList.add('show-animation');
+          } else {
+            product.closest('.item__card-drawer').querySelector('.custom-focus').classList.remove('show-animation');
+          }
+        });
       }
     }
   }
