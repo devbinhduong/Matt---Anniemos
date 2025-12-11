@@ -5006,6 +5006,24 @@ function addFontCustom() {
   document.body.classList.add('added-custom-font');
 }
 
-['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(event =>
-  window.addEventListener(event, addFontCustom, { once: true, passive: true })
-);
+function addToolbarGap() {
+  const toolbarMb = document.querySelector('.toolbar-mobile');
+  if (!toolbarMb || window.innerWidth > 749) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - toolbarMb.offsetHeight) {
+      document.body.style.paddingBottom = `${toolbarMb.offsetHeight}px`;
+    } else {
+      document.body.style.paddingBottom = '0';
+    }
+  });
+}
+
+const triggerEvents = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'];
+const functions = [addFontCustom, addToolbarGap];
+
+triggerEvents.forEach((event) => {
+  functions.forEach((func) => {
+    window.addEventListener(event, func, { once: true, passive: true });
+  });
+});

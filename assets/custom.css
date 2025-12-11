@@ -90,8 +90,12 @@ p-0 {
     padding-top: calc(var(--p-t, 0) * 0.75);
     padding-bottom: calc(var(--p-b, 0) * 0.75);
   }
-  .heading-section {
+  .heading-section:not(.drawer__heading) {
     font-size: calc(var(--heading-section-size) * 0.75);
+  }
+
+  .heading-section.drawer__heading {
+    font-size: calc(var(--heading-section-size) * 0.8);
   }
 }
 
@@ -102,7 +106,7 @@ p-0 {
     padding-top: calc(var(--p-t, 0) * 0.5);
     padding-bottom: calc(var(--p-b, 0) * 0.5);
   }
-  .heading-section {
+  .heading-section:not(.drawer__heading) {
     font-size: calc(var(--heading-section-size) * 0.5);
   }
 
@@ -322,10 +326,10 @@ p-0 {
   min-height: 3.6rem !important;
 }
 .product-form__input .quantity__button {
-  border: 1px solid rgba(0, 1, 0, );
+  border: 1px solid rgba(var(--color-foreground), 1);
   width: 4rem;
   height: 3.6rem;
-  color: rgba(0, 1, 0, );
+  color: rgba(var(--color-foreground), 1);
 }
 .product-form__input .quantity__input {
   min-width: 4rem;
@@ -445,7 +449,7 @@ a:hover {
 
     .card__function-item {
       position: relative;
-      top: 1.9rem;
+      top: 0.8rem;
       right: -0.4rem;
     }
   }
@@ -532,7 +536,7 @@ a:hover {
 
 
 @media (max-width: 750px) {
-  .button {
+  .button.button--icon-caret {
     min-width: 18rem !important;
     min-height: 4.5rem !important;
     padding: .5rem 2rem !important;
@@ -621,4 +625,43 @@ a:hover {
   0% { height: 0; }
   75% { height: 0; }
   100% { height: 100%; }
+}
+
+@media (min-width: 750px) and (max-width: 1199px) {
+  .footer-grid__item.footer-block--text,
+  .footer-grid__item.footer-block--newsletter {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+cart-drawer .quantity__button svg {
+  color: #000000;
+  width: 1.2rem;
+}
+
+.style-product-card .card__inner .card__badge {
+  
+}
+
+.product-card-wishlist .card__heading {
+  font-size: 2.2rem;
+  line-height: 1.1;
+}
+
+.product-card-wishlist .card__information .advanced__default-price-cart {
+  align-items: flex-start;
+}
+
+.card__heading {
+  font-weight: 400;
+}
+
+sticky-header {
+  padding: 1rem 0;
+}
+
+.product__quickview-ask .ask-an-exp > p {
+  margin-top: 0;
+  font-style: italic;
 }

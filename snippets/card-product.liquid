@@ -847,7 +847,7 @@
                 {%- if product_cards_style == 'advanced-default' or card_style_popup == 'advanced-default' -%}
                   <div class="advanced__default-price-cart d-flex a-i-center j-c-between c-gap break" style="--c-gap: 0.5rem;">
                 {%- endif -%}
-                  <div class="card__price{% if product_cards_style == 'card' %} m-l{% endif %}{% if product_cards_style == 'advanced-card' %} right{% endif %}"{% if product_cards_style == 'card' or product_cards_style == 'advanced-card' %} style="--color-default-price: 0,0,0; --m-l:auto;"{% endif %}>
+                  <div class="card__price{% if product_cards_style == 'card' %} m-l{% endif %}{% if product_cards_style == 'advanced-card' %} right{% endif %}"{% if product_cards_style == 'card' or product_cards_style == 'advanced-card' %} style="--m-l:auto;"{% endif %}>
                     {% render 'price', product: card_product, price_class: '' %}
                   </div>
                 {%- if product_cards_style == 'advanced-default' or card_style_popup == 'advanced-default' -%}

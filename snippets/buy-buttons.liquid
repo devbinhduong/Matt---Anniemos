@@ -44,7 +44,7 @@
             {% # theme-check-disable %}
             {%- assign cart_qty = cart | item_count_for_variant: product.selected_or_first_available_variant.id -%}
             {% # theme-check-enable %}
-            <div class="form__label d-block pos-relative">
+            <div class="form__label d-block pos-relative text-size-default text-responsive" style="--cus-size: 0.2rem;">
               <label class="quantity__label form__label d-block" for="Quantity-{{ section.id }}">
                 {{ 'products.product.quantity.label' | t }}
               </label>

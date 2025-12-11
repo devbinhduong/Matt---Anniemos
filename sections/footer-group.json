@@ -147,8 +147,8 @@
         "footer_bottom_padding_bottom": 0,
         "footer_bottom_padding_top_mobile": 0,
         "footer_bottom_padding_bottom_mobile": 0,
-        "footer_bottom_color_scheme": "inverse",
-        "bottom_text_size": "medium",
+        "footer_bottom_color_scheme": "scheme-36dcfcb1-3282-4482-bbfa-fca926c1c976",
+        "bottom_text_size": "small",
         "enable_country_selector": false,
         "enable_language_selector": false,
         "payment_enable": false,
@@ -157,7 +157,7 @@
         "social_media_colors_text": "#ffffff",
         "social_media_colors_background": "",
         "social_media_gradient_background": "",
-        "text_copyright": "<p>©2024 Name store</p>"
+        "text_copyright": "<p>© 2025 Annie Mo’s. All rights reserved.</p>"
       }
     }
   },

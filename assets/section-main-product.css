@@ -968,7 +968,7 @@ pickup-availability[available] {
 
 .gallery-view-col.--thumb .swiper {
   height: 100%;
-  padding: 0 1rem;
+  padding: 0 0.8rem;
   margin: 0 -1rem;
 }
 
@@ -1209,7 +1209,7 @@ pickup-availability[available] {
 .product-view-modern .product-form__wlist .wishlist-form {
   width: 15rem;
   height: 6rem;
-  padding: 2rem 2.3rem;
+  padding: 2rem 1.5rem;
   display: flex;
   gap: 2rem;
 
@@ -1955,7 +1955,7 @@ pickup-availability[available] {
 
   /* slider-thumbnail */
   .carousel-thumb__wrap.--thumb.full .product__media {
-    padding-bottom: 117%;
+    padding-bottom: 100%;
   }
 }
 
@@ -2145,7 +2145,7 @@ pickup-availability[available] {
   }
 
   .product--small:not(.product--no-media) .product__media-wrapper {
-    max-width: 47.9%;
+    max-width: 47%;
     width: calc(45% - var(--grid-h-md) / 2);
   }
 
@@ -2222,4 +2222,8 @@ pickup-availability[available] {
 .product-form__wlist .wishlist-form:hover .wishlist-text,
 .product-form__wlist .wishlist-form.added .wishlist-text {
   color: rgba(var(--button-color-text-hover),1);
+}
+
+.carousel-thumb__wrap .global-media-settings {
+  padding: 0.2rem;
 }

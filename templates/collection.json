@@ -80,7 +80,7 @@
         "carousel_gap_large": 125,
         "carousel_gap": 25,
         "arrows_type": "all",
-        "carousel_infinite_scroll": false,
+        "carousel_infinite_scroll": true,
         "columns_desktop": 6,
         "sub_collections_columns_mobile": "1",
         "image_animation": "none",

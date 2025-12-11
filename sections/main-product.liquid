@@ -183,7 +183,7 @@
                     >
                       <button class="wishlist-form pos-relative c-pointer b-none bg-transparent p-0 d-inline-flex a-i-center j-c-center" type="button" aria-haspopup="dialog" aria-label="{{ 'templates.wishlist.wishlist_items' | t: count: cart.item_count }}" data-wishlist-handle="{{ product.handle }}">
                         {% if block.settings.wishlist_text != blank %}
-                          <span class="wishlist-text">{{ block.settings.wishlist_text }}</span>
+                          <span class="wishlist-text text-size-default text-responsive">{{ block.settings.wishlist_text }}</span>
                         {% endif %}
                         {%- render 'icon-heart-2' -%}
                       </button>

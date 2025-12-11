@@ -219,7 +219,7 @@
                       </div>
                     </{% if link.url != blank %}a{% else %}div{% endif %}>
                     <div class="item__content {{ text_alignment }}">
-                      <h2 class="d-inline-block pos-relative{% if blocks_heading_size == 'text-body' %} text-body{% else %} text-body {{ blocks_heading_size | prepend: 'heading-size-' }}{% endif %} {{ font_transform }} m-0 f-bold" data-animate="{{ text_animation }}" style="--a-delay: {{ '0.05' | times: forloop.index }}s;">
+                      <h2 class="d-inline-block pos-relative{% if blocks_heading_size == 'text-body' %} text-size-default{% else %} text-body {{ blocks_heading_size | prepend: 'heading-size-' }}{% endif %} {{ font_transform }} m-0 f-bold text-responsive" data-animate="{{ text_animation }}" style="--a-delay: {{ '0.05' | times: forloop.index }}s;{% if blocks_heading_size == 'text-body' %}--cus-size: 0.4rem;{% endif %}">
                         {%- if type_style == 'default' -%}
                           {{ link.title | default: 'Collection heading' }}
                         {%- else -%}
@@ -232,9 +232,6 @@
                               </strong>
                             {%- endif -%}
                           </span>
-                          {%- if link.title != blank and type_style != 'masonry' -%}
-                            {% render 'icon-caret' %}
-                          {%- endif -%}
                         {%- endif -%}
                       </h2>
                       {%- if type_style == 'default' -%}

@@ -224,7 +224,7 @@
                         {%- endif -%}
                       </div>
                       {%- if form.posted_successfully? -%}
-                        <h3 class="newsletter-form__message newsletter-form__message--success form__message text-body l-h-1 m-0 d-flex a-i-center" id="Newsletter-success--{{ section.id }}" tabindex="-1">{% render 'icon-success' %}{{ 'newsletter.success' | t }}</h3>
+                        <h3 class="newsletter-form__message newsletter-form__message--success form__message text-body l-h-1 d-flex a-i-center" id="Newsletter-success--{{ section.id }}" tabindex="-1">{% render 'icon-success' %}{{ 'newsletter.success' | t }}</h3>
                       {%- endif -%}
                     {%- endform -%}
                     {%- if block.settings.caption != blank -%}

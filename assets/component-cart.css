@@ -525,7 +525,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     flex-grow: 1;
-    min-height: max-content;
+    /* min-height: max-content; */
+    min-height: 50vh;
   }
 }
 
