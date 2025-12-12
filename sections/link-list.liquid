@@ -281,7 +281,7 @@
                       </div>
                   {%- when 'link_list' -%}
                     {%- if block.settings.link_list != blank -%}
-                      <div class="link-list__item link--{{ block.type }} swiper-slide no-js-grid__item no-js-grid__scroll d-block pos-relative w-100 {{ aligment }} spacing spacing-all cus--color-background{% if section.settings.section_width == 'full-width' %} cus-p-l cus-p-r{% endif %}"
+                      <div class="link-list__item link--{{ block.type }} swiper-slide no-js-grid__item no-js-grid__scroll d-block pos-relative w-100 {{ aligment }} spacing spacing-all cus--color-background{% if section.settings.section_width == 'full-width' %} cus-p-l cus-p-r{% endif %} d-flex a-i-center"
                         data-swiper-parallax="40%"
                         role="listitem" 
                         id="Slide-{{ section.id }}-{{ forloop.index }}"
@@ -290,7 +290,7 @@
                           --color-secondary-background: {{ block.settings.secondary_background.red }},{{ block.settings.secondary_background.green }},{{ block.settings.secondary_background.blue }};
                         "
                       >
-                        <ul class="link-list__list d-flex list-unstyled j-c-{{ aligment | replace: 'left', 'start' | replace: 'right', 'end' }} c-gap subrte" style="--c-gap: 2.5rem; --cus-size: 0.1rem;" role="list">
+                        <ul class="link-list__list d-flex list-unstyled c-gap subrte f-wrap j-c-center" style="--c-gap: 2.5rem; --cus-size: 0.1rem;" role="list">
                           {%- for link in block.settings.link_list.links -%}
                             <li>
                               <a href="{{ link.url }}" class="d-block link h-link {{ settings.link_type | prepend: "link--style-" }} color-foreground focus-inset {{ section.settings.text_size | prepend: 'text-size-' }} {{ block.settings.font_transform }} text-responsive">

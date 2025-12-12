@@ -136,7 +136,7 @@
             {% render 'button-main-style' %}
           </a>
 
-          <div class="product-button-buy-now">
+          <div class="product-button-buy-now d-flex c-gap a-i-center" style="--c-gap: 1rem;">
             <a class="button {{ settings.button_type | prepend: 'button--main-' }} {{ settings.button_icon | prepend: 'button--icon-' }} {{ settings.button_style | prepend: 'button--style-' }}{% if button_buy_now_transparent == 'transparent' %} button--transparent{% endif %}" href="#checkout-now-button" style="--button-color-text: {{ button_buy_now_color.red }}, {{ button_buy_now_color.green }}, {{ button_buy_now_color.blue }};
               --button-color-background: {{ button_buy_now_background.red }}, {{ button_buy_now_background.green }}, {{ button_buy_now_background.blue }};
               --button-gradient-background: {% if button_buy_now_gradient_background != blank %}{{ button_buy_now_gradient_background }}{% else %}{{ button_buy_now_background }}{% endif %};
@@ -146,6 +146,18 @@
               <span class="text">Buy Now</span>
               {% render 'button-main-style' %}
             </a>
+
+            {%- if section.settings.enable_share -%}
+              {%- if section.settings.type_style != 'classic' -%}
+                <div class="product__share">
+                  {%- liquid
+                    assign share_label = 'products.product.share' | t
+                    assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
+                  -%}
+                  {% render 'share-button', section: section, share_label: share_label, share_link: share_url %}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
           </div>
 
           <shopify-accelerated-checkout id="checkout-now-button" class="default-accelerated-checkout hidden" fallback="{&quot;name&quot;:&quot;buy_it_now&quot;,&quot;wallet_params&quot;:{}}" access-token="8e47b78494d9ccf565e8c4b7178bf7b9" buyer-country="{{ customer.country | default: 'GB' }}" buyer-locale="{{ shop.locale }}" buyer-currency="{{ shop.currency }}" variant-params="[{&quot;id&quot;:{{ product.selected_or_first_available_variant.id }},&quot;requiresShipping&quot;:{{ product.selected_or_first_available_variant.requires_shipping }}}]" shop-id="{{ shop.id }}" requires-shipping>

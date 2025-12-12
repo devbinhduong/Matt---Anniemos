@@ -62,8 +62,8 @@
                                     class="cart-item__image"
                                     alt="{{ item.image.alt | escape }}"
                                     loading="lazy"
-                                    width="150"
-                                    height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                                    width="175"
+                                    height="{{ 175 | divided_by: item.image.aspect_ratio | ceil }}"
                                   >
                                 {%- else -%}
                                   {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
@@ -366,10 +366,10 @@
                           <span>{{ 'sections.cart.update' | t }}</span>
                         </button>
                       </noscript>
-                      <button type="submit" id="checkout" class="cart__checkout-button button {{ settings.button_style | prepend: 'button--style-' }}{% if settings.checkout_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.checkout_color_scheme }} gradient" name="checkout" {% if cart == empty %} disabled{% endif %} form="cart">
+                      <button type="submit" id="checkout" class="cart__checkout-button button {{ settings.button_style | prepend: 'button--style-' }}{% if block.settings.checkout_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ block.settings.checkout_color_scheme }} gradient" name="checkout" {% if cart == empty %} disabled{% endif %} form="cart">
                         <span>{{ 'sections.cart.checkout' | t }}</span>
                       </button>
-                      <a href="{{ routes.all_products_collection_url }}" class="button {{ settings.button_style | prepend: 'button--style-' }}{% if settings.view_cart_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ settings.view_cart_color_scheme }} gradient">
+                      <a href="{{ routes.all_products_collection_url }}" class="button {{ settings.button_style | prepend: 'button--style-' }}{% if block.settings.continue_shopping_button_transparent == 'transparent' %} button--transparent{% endif %} w-100 color-{{ block.settings.continue_shopping_color_scheme }} gradient">
                         <span class="text">{{ 'general.continue_shopping' | t }}</span>
                       </a>
                     </div>
@@ -422,7 +422,78 @@
   {
     "type": "buttons",
     "name": "t:sections.main-cart-items.blocks.buttons.name",
-    "limit": 1
+    "limit": 1,
+    "settings": [
+      {
+          "type": "header",
+          "content": "t:settings_schema.colors.name"
+      },
+      {
+          "type": "color_scheme",
+          "id": "cart_color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "background-1"
+      },
+      {
+          "type": "checkbox",
+          "id": "use_background_gradient",
+          "default": false,
+          "label": "t:sections.all.colors.use_background_gradient"
+      },
+      {
+          "type": "color",
+          "id": "colors_background_special",
+          "label": "t:sections.all.colors.colors_background"
+      },
+      {
+          "type": "color_background",
+          "id": "gradient_background_special",
+          "default": "linear-gradient(215deg, rgba(248, 208, 218, 0.45) 34.38%, rgba(195, 236, 252, 0.45) 73.44%)",
+          "label": "t:sections.all.colors.gradient_background"
+      },
+      {
+          "type": "color_scheme",
+          "id": "checkout_color_scheme",
+          "label": "t:settings_schema.cart.settings.button.label__1",
+          "default": "background-1"
+      },
+      {
+          "type": "select",
+          "id": "checkout_button_transparent",
+          "options": [
+          {
+              "value": "default",
+              "label": "t:sections.all.button_style.label__2"
+          },
+          {
+              "value": "transparent",
+              "label": "t:sections.all.button_style.label__3"
+          }],
+          "default": "default",
+          "label": "t:sections.all.button_style.label__1"
+      },
+      {
+          "type": "color_scheme",
+          "id": "continue_shopping_color_scheme",
+          "label": "t:settings_schema.cart.settings.button.label__3",
+          "default": "background-1"
+      },
+      {
+          "type": "select",
+          "id": "continue_shopping_button_transparent",
+          "options": [
+          {
+              "value": "default",
+              "label": "t:sections.all.button_style.label__2"
+          },
+          {
+              "value": "transparent",
+              "label": "t:sections.all.button_style.label__3"
+          }],
+          "default": "transparent",
+          "label": "t:sections.all.button_style.label__1"
+      }
+    ]
   },
   {
     "type": "@app"

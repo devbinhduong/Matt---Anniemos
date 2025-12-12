@@ -125,17 +125,6 @@
           data-url="{{ product.url }}"
           class="product__info-container d-block"
         >
-          {%- if section.settings.enable_share -%}
-            {%- if section.settings.type_style != 'classic' -%}
-              <div class="product__share pos-absolute z-index-2 top-0 right-0">
-                {%- liquid
-                  assign share_label = 'products.product.share' | t
-                  assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
-                -%}
-                {% render 'share-button', section: section, share_label: share_label, share_link: share_url %}
-              </div>
-            {%- endif -%}
-          {%- endif -%}
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
           {%- for block in section.blocks -%}
             {%- case block.type -%}

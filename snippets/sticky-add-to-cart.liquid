@@ -34,7 +34,7 @@
     <div class="product__sticky-toggle pos-absolute pos-absolute-c-r d-block">&nbsp;</div>
 	</button>
   <div class="product__sticky-inner o-h">
-    <div class="product__sticky-wrapper d-flex f-column p-t g-gap" style="--p-t: 1.5rem; --g-gap: 2rem;">
+    <div class="product__sticky-wrapper d-flex f-column p-t g-gap w-100 button button--main-classic" style="--p-t: 1.5rem; --g-gap: 2rem;">
       {%- if VariantPicker.size > 0 -%}
         {% render 'product-variant-picker', product: product, block: VariantPicker.first, is_sticky: true, product_form_id: product_form_id %}
       {%- endif -%}
