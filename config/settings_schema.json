@@ -4,8 +4,8 @@
         "theme_name": "Concept",
         "theme_version": "1.1.2",
         "theme_author": "Bspoq",
-        "theme_documentation_url": "https:\/\/halosoft.gitbook.io\/concept-documentation\/",
-        "theme_support_url": "https:\/\/halosoft.ticksy.com\/"
+        "theme_documentation_url": "https:\/\/bspoq.gitbook.io\/concept-documentation\/",
+        "theme_support_url": "https:\/\/bspoq.ticksy.com\/"
     },
     {
         "name": "t:settings_schema.general.name",

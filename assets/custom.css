@@ -695,3 +695,8 @@ sticky-header {
 .recommendCartItem .card__badge {
   display: none;
 }
+
+.pagination__list .center .pagination__item {
+  display: flex;
+  align-items: center;
+}

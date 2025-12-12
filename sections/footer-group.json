@@ -102,7 +102,7 @@
             "text_alignment": "left",
             "button_label": "",
             "hide_arrow": false,
-            "caption": "<p>Learn more about how we protect your personal<br/>data by viewing our <a href=\"/\" target=\"_blank\" title=\"/\">Privacy Notice</a>.</p>",
+            "caption": "<p><a href=\"/\" title=\"/\">Learn more about how we protect your personal<br/>data by viewing our Privacy Notice.</a></p>",
             "caption_size": "medium",
             "check_text": "",
             "show_social": false,

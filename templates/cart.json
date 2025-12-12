@@ -18,7 +18,16 @@
         },
         "b982c376-2fb3-4a4a-90d1-e04bf2b302ab": {
           "type": "buttons",
-          "settings": {}
+          "settings": {
+            "cart_color_scheme": "",
+            "use_background_gradient": false,
+            "colors_background_special": "",
+            "gradient_background_special": "linear-gradient(215deg, rgba(248, 208, 218, 0.45) 34.38%, rgba(195, 236, 252, 0.45) 73.44%)",
+            "checkout_color_scheme": "accent-2",
+            "checkout_button_transparent": "default",
+            "continue_shopping_color_scheme": "scheme-36dcfcb1-3282-4482-bbfa-fca926c1c976",
+            "continue_shopping_button_transparent": "default"
+          }
         }
       },
       "block_order": [
@@ -34,7 +43,7 @@
         "custom_heading_tracking": 0,
         "custom_heading_word_spacing": 0,
         "use_custom_heading_font": true,
-        "padding_top": 30,
+        "padding_top": 18,
         "padding_bottom": 80,
         "padding_top_mobile": 20,
         "padding_bottom_mobile": 20

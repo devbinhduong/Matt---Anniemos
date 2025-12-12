@@ -200,7 +200,7 @@
                             --a-delay: {{ '0.05' | times: forloop.index }}s;"
                         {% endif %}
                       >
-                        {%- if collection_obj and collection_obj.image -%}
+                        {%- if collection_obj and collection_obj.image != blank -%}
                           {%- capture sizes -%}
                             (min-width: 990px) 550px, (min-width: 750px) 550px, calc(100vw - 30px)
                           {%- endcapture -%}
@@ -217,7 +217,7 @@
                           {{ 'collection-' | append: index | placeholder_svg_tag: 'placeholder-svg' }}
                         {%- endif -%}
                       </div>
-                    </{% if link.url != blank %}a{% else %}div{% endif %}>
+                    </{% if collection_obj.url != blank %}a{% else %}div{% endif %}>
                     <div class="item__content {{ text_alignment }}">
                       <h2 class="d-inline-block pos-relative{% if blocks_heading_size == 'text-body' %} text-size-default{% else %} text-body {{ blocks_heading_size | prepend: 'heading-size-' }}{% endif %} {{ font_transform }} m-0 f-bold text-responsive" data-animate="{{ text_animation }}" style="--a-delay: {{ '0.05' | times: forloop.index }}s;{% if blocks_heading_size == 'text-body' %}--cus-size: 0.4rem;{% endif %}">
                         {%- if type_style == 'default' -%}

@@ -1150,7 +1150,7 @@
               <li class="menu-lv-1-item">
                 {%- if link.links != blank -%}
                   <header-menu id="Details-HeaderMenu-{{ forloop.index }} test-{{ link.links.size }}" class="mega-menu pos-static">
-                    <a href="{{ link.url }}" class="header__menu-item menu-lv-1 link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset d-flex a-i-center c-pointer pos-relative"{% if link.current %} aria-current="page"{% endif %}>
+                    <a href="{{ link.url }}" class="header__menu-item menu-lv-1 link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset d-flex a-i-center c-pointer pos-relative"{% if link.current %} aria-current="page"{% endif %} role="button">
                       <span class="link-style">{{ link.title | escape }}</span>
                     </a>
                     <div id="MegaMenu-Content-{{ forloop.index }}" class="mega-menu__content gradient motion-reduce global-settings-popup pos-absolute top-100 left-0 right-0 {{ section.settings.menu_transform }} cus-scrollbar" tabindex="-1">
@@ -1328,7 +1328,7 @@
                 {%- if link.links != blank -%}
                   {%- assign index = forloop.index -%}
                   <header-menu id="Details-HeaderMenu-{{ forloop.index }}" class="dropdown-menu pos-relative">
-                    <a href="{{ link.url }}" class="header__menu-item menu-lv-1 link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset d-flex a-i-center c-pointer pos-relative"{% if link.current %} aria-current="page"{% endif %}>
+                    <a href="{{ link.url }}" class="header__menu-item menu-lv-1 link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset d-flex a-i-center c-pointer pos-relative"{% if link.current %} aria-current="page"{% endif %} role="button">
                       <span class="link-style">{{ link.title | escape }}</span>
                     </a>
                     <ul id="HeaderMenu-MenuList-{{ forloop.index }}" class="header__submenu list-menu gradient motion-reduce global-settings-popup list-unstyled pos-absolute m-t rounded {{ section.settings.menu_transform }}" role="list" tabindex="-1">
