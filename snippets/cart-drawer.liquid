@@ -489,7 +489,7 @@
                                   name="add"
                                   class="quick-add__submit button button-cart_mobile pos-relative c-pointer b-circle d-inline-flex a-i-center j-c-center"
                                   aria-haspopup="dialog"
-                                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}"
+                                  aria-labelledby="{{ product_form_id }}-submit"
                                   aria-label="{{ 'templates.cart.cart_items' | t: count: cart.item_count }}"
                                   data-product-url="{{ product.url | split: "?" | first }}?view=quick-view"
                                 >
@@ -652,7 +652,7 @@
                                   name="add" 
                                   class="quick-add__submit button {{ settings.button_style | prepend: 'button--style-' }} {{ settings.card_button_transform }} w-100{% if settings.view_cart_button_transparent == 'transparent' %} button--transparent{% endif %} color-{{ settings.view_cart_color_scheme }} gradient" 
                                   aria-haspopup="dialog" 
-                                  aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ product.id }}" 
+                                  aria-labelledby="{{ product_form_id }}-submit" 
                                   aria-live="polite" 
                                   data-sold-out-message="true"
                                   {% if product.selected_or_first_available_variant.available == false %} disabled{% endif %}

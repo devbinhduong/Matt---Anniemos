@@ -47,7 +47,7 @@
       {%- unless product.price_varies == false and product.compare_at_price_varies %}
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <span>
-          <s class="price-item price-item--regular d-inline-block{% if compare_at_price != blank %} price-before--sale{% endif %}">
+          <s class="price-item price-item--regular d-inline-block{% if compare_at_price != blank %} price-before--sale{% endif %}" role="heading">
             {% if settings.currency_code_enabled %}
               {{ compare_at_price | money_with_currency }}
             {% else %}
@@ -57,7 +57,7 @@
         </span>
       {%- endunless -%}
       <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
-      <span class="price-item price-item--sale price-item--last d-inline-block">
+      <span class="price-item price-item--sale price-item--last d-inline-block" role="heading">
         {{ money_price }}
       </span>
       {%- if enable_discount_price -%}
@@ -66,7 +66,7 @@
     </div>
     <small class="unit-price caption d-block{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
       <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
-      <span class="price-item price-item--last d-inline-block">
+      <span class="price-item price-item--last d-inline-block" role="heading">
         <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
         <span aria-hidden="true">/</span>
         <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>

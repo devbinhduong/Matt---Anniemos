@@ -20,18 +20,10 @@
             "logo_width": 100,
             "text": "<p><a href=\"/pages/contact-us\" title=\"Contact Us\">Need to speak to a staff member? Call us on 01224 673 000 </a></p>"
           }
-        },
-        "announcement_b9VVTB": {
-          "type": "announcement",
-          "settings": {
-            "logo_width": 100,
-            "text": "<p><a href=\"/pages/contact-us\" target=\"_blank\" title=\"Contact Us\">Need to speak to a staff member? Call us on 01224 673 000 </a></p>"
-          }
         }
       },
       "block_order": [
-        "announcement-bar-0",
-        "announcement_b9VVTB"
+        "announcement-bar-0"
       ],
       "settings": {
         "text_size": "medium",

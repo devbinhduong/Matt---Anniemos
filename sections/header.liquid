@@ -104,6 +104,7 @@
       --p-l: {{ section.settings.padding_left }}px;
       --p-r: {{ section.settings.padding_right }}px;
       " 
+    role="navigation"
   >
     {%- if section.settings.menu != blank -%}
       <header-drawer data-breakpoint="md" class="header-drawer icons-style-{{ section.settings.icon_type_style }} d-none-lg{% if section.settings.enable_wishlist_mobile and section.settings.mobile_logo_position == 'center' %} a-i-center{% endif %}">
@@ -1318,7 +1319,7 @@
                     </div>
                   </header-menu>
                 {%- else -%}
-                  <a href="{{ link.url }}" class="header__menu-item menu-lv-1 d-inline-block link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset{% if link.current %} active{% endif %}"{% if link.current %} aria-current="page"{% endif %}>
+                  <a href="{{ link.url }}" class="header__menu-item menu-lv-1 d-inline-block link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset{% if link.current %} active{% endif %}"{% if link.current %} aria-current="page"{% endif %} role="button">
                     <span class="link-style">{{ link.title | escape }}</span>
                   </a>
                 {%- endif -%}
@@ -1360,7 +1361,7 @@
                     </ul>
                   </header-menu>
                 {%- else -%}
-                  <a href="{{ link.url }}" class="header__menu-item menu-lv-1 d-flex a-i-center c-pointer pos-relative link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset"{% if link.current %} aria-current="page"{% endif %}>
+                  <a href="{{ link.url }}" class="header__menu-item menu-lv-1 d-flex a-i-center c-pointer pos-relative link {{ section.settings.link_type | prepend: "link--style-" }} u-none color-foreground focus-inset"{% if link.current %} aria-current="page"{% endif %} role="button">
                     <span class="link-style">{{ link.title | escape }}</span>
                   </a>
                 {%- endif -%}
@@ -1374,7 +1375,7 @@
       {%- if request.page_type == 'index' or section.settings.type_style == 'special' -%}
         <h1 class="header__heading m-0 {{ section.settings.logo_alignment_desktop | prepend: 'j-s-' }}">
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text u-none break focus-inset d-inline-block logo-wrapper"
+          <a href="{{ routes.root_url }}" class="header__heading-link link link--text u-none break focus-inset d-inline-block logo-wrapper" role="button"
             {%- if section.settings.logo != blank -%}
               style="--m-w: {{ section.settings.logo_width }}px; --logo-width-mb: 100px;"
             {%- endif -%}

@@ -9,7 +9,7 @@
     render 'icon-arrow-long-2'
   endcapture
 -%}
-<footer class="footer footer--{{ section.settings.type_style }} m-t" style="--m-t: {{ section.settings.margin_top }}px;">
+<footer class="footer footer--{{ section.settings.type_style }} m-t" style="--m-t: {{ section.settings.margin_top }}px;" role="contentinfo">
   {%- if section.blocks.size > 0 -%}
     <div class="footer__content footer__content-top{% if section.settings.show_line_separator %} b-top{% endif %} color-{{ section.settings.footer_top_color_scheme }} gradient{% if section.settings.type_style != 'classy' %} spacing spacing-xs{% endif %}"
       style="--padding-top: {{ section.settings.footer_top_padding_top }}px;
@@ -19,7 +19,7 @@
         --cus-o: 1;"
     >
       <div class="{{ section.settings.section_width }} m-auto"{% if section.settings.section_width == 'customized-width' %} style="--page-width:{{ section.settings.customize_width }}px;"{% endif %}>
-        <div class="footer__blocks-wrapper grid d-flex f-wrap footer-item--{{ section.blocks.size }}" style="--grid-h-md-u: 14px;">
+        <div class="footer__blocks-wrapper grid d-flex f-wrap footer-item--{{ section.blocks.size }}" role="navigation" style="--grid-h-md-u: 14px;">
           {%- for block in section.blocks -%}
             {%- case block.type -%}
               {%- when 'text' -%}
@@ -107,7 +107,7 @@
                       <ul class="footer-block__details-content list-unstyled m-t" role="list" style="--r-gap: {{ section.settings.link_row_gap }}px; --m-t: 1rem;">
                         {%- for link in block.settings.menu.links -%}
                           <li class="footer-block__item {{ section.settings.text_typography | prepend: 'typography-' }} {{ section.settings.text_size | prepend: 'text-size text-size-' }} {{ section.settings.text_font_transform }}">
-                            <a href="{{ link.url }}" class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset text-responsive">
+                            <a href="{{ link.url }}" class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset text-responsive" role="button">
                               <span class="link-style">{{ link.title }}</span>
                             </a>
                           </li>
@@ -315,7 +315,7 @@
                             <div class="apps_list-item">
                               <a
                                 href="{{ block.settings.appstore_link_1 }}"
-                                class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset"
+                                class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset" role="button"
                               >
                               {{
                                 block.settings.image_1
@@ -330,7 +330,7 @@
                             <div class="apps_list-item">
                               <a
                                 href="{{ block.settings.appstore_link_2 }}"
-                                class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset text-responsive"
+                                class="footer-block__link link h-link link--style-line color-foreground d-inline-block focus-inset text-responsive" role="button"
                               >
                               {{
                                 block.settings.image_2

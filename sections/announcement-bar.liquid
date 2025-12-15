@@ -24,7 +24,7 @@
         data-speed="{{ section.settings.change_slides_speed }}"
         {% if check_tabs %} style="--cus-w: calc(150% - 50%);"{% endif %}
       >
-        <div class="announcement-bar__slider swiper slider" aria-live="polite" aria-atomic="true">
+        <div class="announcement-bar__slider swiper slider" aria-live="polite" aria-atomic="true" role="navigation">
           <div aria-live="polite" aria-atomic="true" id="Slider-{{ section.id }}" class="swiper-wrapper slider__items a-i-center f-row no-js-overflow-x no-js-scroll-b">
             {%- for block in section.blocks -%}
               <div class="announcement-bar__item swiper-slide slider__item slider__item--{{ forloop.index }} scroll-s-start mi-w{% if check_tabs %} w-auto{% else %}w-100{% endif %}{% if block.settings.logo != blank %} d-flex j-c-center a-i-center c-gap{% endif %} p-extend" role="group" aria-roledescription="Slide" aria-label="{{ 'accessibility.slide' | t: index: forloop.index, total: forloop.length }}" data-index="{{ forloop.index }}" style="{% if check_tabs %}--p-extend: 0 4rem;{% else %}--p-extend: 0 2.2rem;{% endif %}{% if block.settings.logo != blank %}--c-gap: 2rem;{% endif %}" {{ block.shopify_attributes }}>
